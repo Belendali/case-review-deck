@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Case Review · Bella Li</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+<style>
+  body { overflow: auto; }
+  .hub {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: min(1040px, calc(100% - 128px));
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    padding: 80px 0;
+  }
+  .agenda { display: grid; grid-template-columns: 1.35fr 1fr 1fr; gap: 16px; margin-top: 56px; }
+  .agenda a {
+    text-decoration: none;
+    color: var(--ink);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 30px 28px 26px;
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+  }
+  .agenda a:hover { transform: translateY(-4px); background: rgba(255,255,255,0.05); }
+  .agenda a:nth-child(1):hover { border-color: rgba(139,124,255,0.5); }
+  .agenda a:nth-child(2):hover { border-color: rgba(163,230,74,0.5); }
+  .agenda a:nth-child(3):hover { border-color: rgba(255,0,80,0.5); }
+  .agenda .no {
+    font-family: var(--serif);
+    font-size: 13px;
+    letter-spacing: 0.28em;
+    color: var(--faint);
+  }
+  .agenda h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 26px;
+    margin: auto 0 8px;
+    letter-spacing: -0.01em;
+  }
+  .agenda .sub { font-size: 13px; color: var(--dim); }
+  .agenda .time {
+    margin-top: 18px;
+    font-family: var(--serif);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: var(--faint);
+    text-transform: uppercase;
+  }
+  .a1 h3 span { color: var(--core); }
+  .a2 h3 span { color: var(--wanaka); }
+  .a3 h3 span { color: var(--eh-red); }
+  .hint {
+    margin-top: 40px;
+    font-family: var(--serif);
+    font-size: 12.5px;
+    letter-spacing: 0.16em;
+    color: rgba(255,255,255,0.25);
+    text-transform: uppercase;
+  }
+  .hero-row { display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; }
+  .hero-avatar {
+    width: 250px;
+    margin-right: 24px;
+    -webkit-mask-image: radial-gradient(closest-side, #000 58%, transparent 96%);
+    mask-image: radial-gradient(closest-side, #000 58%, transparent 96%);
+    animation: bob 5.5s ease-in-out infinite;
+  }
+  @keyframes bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+  h1 .sub-line { display: block; font-size: 0.76em; color: rgba(255,255,255,0.88); }
+
+  /* ---- expandable "more about me" ---- */
+  .more-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 26px;
+    font-family: var(--serif);
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--dim);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 10px 22px;
+    cursor: pointer;
+    transition: border-color 0.25s, color 0.25s, transform 0.25s;
+    user-select: none;
+  }
+  .more-toggle:hover { color: var(--ink); border-color: rgba(255,255,255,0.28); transform: translateY(-2px); }
+  .more-toggle .chev { transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1); font-size: 11px; }
+  .open .more-toggle .chev { transform: rotate(180deg); }
+
+  .morewrap {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.7s cubic-bezier(0.76, 0, 0.24, 1);
+  }
+  .open .morewrap { grid-template-rows: 1fr; }
+  .morein { overflow: hidden; min-height: 0; }
+  .morein > .sec { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease 0.25s, transform 0.5s ease 0.25s; }
+  .open .morein > .sec { opacity: 1; transform: none; }
+
+  .sec-label {
+    font-family: var(--serif);
+    font-size: 12.5px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin: 44px 0 20px;
+  }
+
+  /* journey strip */
+  .journey {
+    display: grid;
+    grid-template-columns: 1.15fr 0.95fr 1.15fr 1.05fr;
+    grid-template-rows: 228px 92px;
+    gap: 12px;
+  }
+  .jstep {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 16px 16px 14px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
+    cursor: default;
+  }
+  .jstep:hover {
+    background: rgba(255,255,255,0.055);
+    border-color: rgba(255,255,255,0.24);
+    transform: translateY(-3px);
+  }
+  .jstep .jn {
+    font-family: var(--serif);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: var(--faint);
+    font-variant-numeric: tabular-nums;
+  }
+  .jstep h4 { font-family: var(--serif); font-size: 17px; font-weight: 500; margin: 7px 0 0; }
+  .jstep .role { font-size: 11px; color: var(--faint); margin-top: 4px; font-style: italic; }
+
+  /* keyword chips */
+  .kws { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .kw {
+    font-family: var(--serif);
+    font-size: 10.5px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--dim);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 3px 8px;
+    line-height: 1.3;
+    white-space: nowrap;
+  }
+  .kw.key {
+    color: #cfc4ff;
+    border-color: rgba(139,124,255,0.5);
+    background: rgba(139,124,255,0.12);
+  }
+  .kw.ai {
+    color: #bff0d4;
+    border-color: rgba(75,255,201,0.38);
+    background: rgba(75,255,201,0.09);
+  }
+
+  /* hover-revealed description */
+  .jdesc {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition: grid-template-rows 0.4s cubic-bezier(0.22,1,0.36,1), opacity 0.3s ease;
+  }
+  .jstep:hover .jdesc { grid-template-rows: 1fr; opacity: 1; }
+  .jdesc > div { overflow: hidden; min-height: 0; }
+  .jdesc p { font-size: 11.5px; color: var(--dim); line-height: 1.55; padding-top: 10px; }
+
+  .jlogos {
+    display: flex; align-items: center; flex-wrap: wrap;
+    gap: 12px 16px; margin-top: auto; padding-top: 14px;
+  }
+  .jlogos img {
+    height: 28px; width: auto; display: block; opacity: 0.95;
+    transition: height 0.4s cubic-bezier(0.22,1,0.36,1), opacity 0.3s ease;
+  }
+  .jlogos img.big { height: 34px; }
+  .jlogos img.round { height: 44px; border-radius: 10px; }
+  .jstep:hover .jlogos img { height: 17px; opacity: 0.85; }
+  .jstep:hover .jlogos img.big { height: 22px; }
+  .jstep:hover .jlogos img.round { height: 26px; border-radius: 7px; }
+  .parsons-mark {
+    font-family: "Jost", sans-serif;
+    font-weight: 600;
+    font-size: 26px;
+    letter-spacing: -0.015em;
+    color: #ee3124;
+    line-height: 1;
+    transition: font-size 0.4s cubic-bezier(0.22,1,0.36,1);
+  }
+  .jstep:hover .parsons-mark { font-size: 15px; }
+
+  /* col 1/3/4 span both rows; col 2 holds the stacked pair */
+  .j-span { grid-row: 1 / span 2; }
+  .j-stack { display: grid; grid-template-rows: 1fr 1fr; gap: 12px; grid-row: 1 / span 2; }
+  .j-mini { padding: 13px 15px 12px; }
+  .j-mini h4 { font-size: 15px; margin: 5px 0 0; }
+  .j-mini .jdesc p { font-size: 10.8px; line-height: 1.5; padding-top: 7px; }
+  .j-mini .jlogos { padding-top: 8px; }
+  .j-mini .jlogos img.round { height: 40px; }
+  .j-mini:hover .jlogos img.round { height: 22px; }
+  .j-mini .parsons-mark { font-size: 23px; }
+  .j-mini:hover .parsons-mark { font-size: 14px; }
+
+  /* AI-native band under cards 3 & 4 */
+  .j-band {
+    grid-column: 3 / span 2;
+    grid-row: 2;
+    border-radius: 14px;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background:
+      linear-gradient(100deg,
+        rgba(139,124,255,0.20) 0%,
+        rgba(105,226,255,0.16) 34%,
+        rgba(163,230,74,0.16) 66%,
+        rgba(255,206,33,0.18) 100%);
+    border: 1px solid rgba(255,255,255,0.16);
+    position: relative;
+    overflow: hidden;
+  }
+  .j-band::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: radial-gradient(120% 180% at 20% 0%, rgba(255,255,255,0.10), transparent 60%);
+    pointer-events: none;
+  }
+  .j-band img { height: 30px; width: 30px; border-radius: 50%; object-fit: cover; flex: none; }
+  .j-band .bt { font-family: var(--serif); font-size: 15px; font-weight: 500; letter-spacing: 0.01em; }
+  .j-band .bp { font-size: 11.5px; color: rgba(255,255,255,0.72); line-height: 1.5; }
+
+  /* JD match flip cards */
+  .match { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .fcard { perspective: 1100px; height: 276px; cursor: pointer; }
+  .finner {
+    position: relative; width: 100%; height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .fcard.flip .finner { transform: rotateY(180deg); }
+  .fface {
+    position: absolute; inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 14px;
+    padding: 18px 20px;
+    display: flex; flex-direction: column;
+  }
+  .fface .flab {
+    font-family: var(--serif); font-size: 10.5px; letter-spacing: 0.24em;
+    text-transform: uppercase; color: var(--faint); margin-bottom: 10px;
+  }
+  .ffront { background: rgba(255,255,255,0.02); border: 1px solid var(--line); }
+  .ffront p { font-size: 12.5px; color: var(--dim); font-style: italic; line-height: 1.6; }
+  .fback {
+    transform: rotateY(180deg);
+    background: rgba(139,124,255,0.06);
+    border: 1px solid rgba(139,124,255,0.35);
+  }
+  .fback p { font-size: 12.5px; color: var(--ink); line-height: 1.6; }
+  .fback ul { list-style: none; margin: 0; padding: 0; }
+  .fback li {
+    font-size: 11.8px;
+    line-height: 1.5;
+    color: var(--dim);
+    padding-left: 11px;
+    position: relative;
+    margin-bottom: 7px;
+  }
+  .fback li::before {
+    content: "";
+    position: absolute; left: 0; top: 7px;
+    width: 4px; height: 4px; border-radius: 50%;
+    background: rgba(139,124,255,0.85);
+  }
+  .fback li b { color: var(--ink); font-weight: 600; }
+  .fback li .n { color: #cfc4ff; font-weight: 600; }
+  .fback .tail { font-size: 11.5px; color: var(--faint); font-style: italic; margin-top: 2px; }
+  .fback .where {
+    margin-top: auto; align-self: flex-start;
+    font-family: var(--serif); font-size: 10.5px; letter-spacing: 0.2em;
+    text-transform: uppercase; border-radius: 999px; padding: 3px 10px;
+    border: 1px solid var(--line); color: var(--dim);
+  }
+  .fback .where.c1 { color: var(--core); border-color: rgba(138,133,255,0.45); }
+  .fback .where.c2 { color: var(--wanaka); border-color: rgba(163,230,74,0.45); }
+  .fback .where.c3 { color: var(--eh-red); border-color: rgba(255,0,80,0.45); }
+  .match-hint { margin-top: 14px; font-size: 11.5px; color: rgba(255,255,255,0.25); font-family: var(--serif); letter-spacing: 0.14em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+  <div class="glow purple tc" style="position:fixed"></div>
+  <div class="hub">
+    <div class="hero-row">
+      <div>
+        <div class="eyebrow" style="opacity:1;transform:none">Case review · 45 min</div>
+        <h1 style="max-width:820px">Hi Lynn, I'm Bella.<span class="sub-line">Here's what we'll walk through.</span></h1>
+        <p class="lede" style="margin-top:24px">
+          Product designer, New York. Three stories: how I grew a product past its
+          plateau, how I build 0&nbsp;→&nbsp;1 with AI as a teammate, and what I'd
+          bring to effects.
+        </p>
+        <div class="more-toggle" id="moreToggle">
+          A bit more about me <span class="chev">▼</span>
+        </div>
+      </div>
+      <img class="hero-avatar" src="assets/hero-avatar.webp" alt="Bella" id="avatarToggle" style="cursor:pointer" />
+    </div>
+
+    <div class="morewrap">
+      <div class="morein">
+        <div class="sec">
+          <div class="sec-label">The journey so far</div>
+          <div class="journey">
+            <div class="jstep j-span">
+              <span class="jn">2020</span>
+              <h4>Tencent</h4>
+              <div class="role">Started as an interaction design intern</div>
+              <div class="kws">
+                <span class="kw key">Gamification</span>
+                <span class="kw">Design strategy</span>
+              </div>
+              <div class="jdesc"><div><p>Gamification at scale — 40+ game-based courses for ages 3–8 took completion from 72% to 98%. Then "Take a Break" for Tencent Meeting: 1M DAU in its first month.</p></div></div>
+              <div class="jlogos">
+                <img src="assets/logo-tencent.png" alt="Tencent" />
+                <img src="assets/logo-abcmouse.png" alt="ABCmouse" />
+                <img src="assets/logo-tmeeting.png" alt="Tencent Meeting" />
+              </div>
+            </div>
+
+            <div class="j-stack">
+              <div class="jstep j-mini">
+                <span class="jn">2022</span>
+                <h4>Parsons</h4>
+                <div class="kws"><span class="kw">Strategic design</span></div>
+                <div class="jdesc"><div><p>MS, Strategic Design &amp; Management — New York.</p></div></div>
+                <div class="jlogos"><span class="parsons-mark">PARSONS</span></div>
+              </div>
+              <div class="jstep j-mini">
+                <span class="jn">2023</span>
+                <h4>LEGO</h4>
+                <div class="kws"><span class="kw key">Creative campaign</span></div>
+                <div class="jdesc"><div><p>A video campaign that doubled daily sales.</p></div></div>
+                <div class="jlogos"><img class="round" src="assets/logo-lego.webp" alt="LEGO" /></div>
+              </div>
+            </div>
+
+            <div class="jstep j-span" style="grid-row:1">
+              <span class="jn">2024 — now</span>
+              <h4>Answer.AI</h4>
+              <div class="role">Product Designer · 7M users</div>
+              <div class="kws">
+                <span class="kw key">Gamification</span>
+                <span class="kw">Design strategy</span>
+                <span class="kw ai">Designing with AI</span>
+              </div>
+              <div class="jdesc"><div><p>Led the full redesign that took the app past its growth plateau. The users are high-school and college students — the same young audience that lives on TikTok.</p></div></div>
+              <div class="jlogos"><img class="big" src="assets/logo-answer.png" alt="Answer.AI" /></div>
+            </div>
+
+            <div class="jstep j-span" style="grid-row:1">
+              <span class="jn">2024 — now</span>
+              <h4>Wanaka</h4>
+              <div class="role">A creator tool, 0 → 1</div>
+              <div class="kws">
+                <span class="kw key">Creator tool</span>
+                <span class="kw ai">AI skills</span>
+                <span class="kw ai">Designing with AI</span>
+              </div>
+              <div class="jdesc"><div><p>An AI game studio where players build and publish their own games — closest thing I've built to Effect House.</p></div></div>
+              <div class="jlogos"><img class="big" src="assets/logo-wanaka.png" alt="Wanaka" /></div>
+            </div>
+
+            <div class="j-band">
+              <img src="assets/hero-avatar.webp" alt="Bella" />
+              <div>
+                <div class="bt">And through both — working as an AI-native designer</div>
+                <div class="bp">Designing with AI in the loop, and shipping interactive demos and playable prototypes every week.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sec">
+          <div class="sec-label">The brief, decoded — what the role asks × what I bring</div>
+          <div class="match">
+            <div class="fcard"><div class="finner">
+              <div class="fface ffront"><span class="flab">The role asks</span><p>"…integrate game concepts into effect design… to improve user shooting and remix rates."</p></div>
+              <div class="fface fback"><span class="flab">What I bring</span>
+                <ul>
+                  <li><b>Tencent</b> — 40+ game-based courses, completion <span class="n">72% → 98%</span></li>
+                  <li><b>Answer.AI</b> — missions, streaks, leveling, collection built into learning</li>
+                  <li><b>Wanaka</b> — a studio where players build and publish games</li>
+                </ul>
+                <span class="where c2">Tencent · Answer.AI · Wanaka</span>
+              </div>
+            </div></div>
+            <div class="fcard"><div class="finner">
+              <div class="fface ffront"><span class="flab">The role asks</span><p>"…extract and transform your visual design standards, interaction logic, and aesthetic judgment into reusable AI Skills, Custom GPTs, and Workflow Agents…"</p></div>
+              <div class="fface fback"><span class="flab">What I bring</span>
+                <ul>
+                  <li>A <b>library of skills, written by designers</b>, in daily team use</li>
+                  <li>App Store art · marketing assets · in-product image generation</li>
+                  <li>Three are public: <b>game cover</b>, <b>agent voice</b>, <b>design QA</b></li>
+                </ul>
+                <span class="where c2">Wanaka</span>
+              </div>
+            </div></div>
+            <div class="fcard"><div class="finner">
+              <div class="fface ffront"><span class="flab">The role asks</span><p>"Deeply integrate leading large language models and full-stack productivity tools… into daily design and development workflows."</p></div>
+              <div class="fface fback"><span class="flab">What I bring</span>
+                <ul>
+                  <li><b>AI MCPs wired into Figma</b> — hi-fi demos we ship and review the same day</li>
+                  <li>Whichever tool makes the asset best — image, video, code</li>
+                  <li>This page included</li>
+                </ul>
+                <span class="where c1">Answer.AI · Wanaka</span>
+              </div>
+            </div></div>
+            <div class="fcard"><div class="finner">
+              <div class="fface ffront"><span class="flab">The role asks</span><p>"Maintain a high standard of visual quality, aesthetic judgment, and trend awareness. Own complete project portfolios across multiple design systems…"</p></div>
+              <div class="fface fback"><span class="flab">What I bring</span>
+                <ul>
+                  <li><b>ABCmouse</b> — illustrated learning worlds for ages 3–8</li>
+                  <li><b>LEGO</b> — campaign storyboards</li>
+                  <li><b>Answer.AI</b> — a full IP set: three tutors, character and motion design</li>
+                  <li><b>Wanaka</b> — 0 → 1 UI, IP and motion, end to end</li>
+                </ul>
+                <div class="tail">I've been drawing and crafting things since I was a kid.</div>
+                <span class="where c1" style="margin-top:10px">Four design systems</span>
+              </div>
+            </div></div>
+            <div class="fcard"><div class="finner">
+              <div class="fface ffront"><span class="flab">The role asks</span><p>"Deeply participate in and support the iteration of gamified features… helping create the next generation of viral effects."</p></div>
+              <div class="fface fback"><span class="flab">What I bring</span>
+                <ul>
+                  <li><b>Answer.AI</b> — <span class="n">+13%</span> DAU · <span class="n">+23%</span> daily revenue · <span class="n">~8%</span> 30-day retention</li>
+                  <li><b>LEGO</b> — daily sales <span class="n">2×</span>, GMV <span class="n">$15–20K → $30–40K</span></li>
+                  <li><b>Tencent</b> — "Take a Break": <span class="n">1M DAU</span> in month one</li>
+                </ul>
+                <span class="where c1">Answer.AI · LEGO · Tencent</span>
+              </div>
+            </div></div>
+            <div class="fcard"><div class="finner">
+              <div class="fface ffront"><span class="flab">The role asks</span><p>"Experience using low-code or AI-assisted coding tools, such as Cursor or v0, to independently develop and launch interactive projects or playable prototypes."</p></div>
+              <div class="fface fback"><span class="flab">What I bring</span>
+                <ul>
+                  <li><b>3D games, interactive demos, in-house apps</b> — built with AI</li>
+                  <li>Owned <b>0 → 1 as the owner</b>: concept, build, launch</li>
+                  <li>How Answer.AI and Wanaka both get made</li>
+                </ul>
+                <span class="where c3">Answer.AI · Wanaka · side projects</span>
+              </div>
+            </div></div>
+          </div>
+          <div class="match-hint">Click a card to flip · F flips them all</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="agenda">
+      <a class="a1" href="answer.html">
+        <span class="no">01</span>
+        <h3>Answer.AI<br /><span>The growth story</span></h3>
+        <div class="sub">From a shared answer machine to a personalized school — retention, differentiation, results.</div>
+        <div class="time">~18 min</div>
+      </a>
+      <a class="a2" href="wanaka.html">
+        <span class="no">02</span>
+        <h3>Wanaka<br /><span>0 → 1 with AI</span></h3>
+        <div class="sub">How my team and I work with AI at every step of building a new product.</div>
+        <div class="time">~6 min</div>
+      </a>
+      <a class="a3" href="effect.html">
+        <span class="no">03</span>
+        <h3>Effect House<br /><span>Hands-on &amp; trends</span></h3>
+        <div class="sub">Effects I made, and what I see in TikTok's effect trends.</div>
+        <div class="time">~3 min</div>
+      </a>
+    </div>
+
+    <div class="hint">Press 1 / 2 / 3 to jump · Arrow keys to present inside a chapter</div>
+  </div>
+<script>
+  const hub = document.querySelector(".hub");
+  const toggle = () => hub.classList.toggle("open");
+  document.getElementById("moreToggle").addEventListener("click", toggle);
+  document.getElementById("avatarToggle").addEventListener("click", toggle);
+
+  document.querySelectorAll(".fcard").forEach((c) =>
+    c.addEventListener("click", () => c.classList.toggle("flip"))
+  );
+
+  addEventListener("keydown", (e) => {
+    if (e.key === "1") location.href = "answer.html";
+    if (e.key === "2") location.href = "wanaka.html";
+    if (e.key === "3") location.href = "effect.html";
+    if (e.key.toLowerCase() === "e") toggle();
+    if (e.key.toLowerCase() === "f") {
+      const cards = [...document.querySelectorAll(".fcard")];
+      const anyUnflipped = cards.some((c) => !c.classList.contains("flip"));
+      cards.forEach((c, i) =>
+        setTimeout(() => c.classList.toggle("flip", anyUnflipped), i * 120)
+      );
+    }
+  });
+</script>
+</body>
+</html>
