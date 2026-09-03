@@ -7,7 +7,7 @@
 <title>Answer.AI · The Growth Story</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css?v=09031328" />
+<link rel="stylesheet" href="style.css?v=09031336" />
 <style>
   .layers { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 46px; }
   .layer {
@@ -235,7 +235,7 @@
 
   /* small probes */
   .panel.p2 { max-width: 900px; }
-  .probes { display: grid; grid-template-columns: 1fr 1fr 0.8fr; gap: 14px; align-items: stretch; }
+  .probes { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; align-items: stretch; }
   .probe {
     position: relative; border-radius: 14px; border: 1px solid var(--line); background: var(--card);
     padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 10px;
@@ -251,18 +251,23 @@
   .probe.none { border-style: dashed; background: transparent; }
   .pdir { font-family: var(--serif); font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase; color: var(--faint); }
   .probe.dl .pdir { color: #cfc4ff; }
-  .pshot { height: var(--probe-h,150px); border-radius: 10px; border: 1px dashed rgba(255,255,255,.14); overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--faint); letter-spacing: .06em; background: rgba(255,255,255,.02); }
+  .pshot { height: var(--probe-h,130px); border-radius: 10px; border: 1px dashed rgba(255,255,255,.14); overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--faint); letter-spacing: .06em; background: rgba(255,255,255,.02); }
   .pshot img { width: 100%; height: 100%; object-fit: cover; object-position: center var(--probe-y,0%); }
   .pttl { font-family: var(--serif); font-size: 16px; font-weight: 500; color: var(--ink); line-height: 1.2; }
   .pship { font-size: 12.5px; color: var(--dim); line-height: 1.45; }
   .psig { margin-top: auto; padding-top: 10px; border-top: 1px solid var(--line); display: flex; align-items: baseline; gap: 8px; }
+  .probe.dl .pread { margin-top: auto; padding-top: 10px; border-top: 1px solid rgba(139,124,255,.25); }
   .psig b { font-family: var(--serif); font-size: 24px; font-weight: 500; letter-spacing: -.02em; color: var(--ink); line-height: 1; }
   .probe.dl .psig b { color: #cfc4ff; }
-  .psig span { font-size: 11.5px; color: var(--dim); line-height: 1.3; }
+  .psig span { font-size: 11.5px; color: var(--dim); line-height: 1.3; margin-right: 12px; }
+  .pread { font-family: var(--serif); font-size: 13.5px; color: var(--ink); line-height: 1.35; margin: 0; }
+  .probe.dl .pread { color: #cfc4ff; }
+  .probe.dl .psig { display: none; }
+  .probe.dl .pshot { border-color: rgba(139,124,255,.35); }
   .psig b.tbd { color: var(--faint); border-bottom: 1px dashed rgba(255,255,255,.3); }
   .probe.none .pttl { color: var(--dim); }
   .probe.none .pship { color: var(--faint); }
-  .setup { text-align: center; font-family: var(--serif); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--faint); margin-top: 14px; }
+  .setup { text-align: left; font-family: var(--serif); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--faint); margin-top: 14px; }
   .setup i { font-style: normal; margin: 0 8px; opacity: .5; }
 
   .lensnote { max-width: 760px; margin: 16px 0 0; font-size: 12.5px; color: var(--dim); min-height: 40px; line-height: 1.5; border-left: 2px solid rgba(139,124,255,.5); padding-left: 10px; }
@@ -623,29 +628,33 @@
           </div>
 
           <div class="panel p2">
-            <div class="pq2">Instead of a fake door, we shipped thin slices and watched who showed up.</div>
+            <div class="pq2">Two thin probes for the directions we hadn't built. Daily learning needed none — it was already the product.</div>
             <div class="probes">
-              <div class="probe" data-note="A single AP History trial lesson placed inside the Learning Hub — the cheapest way to see whether exam-oriented content pulled anyone in. Few opened it; almost no one came back for more.">
+              <div class="probe" data-note="A small AP test-prep experience inside the Learning Hub. We watched two numbers — who entered, who finished — the cheapest way to see whether exam prep had a real opening.">
                 <div class="pdir">Probe 01 · Test prep</div>
-                <div class="pshot">AP History trial lesson</div>
-                <div class="pttl">One trial lesson</div>
-                <p class="pship">AP History, placed in the Learning Hub. No new curriculum, no new surface — just one lesson to see who opened it.</p>
-                <div class="psig"><b class="tbd">TBD</b><span>of hub visitors opened it<br />(fill in)</span></div>
+                <div class="pshot">AP test-prep mini experience</div>
+                <div class="pttl">A small AP prep experience</div>
+                <p class="pship">A short test-prep flow inside the Learning Hub. We tracked who entered and who finished.</p>
+                <div class="psig"><b class="tbd">TBD</b><span>entered</span><b class="tbd">TBD</b><span>finished</span></div>
+                <p class="pread">Interest was real, but it ended with the exam.</p>
               </div>
-              <div class="probe dl" data-note="A handful of tutor personas written as prompts, shown to 20% of users beside the answer. The fastest way to test whether students wanted help that continued past the answer.">
-                <div class="pdir">Probe 02 · Daily learning</div>
-                <div class="pshot">Tutor prompts, next to the answer</div>
-                <div class="pttl">A few tutor prompts</div>
-                <p class="pship">Tutor personas written as prompts, no new UI. Released to 20% of users to see if anyone kept talking after the answer.</p>
-                <div class="psig"><b class="tbd">TBD</b><span>of exposed users tried a tutor<br />(fill in)</span></div>
+              <div class="probe" data-note="Counselor and Scholar — tutor personas written as prompts, released to about 20% of users. People tapped, but nobody came back the next day. Admissions is a months-long goal, not a daily habit.">
+                <div class="pdir">Probe 02 · Admissions</div>
+                <div class="pshot">Counselor &amp; Scholar tutors</div>
+                <div class="pttl">Counselor &amp; Scholar tutors</div>
+                <p class="pship">Two tutor personas written as prompts, no new UI, released to ~20% of users.</p>
+                <div class="psig"><b class="tbd">TBD</b><span>tapped</span><b class="tbd">TBD</b><span>returned</span></div>
+                <p class="pread">Decent taps, no retention. Too long-term to become daily.</p>
               </div>
-              <div class="probe none" data-note="There was no cheap probe for admissions. Anything credible needed counselors, essays, and trust we didn't have — which was itself a signal about our right to win.">
-                <div class="pdir">Admissions</div>
-                <div class="pttl">No cheap probe existed</div>
-                <p class="pship">Anything credible needed counselors, essays and trust we didn't have. That was a signal on its own.</p>
+              <div class="probe dl" data-note="We never probed daily learning — it was already what students did with us every day. The question was never whether they wanted it, but whether we could turn it into a habit.">
+                <div class="pdir">Daily learning</div>
+                <div class="pshot">Scan &amp; Solve, every day</div>
+                <div class="pttl">Not probed — already the product</div>
+                <p class="pship">Every scan was daily learning. We had the behavior; what we lacked was a reason to return.</p>
+                <p class="pread">The habit was there. We had to give it a loop.</p>
               </div>
             </div>
-            <div class="setup">20% rollout<i>·</i>Existing surfaces only<i>·</i>Days, not weeks</div>
+            <div class="setup">≈20% cohorts<i>·</i>Existing surfaces only<i>·</i>Days, not weeks</div>
           </div>
 
           <div class="lensnote" id="lensnote">Hover a row for the reasoning.</div>
@@ -909,7 +918,7 @@
   // page 3: stagger index for the learner-model dots
   document.querySelectorAll(".dots i").forEach((d, k) => d.style.setProperty("--k", k + 1));
 </script>
-<script src="deck.js?v=09031328"></script>
-<script src="editor.js?v=09031328"></script>
+<script src="deck.js?v=09031336"></script>
+<script src="editor.js?v=09031336"></script>
 </body>
 </html>
