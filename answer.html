@@ -7,7 +7,7 @@
 <title>Answer.AI · The Growth Story</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css?v=09031344" />
+<link rel="stylesheet" href="style.css?v=09031346" />
 <style>
   .layers { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 46px; }
   .layer {
@@ -235,7 +235,7 @@
 
   /* small probes · text left, phone right */
   .panel.p2 { max-width: 900px; }
-  .probes { display: grid; grid-template-columns: 1fr 240px; gap: var(--split-gap,44px); align-items: start; }
+  .probes { position: relative; display: grid; grid-template-columns: 1fr 240px; gap: var(--split-gap,64px); align-items: center; }
   .plist { display: flex; flex-direction: column; gap: 8px; }
   .pitem {
     text-align: left; width: 100%; border-radius: 12px; border: 1px solid var(--line); background: var(--card);
@@ -248,19 +248,27 @@
   .lens:has(.tabtrigger.shown) .pitem:nth-child(3) { transition-delay: .2s; }
   .pitem.on { border-color: rgba(255,255,255,.22); background: rgba(255,255,255,.05); }
   .pitem.dl.on { border-color: rgba(139,124,255,.55); background: rgba(139,124,255,.08); }
-  .plist:hover .pitem:not(:hover):not(.on) { opacity: .55; }
+  .plist:has(.pitem.on) .pitem:not(.on) { opacity: .55; }
   .pdir { font-family: var(--serif); font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.5); }
   .pitem.dl .pdir { color: #cfc4ff; }
   .pttl { font-family: var(--serif); font-size: 15.5px; font-weight: 500; color: var(--ink); line-height: 1.2; margin-top: 4px; }
-  .pship { font-size: 12.5px; color: var(--dim); line-height: 1.45; margin: 4px 0 0; }
+  .pmore { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .3s ease-out; }
+  .pmore > div { overflow: hidden; }
+  .pitem.on .pmore { grid-template-rows: 1fr; }
+  .pship { font-size: 12.5px; color: var(--dim); line-height: 1.45; margin: 6px 0 0; }
   .prow { display: flex; align-items: baseline; gap: 6px; margin-top: 9px; flex-wrap: wrap; }
   .prow b { font-family: var(--serif); font-size: 22px; font-weight: 500; letter-spacing: -.02em; color: var(--ink); line-height: 1; }
   .prow span { font-size: 11.5px; color: var(--dim); margin-right: 14px; }
   .pitem.dl .prow b { color: #cfc4ff; }
-  .pread { font-family: var(--serif); font-size: 13px; color: var(--ink); line-height: 1.35; margin: 8px 0 0; }
+  .pread { font-family: var(--serif); font-size: 13px; color: var(--ink); line-height: 1.35; margin: 8px 0 2px; }
   .pitem.dl .pread { color: #cfc4ff; }
-  .setup { text-align: left; font-family: var(--serif); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--faint); margin-top: 12px; }
-  .setup i { font-style: normal; margin: 0 8px; opacity: .5; }
+  .lens:has(.tabtrigger.shown) .lensnote { display: none; }
+  /* connector from the active item to the phone */
+  .link { position: absolute; height: 1px; background: linear-gradient(90deg, rgba(255,255,255,.35), rgba(139,124,255,.7)); pointer-events: none; transition: top .3s ease-out, opacity .2s ease-out; opacity: 0; }
+  .lens:has(.tabtrigger.shown) .link { opacity: 1; }
+  .link::before, .link::after { content: ""; position: absolute; top: 50%; width: 6px; height: 6px; border-radius: 50%; transform: translateY(-50%); }
+  .link::before { left: -3px; background: rgba(255,255,255,.55); }
+  .link::after { right: -3px; background: #8b7cff; box-shadow: 0 0 8px rgba(139,124,255,.7); }
   /* phone */
   .phone { position: relative; width: 100%; aspect-ratio: 9 / 19; height: var(--phone-h,430px); max-width: 100%; border-radius: 30px; border: 1px solid rgba(255,255,255,.16); background: #0b0b12; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,.5), inset 0 0 0 5px #000; justify-self: end; }
   .phone::before { content: ""; position: absolute; top: 12px; left: 50%; width: 70px; height: 20px; transform: translateX(-50%); border-radius: 12px; background: #000; z-index: 3; }
@@ -632,31 +640,38 @@
                 <button class="pitem on" type="button" data-scr="0" data-note="A short AP test-prep flow inside the Learning Hub. We watched two numbers — who entered, who finished. Completion was healthy, but nobody came back once the exam passed.">
                   <div class="pdir">Probe 01 · Test prep</div>
                   <div class="pttl">A small AP prep experience</div>
+                  <div class="pmore"><div>
                   <p class="pship">A short flow inside the Learning Hub. Tracked who entered, who finished.</p>
                   <div class="prow"><b>≈12%</b><span>of hub visitors entered</span><b>≈4%</b><span>finished</span></div>
                   <p class="pread">Real interest, but it ended with the exam.</p>
+                  </div></div>
                 </button>
                 <button class="pitem" type="button" data-scr="1" data-note="Counselor and Scholar — two tutor personas written as prompts, shown to about 20% of users. Taps were fine; almost no one returned within a week. Admissions is a months-long goal, not a daily habit.">
                   <div class="pdir">Probe 02 · Admissions</div>
                   <div class="pttl">Counselor &amp; Scholar tutors</div>
+                  <div class="pmore"><div>
                   <p class="pship">Two personas as prompts, no new UI. Released to ~20% of users.</p>
                   <div class="prow"><b>≈9%</b><span>of exposed users tapped</span><b>&lt;1%</b><span>returned in 7 days</span></div>
                   <p class="pread">Decent taps, no retention. Too long-term to become daily.</p>
+                  </div></div>
                 </button>
                 <button class="pitem dl" type="button" data-scr="2" data-note="We never probed daily learning — it was already what students did with us every day. The question was never whether they wanted it, but whether we could turn it into a habit.">
                   <div class="pdir">Daily learning</div>
                   <div class="pttl">Not probed — already the product</div>
+                  <div class="pmore"><div>
                   <p class="pship">Every scan was daily learning. We had the behavior; we lacked a reason to return.</p>
                   <p class="pread">The habit was there. We had to give it a loop.</p>
+                  </div></div>
                 </button>
               </div>
+              <div class="link"></div>
               <div class="phone">
                 <div class="scr on">AP prep experience<br />screen</div>
                 <div class="scr">Counselor &amp; Scholar<br />tutor entry</div>
                 <div class="scr">Scan &amp; Solve<br />answer screen</div>
               </div>
             </div>
-            <div class="setup">1 week<i>·</i>20% of users, all grades<i>·</i>Existing surfaces only<i>·</i>Figures approximate</div>
+
           </div>
 
           <div class="lensnote" id="lensnote">Hover a row for the reasoning.</div>
@@ -917,15 +932,27 @@
     new MutationObserver(() => (note.textContent = trig.classList.contains("shown") ? def2 : def1))
       .observe(trig, { attributes: true, attributeFilter: ["class"] });
     const items = lens.querySelectorAll(".pitem"), scrs = lens.querySelectorAll(".scr");
-    items.forEach((it) => it.addEventListener("click", () => {
+    const link = lens.querySelector(".link"), wrap = lens.querySelector(".probes"), phone = lens.querySelector(".phone");
+    const place = () => {
+      const it = lens.querySelector(".pitem.on"); if (!it || !link) return;
+      const w = wrap.getBoundingClientRect(), r = it.getBoundingClientRect(), ph = phone.getBoundingClientRect();
+      link.style.top = (r.top + r.height / 2 - w.top) + "px";
+      link.style.left = (r.right - w.left) + "px";
+      link.style.width = (ph.left - r.right) + "px";
+    };
+    const select = (it) => {
       items.forEach((x) => x.classList.toggle("on", x === it));
       scrs.forEach((sc, i) => sc.classList.toggle("on", String(i) === it.dataset.scr));
-    }));
+      place(); setTimeout(place, 320);
+    };
+    items.forEach((it) => { it.addEventListener("click", () => select(it)); it.addEventListener("mouseenter", () => select(it)); });
+    new MutationObserver(() => setTimeout(place, 350)).observe(trig, { attributes: true, attributeFilter: ["class"] });
+    addEventListener("resize", place);
   });
   // page 3: stagger index for the learner-model dots
   document.querySelectorAll(".dots i").forEach((d, k) => d.style.setProperty("--k", k + 1));
 </script>
-<script src="deck.js?v=09031344"></script>
-<script src="editor.js?v=09031344"></script>
+<script src="deck.js?v=09031346"></script>
+<script src="editor.js?v=09031346"></script>
 </body>
 </html>
