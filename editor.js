@@ -102,6 +102,12 @@
   }
 
   addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && document.designMode === "on") {
+      document.designMode = "off";
+      const b = panel && panel.querySelector("#deTextEdit");
+      if (b) { b.classList.remove("on"); b.textContent = "Edit text"; }
+      return;
+    }
     if (e.key !== "d" && e.key !== "D") return;
     if (document.designMode === "on") return;      // don't hijack typing
     const t = e.target;

@@ -34,7 +34,14 @@
     setTimeout(() => (locked = false), 780);
   }
 
+  function isEditing(e) {
+    if (document.designMode === "on") return true;
+    const t = e && e.target;
+    return !!(t && (t.isContentEditable || t.tagName === "INPUT" || t.tagName === "TEXTAREA"));
+  }
+
   addEventListener("keydown", (e) => {
+    if (isEditing(e)) return;
     if (["ArrowDown", "ArrowRight", "PageDown", " "].includes(e.key)) {
       e.preventDefault();
       step(1);
@@ -49,6 +56,7 @@
   addEventListener(
     "wheel",
     (e) => {
+      if (document.designMode === "on") return;
       e.preventDefault();
       if (locked) return;
       acc += e.deltaY;
