@@ -7,7 +7,7 @@
 <title>Answer.AI · The Growth Story</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css?v=09031050" />
+<link rel="stylesheet" href="style.css?v=09031102" />
 <style>
   .layers { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 46px; }
   .layer {
@@ -142,29 +142,28 @@
   @media print { .frag { opacity: 1 !important; transform: none !important; } }
 
   /* ===== page 1 · three paths ===== */
-  .paths { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 30px; }
+  .paths { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 28px; }
   .path {
-    position: relative; min-height: 400px; padding: 22px 22px 20px;
+    position: relative; min-height: 330px; padding: 22px 22px 20px;
     background: var(--card); border: 1px solid var(--line); border-radius: 16px;
     transition: background .2s ease-out, border-color .2s ease-out, opacity .2s ease-out;
     outline: none; cursor: default;
   }
   .path .pno { font-family: var(--serif); font-size: 11.5px; letter-spacing: .22em; text-transform: uppercase; color: var(--faint); }
-  .path h3 { font-family: var(--serif); font-weight: 500; font-size: 18.5px; line-height: 1.25; margin: 10px 0 10px; }
-  .path .ptop p { font-size: 12.5px; color: var(--dim); line-height: 1.55; }
+  .path .pq { font-family: var(--serif); font-size: 18px; line-height: 1.32; color: var(--ink); margin: 12px 0 8px; }
+  .path .pwho { font-size: 12px; color: var(--dim); }
   .path .ptop { transition: transform .2s ease-out; }
-  .ptags { display: flex; gap: 6px; margin-top: 12px; }
+  .ptags { display: flex; gap: 6px; margin-top: 14px; }
   .ptags span { font-family: var(--serif); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--dim); border: 1px solid var(--line); border-radius: 6px; padding: 3px 8px; }
   .preveal {
     position: absolute; left: 22px; right: 22px; bottom: 20px;
     opacity: 0; transform: translateY(8px); transition: opacity .2s ease-out, transform .2s ease-out;
     pointer-events: none;
   }
-  .plab { font-family: var(--serif); font-size: 10.5px; letter-spacing: .22em; text-transform: uppercase; color: var(--faint); margin-bottom: 5px; }
-  .pq { font-size: 12.5px; color: var(--ink); font-style: italic; line-height: 1.45; margin-bottom: 12px; }
+  .plab { font-family: var(--serif); font-size: 10.5px; letter-spacing: .22em; text-transform: uppercase; color: var(--faint); margin-bottom: 4px; }
   .pnum { font-family: var(--serif); font-size: 30px; font-weight: 500; letter-spacing: -.02em; color: #cfc4ff; line-height: 1.05; }
-  .psrc { font-size: 11px; color: var(--dim); line-height: 1.45; margin-top: 5px; }
-  .ptake { font-size: 11.5px; color: rgba(255,255,255,.8); margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line); }
+  .psrc { font-size: 11px; color: var(--dim); line-height: 1.4; margin-top: 4px; }
+  .ptake { font-size: 11.5px; color: rgba(255,255,255,.82); margin-top: 9px; padding-top: 9px; border-top: 1px solid var(--line); }
   .path:hover, .path.lock { background: rgba(139,124,255,.07); border-color: rgba(139,124,255,.35); }
   .path:hover .ptop, .path.lock .ptop { transform: translateY(-12px); }
   .path:hover .preveal, .path.lock .preveal { opacity: 1; transform: none; }
@@ -470,57 +469,51 @@
       <div class="slide-inner">
         <div class="eyebrow rv">Discovery · Three credible paths</div>
         <h2 class="rv">Students wanted more from us —<br />in three different directions.</h2>
-        <p class="lede rv" style="max-width:820px">
-          Interviews revealed three unmet needs. Market research showed that each
-          had real commercial potential.
+        <p class="lede rv" style="max-width:860px">
+          <em>12 student interviews</em> — 8 online, 4 in person — surfaced three
+          unmet needs. Market research showed each had real commercial potential.
         </p>
         <div class="paths rv d3">
           <div class="path" tabindex="0">
             <div class="ptop">
               <div class="pno">01 · Test prep</div>
-              <h3>Help me prepare for the moments that matter.</h3>
-              <p>High-stakes outcomes created clear willingness to pay — but demand was concentrated around exam cycles.</p>
+              <p class="pq">“I don't know what to study — or whether I'm actually ready.”</p>
+              <div class="pwho">Maya · 11th grade</div>
               <div class="ptags"><span>High intent</span><span>Seasonal</span></div>
             </div>
             <div class="preveal">
-              <div class="plab">Research synthesis</div>
-              <p class="pq">“I don't know what to study — or whether I'm actually ready.”</p>
               <div class="plab">Commercial proof</div>
               <div class="pnum">$292.8M</div>
-              <p class="psrc">Kaplan Supplemental Education revenue, 2023 — standardized test prep and related programs.</p>
+              <p class="psrc">Kaplan test-prep revenue, 2023</p>
               <p class="ptake">Proven willingness to pay for high-stakes outcomes.</p>
             </div>
           </div>
           <div class="path" tabindex="0">
             <div class="ptop">
               <div class="pno">02 · College admissions</div>
-              <h3>Help me navigate what comes after school.</h3>
-              <p>School selection, essays, and scholarships were complex, emotional, and valuable enough for families to seek expert help.</p>
+              <p class="pq">“I don't know which schools are realistic for me.”</p>
+              <div class="pwho">Jordan · 12th grade</div>
               <div class="ptags"><span>High value</span><span>Episodic</span></div>
             </div>
             <div class="preveal">
-              <div class="plab">Research synthesis</div>
-              <p class="pq">“I don't know which schools are realistic — or how to make my application stand out.”</p>
               <div class="plab">Commercial proof</div>
               <div class="pnum">$30K+</div>
-              <p class="psrc">Starting price reported for Crimson's undergraduate admissions services; valued at nearly $600M in 2024.</p>
-              <p class="ptake">A smaller audience, but exceptionally high value per student.</p>
+              <p class="psrc">Crimson's starting price; valued near $600M in 2024</p>
+              <p class="ptake">Smaller audience, exceptionally high value per student.</p>
             </div>
           </div>
           <div class="path" tabindex="0">
             <div class="ptop">
               <div class="pno">03 · Daily learning</div>
-              <h3>Help me understand — not just finish — today's work.</h3>
-              <p>Students could already get answers. What they still lacked was understanding, practice, and a sense of progress.</p>
+              <p class="pq">“I got the answer, but I still can't do the next one.”</p>
+              <div class="pwho">Sam · College freshman</div>
               <div class="ptags"><span>Broad reach</span><span>Year-round</span></div>
             </div>
             <div class="preveal">
-              <div class="plab">Research synthesis</div>
-              <p class="pq">“I got the answer — but I still don't know how to do the next one.”</p>
               <div class="plab">Commercial proof</div>
               <div class="pnum">$531M</div>
-              <p class="psrc">Duolingo's 2023 revenue — the scale of habit-based, everyday learning.</p>
-              <p class="ptake">Daily learning could create both habit and scalable monetization.</p>
+              <p class="psrc">Duolingo revenue, 2023 — everyday, habit-based learning</p>
+              <p class="ptake">Habit and scalable monetization in one direction.</p>
             </div>
           </div>
         </div>
@@ -832,7 +825,7 @@
   // page 3: stagger index for the learner-model dots
   document.querySelectorAll(".dots i").forEach((d, k) => d.style.setProperty("--k", k + 1));
 </script>
-<script src="deck.js?v=09031050"></script>
-<script src="editor.js?v=09031050"></script>
+<script src="deck.js?v=09031102"></script>
+<script src="editor.js?v=09031102"></script>
 </body>
 </html>
