@@ -7,7 +7,7 @@
 <title>Answer.AI · The Growth Story</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css?v=09031543" />
+<link rel="stylesheet" href="style.css?v=09031549" />
 <style>
   /* strategy · isometric stack + four layers */
   .promise { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: var(--split-gap,36px); align-items: center; margin-top: 18px; }
@@ -208,6 +208,8 @@
   .hs:hover, .hs.on { box-shadow: 0 0 0 6px rgba(139,124,255,.35), 0 0 24px rgba(139,124,255,.9); }
   /* ===== Stay · study-room "why" mode ===== */
   .trio .ph { position: relative; }
+  .trio .ph img.alt { position: absolute; inset: 0; opacity: 0; transition: opacity .35s ease-out, transform .5s cubic-bezier(.22,1,.36,1); }
+  .trio figure:hover .ph img.alt { opacity: 1; }
   .trio .roomfig { cursor: pointer; }
   .tapme { position: absolute; right: 10px; bottom: 10px; font-family: var(--serif); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink); background: rgba(0,0,0,.55); border: 1px solid rgba(255,255,255,.25); border-radius: 999px; padding: 5px 10px; backdrop-filter: blur(6px); transition: background .2s, border-color .2s; }
   .roomfig:hover .tapme { background: rgba(105,226,255,.18); border-color: var(--stay); }
@@ -877,15 +879,15 @@
         </p>
         <div class="trio">
           <figure class="rv d2">
-            <div class="ph media"><img src="assets/stay-flashcards.jpg" alt="Flashcards" /></div>
+            <div class="ph media"><img src="assets/stay-flashcards.jpg" alt="Flashcards" /><img class="alt" src="assets/stay-flashcards-hover.jpg" alt="" /></div>
             <figcaption>Flashcards<div class="sub">Daily memory, built from what you studied</div></figcaption>
           </figure>
           <figure class="rv d3">
-            <div class="ph media"><img src="assets/stay-mock.jpg" alt="Mock tests" /></div>
+            <div class="ph media"><img src="assets/stay-mock.jpg" alt="Mock tests" /><img class="alt" src="assets/stay-mock-hover.jpg" alt="" /></div>
             <figcaption>Mock tests<div class="sub">The hard-demand moment before every exam</div></figcaption>
           </figure>
           <figure class="rv d4 roomfig" tabindex="0" role="button" aria-label="Why study rooms">
-            <div class="ph media"><img src="assets/stay-studyroom.jpg" alt="Study rooms" /><span class="tapme">Why this? ↗</span></div>
+            <div class="ph media"><img src="assets/stay-studyroom.jpg" alt="Study rooms" /><img class="alt" src="assets/stay-studyroom-hover.jpg" alt="" /><span class="tapme">Why this? ↗</span></div>
             <figcaption>Study rooms<div class="sub">Company while you work, not another feed</div></figcaption>
           </figure>
         </div>
@@ -1109,7 +1111,7 @@
   // page 3: stagger index for the learner-model dots
   document.querySelectorAll(".dots i").forEach((d, k) => d.style.setProperty("--k", k + 1));
 </script>
-<script src="deck.js?v=09031543"></script>
-<script src="editor.js?v=09031543"></script>
+<script src="deck.js?v=09031549"></script>
+<script src="editor.js?v=09031549"></script>
 </body>
 </html>
