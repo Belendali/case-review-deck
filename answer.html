@@ -7,7 +7,7 @@
 <title>Answer.AI · The Growth Story</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css?v=09031530" />
+<link rel="stylesheet" href="style.css?v=09031537" />
 <style>
   /* strategy · isometric stack + four layers */
   .promise { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: var(--split-gap,36px); align-items: center; margin-top: 18px; }
@@ -206,6 +206,26 @@
   @keyframes hsPulse { 0% { transform: scale(.6); opacity: .9; } 100% { transform: scale(1.5); opacity: 0; } }
   .corestage:has(.stagetrig.shown) .ph.after:hover .hs, .corestage:has(.stagetrig.shown) .ph.after .hs.on { opacity: 1; transform: scale(1); }
   .hs:hover, .hs.on { box-shadow: 0 0 0 6px rgba(139,124,255,.35), 0 0 24px rgba(139,124,255,.9); }
+  /* ===== Stay · study-room "why" mode ===== */
+  .trio .ph { position: relative; }
+  .trio .roomfig { cursor: pointer; }
+  .tapme { position: absolute; right: 10px; bottom: 10px; font-family: var(--serif); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink); background: rgba(0,0,0,.55); border: 1px solid rgba(255,255,255,.25); border-radius: 999px; padding: 5px 10px; backdrop-filter: blur(6px); transition: background .2s, border-color .2s; }
+  .roomfig:hover .tapme { background: rgba(105,226,255,.18); border-color: var(--stay); }
+  .roomwhy { display: none; grid-template-columns: 300px 1fr; gap: 36px; align-items: center; margin-top: 30px; }
+  .staywrap.roommode .trio { display: none; }
+  .staywrap.roommode .roomwhy { display: grid; animation: rwIn .45s cubic-bezier(.22,1,.36,1) both; }
+  @keyframes rwIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+  .rw-img { height: var(--tile-h, 340px); border-radius: 16px; overflow: hidden; border: 1px solid rgba(105,226,255,.35); box-shadow: 0 0 40px rgba(105,226,255,.12); }
+  .rw-img img { width: 100%; height: 100%; object-fit: cover; }
+  .rw-eyebrow { font-family: var(--serif); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--stay); margin-bottom: 8px; }
+  .rw-text h3 { font-family: var(--serif); font-weight: 500; font-size: 24px; line-height: 1.2; margin: 0 0 10px; color: var(--ink); }
+  .rw-text p { font-size: 14px; color: var(--dim); line-height: 1.55; margin: 0; max-width: 560px; }
+  .rw-stats { display: grid; grid-template-columns: repeat(3, auto); gap: 26px; margin: 18px 0 14px; justify-content: start; }
+  .rw-stats b { display: block; font-family: var(--serif); font-size: 28px; font-weight: 500; letter-spacing: -.02em; color: var(--ink); line-height: 1; }
+  .rw-stats span { display: block; font-size: 11.5px; color: var(--dim); margin-top: 6px; max-width: 150px; line-height: 1.35; }
+  .rw-note { font-size: 12.5px !important; color: rgba(255,255,255,.5) !important; font-style: italic; }
+  .rw-back { margin-top: 16px; font: inherit; font-family: var(--serif); font-size: 12px; letter-spacing: .08em; color: var(--dim); background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 7px 14px; cursor: pointer; transition: color .2s, border-color .2s; }
+  .rw-back:hover { color: var(--ink); border-color: rgba(255,255,255,.35); }
   /* ===== fragments (within-slide builds) ===== */
   .frag { opacity: 0; transform: translateY(12px); transition: opacity .22s ease-out, transform .22s ease-out; }
   .frag.shown { opacity: 1; transform: none; }
@@ -847,26 +867,41 @@
 
     <!-- 9 · Stay -->
     <section class="slide">
-      <div class="slide-inner">
+      <div class="slide-inner staywrap">
         <div class="eyebrow rv" style="color:var(--stay)">Layer 02 · Stay</div>
-        <h2 class="rv">Give students a reason to come back tomorrow.</h2>
+        <h2 class="rv" style="font-size:var(--t-h2,44px)">Give students a reason to come back tomorrow.</h2>
         <p class="lede rv">
           We kept only the methods with proven demand: daily memory, exam
           crunch, and company while you study.
         </p>
         <div class="trio">
           <figure class="rv d2">
-            <div class="ph media">Flashcards</div>
+            <div class="ph media"><img src="assets/stay-flashcards.jpg" alt="Flashcards" /></div>
             <figcaption>Flashcards<div class="sub">Daily memory, built from what you studied</div></figcaption>
           </figure>
           <figure class="rv d3">
-            <div class="ph media">Mock tests</div>
+            <div class="ph media"><img src="assets/stay-mock.jpg" alt="Mock tests" /></div>
             <figcaption>Mock tests<div class="sub">The hard-demand moment before every exam</div></figcaption>
           </figure>
-          <figure class="rv d4">
-            <div class="ph media">Study rooms</div>
+          <figure class="rv d4 roomfig" tabindex="0" role="button" aria-label="Why study rooms">
+            <div class="ph media"><img src="assets/stay-studyroom.jpg" alt="Study rooms" /><span class="tapme">Why this? ↗</span></div>
             <figcaption>Study rooms<div class="sub">Company while you work, not another feed</div></figcaption>
           </figure>
+        </div>
+        <div class="roomwhy">
+          <div class="rw-img"><img src="assets/stay-studyroom.jpg" alt="Study room" /></div>
+          <div class="rw-text">
+            <div class="rw-eyebrow">Why study rooms · A trend, not a guess</div>
+            <h3>“Learn with me” was already how students studied.</h3>
+            <p>Our EdTech marketing agent flagged it: study-with-me streams were trending on TikTok and Instagram — students working alongside strangers for company and accountability. We built that feeling into the app.</p>
+            <div class="rw-stats">
+              <div><b>3.5B</b><span>#studywithme views on TikTok, 2022</span></div>
+              <div><b>700M+</b><span>views on one Lofi Girl study stream, 2024</span></div>
+              <div><b>14.7M</b><span>subscribers to that single channel</span></div>
+            </div>
+            <p class="rw-note">Studying alongside peers lowers test anxiety and raises self-efficacy — Frontiers in Psychology, 2025.</p>
+            <button class="rw-back" type="button">← Back to all three</button>
+          </div>
         </div>
       </div>
     </section>
@@ -1060,10 +1095,20 @@
       row.addEventListener("mouseleave", () => link.classList.remove("on"));
     });
   });
+  // Stay slide: click the study room to explain why it exists
+  document.querySelectorAll(".staywrap").forEach((w) => {
+    const fig = w.querySelector(".roomfig"), back = w.querySelector(".rw-back");
+    const open = () => w.classList.add("roommode"), close = () => w.classList.remove("roommode");
+    fig.addEventListener("click", open);
+    fig.addEventListener("keydown", (e) => { if (e.key === "Enter") open(); });
+    back.addEventListener("click", close);
+    addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
+    document.addEventListener("deck:change", close);
+  });
   // page 3: stagger index for the learner-model dots
   document.querySelectorAll(".dots i").forEach((d, k) => d.style.setProperty("--k", k + 1));
 </script>
-<script src="deck.js?v=09031530"></script>
-<script src="editor.js?v=09031530"></script>
+<script src="deck.js?v=09031537"></script>
+<script src="editor.js?v=09031537"></script>
 </body>
 </html>
