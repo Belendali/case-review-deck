@@ -7,7 +7,7 @@
 <title>Answer.AI · The Growth Story</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css?v=09031624" />
+<link rel="stylesheet" href="style.css?v=09031626" />
 <style>
   /* strategy · isometric stack + four layers */
   .promise { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: var(--split-gap,36px); align-items: center; margin-top: 18px; }
@@ -270,12 +270,19 @@
   .bubble em { font-style: italic; }
   .tut.frag:nth-child(3) { transition-delay: .12s; } .tut.frag:nth-child(4) { transition-delay: .24s; }
   /* ===== Personal · portfolio layout ===== */
-  .prows { display: grid; gap: 10px; margin-top: 18px; }
-  .prow { display: grid; grid-template-columns: 170px 1fr; gap: 20px; align-items: start; }
-  .prow b { font-family: var(--serif); font-weight: 500; font-size: 14px; color: var(--ink); padding-top: 2px; }
-  .prow p { margin: 0; font-size: 13.5px; line-height: 1.55; color: var(--dim); max-width: 860px; }
-  .prow em { font-style: normal; color: var(--ink); }
-  .ptiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--img-gap, 22px); margin-top: 24px; }
+  .ptabs { position: relative; margin-top: 18px; }
+  .ptabtrig { position: absolute; width: 0; height: 0; }
+  .ptabs .tabs { justify-content: flex-start; }
+  .ptabs .tab.t1 { color: var(--ink); border-color: rgba(255,206,33,.55); background: rgba(255,206,33,.10); }
+  .ptabs:has(.ptabtrig.shown) .tab.t1 { color: var(--dim); border-color: var(--line); background: var(--card); }
+  .ptabs:has(.ptabtrig.shown) .tab.t2 { color: var(--ink); border-color: rgba(255,206,33,.55); background: rgba(255,206,33,.10); }
+  .ppanel.p2 { display: none; }
+  .ptabs:has(.ptabtrig.shown) .ppanel.p1 { display: none; }
+  .ptabs:has(.ptabtrig.shown) .ppanel.p2 { display: block; animation: rwIn .4s cubic-bezier(.22,1,.36,1) both; }
+  .ptext { margin: 16px 0 0; font-size: 14px; line-height: 1.55; color: var(--dim); max-width: 900px; }
+  .ptext em { font-style: normal; color: var(--ink); }
+  .ptiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--img-gap, 22px); margin-top: 18px; }
+  .ptiles.two { grid-template-columns: repeat(2, minmax(0, 300px)); }
   .ptiles figure { margin: 0; }
   .pt { position: relative; height: var(--tile-h, 300px); border-radius: 16px; overflow: hidden; border: 1px solid var(--line); background: rgba(255,255,255,.03); transition: transform .35s ease-out, border-color .35s ease-out; }
   .ptiles figure:hover .pt { transform: translateY(-4px); border-color: rgba(255,206,33,.45); }
@@ -611,7 +618,7 @@
     <section class="slide">
       <div class="slide-inner chartslide">
         <div class="head">
-          <div class="eyebrow rv">Act I · The honeymoon · 2023 — 2024</div>
+          <div class="eyebrow rv">The honeymoon · 2023 — 2024</div>
           <h2 class="rv">We landed in a golden window.</h2>
           <p class="lede rv" style="max-width:840px">
             Free chatbots couldn't take a photo yet — GPT-4o only opened image and
@@ -644,7 +651,7 @@
     <section class="slide">
       <div class="slide-inner chartslide">
         <div class="head">
-          <div class="eyebrow rv">Act II · The turn · late 2024</div>
+          <div class="eyebrow rv">The turn · late 2024</div>
           <h2 class="rv">Growth began to slow.</h2>
           <p class="lede rv" style="max-width:900px">
             The capability that opened the market became table stakes — and our
@@ -1022,23 +1029,34 @@
       <div class="slide-inner">
         <div class="eyebrow rv" style="color:var(--personal)">Layer 04 · Personal</div>
         <h2 class="rv" style="font-size:var(--t-h2,40px)">Streaks, nudges, and a school that knows you.</h2>
-        <div class="prows rv d2">
-          <div class="prow"><b>Make it proactive</b><p>The tutors act first. Ace, Alma and Grant get to know each student — grade, school, strong subjects, dream schools — while Ace maps mastery from <em>follow-up questions and scanned problems</em>. Then they reach out at the right moment: a check-in after yesterday’s tough question, a <em>preview invite</em> the night before tomorrow’s calculus class.</p></div>
-          <div class="prow"><b>The reward loop</b><p>A light reward system keeps it going: scanning problems, mastering topics and finishing Ace’s exercises earn <em>badges</em> — plus random outfit drops for an <em>avatar</em> that shows up in the online study room.</p></div>
-        </div>
-        <div class="ptiles">
-          <figure class="rv d3">
-            <div class="pt"><img src="assets/personal-1.jpg" alt="Proactive preview" /><img class="alt" src="assets/personal-1-hover.jpg" alt="" /></div>
-            <figcaption>Proactive preview<span>Tomorrow’s class, tonight’s heads-up from Ace.</span></figcaption>
-          </figure>
-          <figure class="rv d4">
-            <div class="pt"><img src="assets/personal-2.jpg" alt="A call with Alma" /><video class="alt" src="assets/personal-2.mp4" muted loop playsinline preload="metadata"></video></div>
-            <figcaption>A call with Alma<span>Strong in a subject? Ace books a college-planning call.</span></figcaption>
-          </figure>
-          <figure class="rv d5">
-            <div class="pt"><img src="assets/personal-3.jpg" alt="Badges to avatar" /><video class="alt" src="assets/personal-3.mp4" muted loop playsinline preload="metadata"></video></div>
-            <figcaption>Badges to avatar<span>Tasks earn badges — badges dress the study-room avatar.</span></figcaption>
-          </figure>
+        <div class="ptabs rv d2">
+          <span class="ptabtrig frag" data-frag="1" aria-hidden="true"></span>
+          <div class="tabs">
+            <button class="tab t1" type="button"><span>01</span>Make it proactive</button>
+            <button class="tab t2" type="button"><span>02</span>The reward loop</button>
+          </div>
+          <div class="ppanel p1">
+            <p class="ptext">The tutors act first. Ace, Alma and Grant get to know each student — grade, school, strong subjects, dream schools — while Ace maps mastery from <em>follow-up questions and scanned problems</em>. Then they reach out at the right moment: a check-in after yesterday’s tough question, a <em>preview invite</em> the night before tomorrow’s calculus class.</p>
+            <div class="ptiles two">
+              <figure>
+                <div class="pt"><img src="assets/personal-1.jpg" alt="Proactive preview" /><img class="alt" src="assets/personal-1-hover.jpg" alt="" /></div>
+                <figcaption>Proactive preview<span>Tomorrow’s class, tonight’s heads-up from Ace.</span></figcaption>
+              </figure>
+              <figure>
+                <div class="pt"><img src="assets/personal-2.jpg" alt="A call with Alma" /><video class="alt" src="assets/personal-2.mp4" muted loop playsinline preload="metadata"></video></div>
+                <figcaption>A call with Alma<span>Strong in a subject? Ace books a college-planning call.</span></figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="ppanel p2">
+            <p class="ptext">A light reward system keeps it going: scanning problems, mastering topics and finishing Ace’s exercises earn <em>badges</em> — plus random outfit drops for an <em>avatar</em> that shows up in the online study room.</p>
+            <div class="ptiles two">
+              <figure>
+                <div class="pt"><img src="assets/personal-3.jpg" alt="Badges to avatar" /><video class="alt" src="assets/personal-3.mp4" muted loop playsinline preload="metadata"></video></div>
+                <figcaption>Badges to avatar<span>Tasks earn badges — badges dress the study-room avatar.</span></figcaption>
+              </figure>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1047,7 +1065,7 @@
     <section class="slide">
       <div class="glow purple tc"></div>
       <div class="slide-inner">
-        <div class="eyebrow rv">Act III · What moved</div>
+        <div class="eyebrow rv">What moved</div>
         <h2 class="rv">The layers did their jobs.</h2>
         <p class="lede rv">
           Core and Stay fight churn; Reach breaks the sameness; Personal claims
@@ -1187,6 +1205,12 @@
     };
     new MutationObserver(() => animateTo(trig.classList.contains("shown") ? 42 : 100)).observe(trig, { attributes: true, attributeFilter: ["class"] });
   });
+  // Personal slide: tabs sync with the fragment
+  document.querySelectorAll(".ptabs").forEach((pt) => {
+    const trig = pt.querySelector(".ptabtrig");
+    pt.querySelector(".tab.t1").addEventListener("click", () => trig.classList.remove("shown"));
+    pt.querySelector(".tab.t2").addEventListener("click", () => trig.classList.add("shown"));
+  });
   // Personal slide: hover plays the tile video
   document.querySelectorAll(".ptiles figure").forEach((f) => {
     const v = f.querySelector("video"); if (!v) return;
@@ -1196,7 +1220,7 @@
   // page 3: stagger index for the learner-model dots
   document.querySelectorAll(".dots i").forEach((d, k) => d.style.setProperty("--k", k + 1));
 </script>
-<script src="deck.js?v=09031624"></script>
-<script src="editor.js?v=09031624"></script>
+<script src="deck.js?v=09031626"></script>
+<script src="editor.js?v=09031626"></script>
 </body>
 </html>
