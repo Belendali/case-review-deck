@@ -7,7 +7,7 @@
 <title>Answer.AI · The Growth Story</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css?v=09031346" />
+<link rel="stylesheet" href="style.css?v=09031350" />
 <style>
   .layers { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 46px; }
   .layer {
@@ -279,39 +279,12 @@
   .lensnote { max-width: 760px; margin: 16px 0 0; font-size: 12.5px; color: var(--dim); min-height: 40px; line-height: 1.5; border-left: 2px solid rgba(139,124,255,.5); padding-left: 10px; }
 
   /* ===== page 3 · the decision ===== */
-  .decide { display: grid; grid-template-columns: 1.55fr 0.85fr; gap: 26px; margin-top: 24px; align-items: start; }
-  .stack { display: flex; flex-direction: column; gap: 10px; }
-  .lay { border-radius: 12px; border: 1px solid var(--line); background: var(--card); padding: 12px 16px; }
-  .lay b { display: block; font-family: var(--serif); font-weight: 500; font-size: 13.5px; letter-spacing: .04em; text-transform: uppercase; }
-  .lay > span { display: block; font-size: 12px; color: var(--dim); margin-top: 3px; line-height: 1.45; }
-  .tops { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding-bottom: 18px; }
-  .tops .stems { position: absolute; left: 0; right: 0; bottom: 0; height: 18px; }
-  .tops .stems i { position: absolute; bottom: 0; width: 1px; height: 18px; background: rgba(139,124,255,.5); }
-  .tops .stems i:first-child { left: 25%; } .tops .stems i:last-child { left: 75%; }
-  .lay.model { width: 82%; margin: 0 auto; border-color: rgba(255,255,255,.16); background: rgba(255,255,255,.045); text-align: center; }
-  .dots { display: flex; justify-content: center; gap: 6px; margin-top: 9px; }
-  .dots i { width: 5px; height: 5px; border-radius: 50%; background: rgba(139,124,255,.85); opacity: 0; transform: scale(.4); transition: opacity .3s ease-out, transform .3s ease-out; }
-  .model.shown .dots i { opacity: 1; transform: none; }
-  .model.shown .dots i:nth-child(n) { transition-delay: calc(.06s * var(--k, 1)); }
-  .lay.daily { border-color: rgba(139,124,255,.45); background: rgba(139,124,255,.09); padding: 14px 18px 12px; }
-  .lay.daily b { color: #cfc4ff; }
-  .steps { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
-  .steps span { font-family: var(--serif); font-size: 14.5px; font-weight: 500; color: rgba(255,255,255,.35); transition: color .3s ease-out; }
-  .steps i { color: rgba(255,255,255,.25); font-style: normal; }
-  .daily.shown .steps span { color: var(--ink); }
-  .daily.shown .steps span:nth-child(1) { transition-delay: .15s; } .daily.shown .steps span:nth-child(3) { transition-delay: .4s; }
-  .daily.shown .steps span:nth-child(5) { transition-delay: .65s; } .daily.shown .steps span:nth-child(7) { transition-delay: .9s; }
-  .lay.daily .sup { margin-top: 8px; }
-  .lay.base { background: rgba(255,255,255,.015); border-style: dashed; }
-  .lay.base b { color: var(--dim); }
-  .whys { display: grid; gap: 10px; }
-  .why { border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; font-size: 12px; color: var(--dim); line-height: 1.45; background: var(--card); }
-  .why b { display: block; font-family: var(--serif); font-weight: 500; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: #cfc4ff; margin-bottom: 4px; }
-  .final { margin-top: 20px; min-height: 96px; }
-  .fbig { font-family: var(--serif); font-size: 22px; font-weight: 500; letter-spacing: -.01em; }
-  .fbig span { color: var(--dim); font-weight: 400; }
-  .fsmall { font-size: 12.5px; color: var(--dim); margin-top: 4px; }
-  .fpunch { margin-top: 12px; font-family: var(--serif); font-size: 17px; color: #cfc4ff; line-height: 1.35; }
+  .whys3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--cards-gap,12px); margin-top: 34px; max-width: 980px; }
+  .why { border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; font-size: 12.5px; color: var(--dim); line-height: 1.45; background: var(--card); transition: opacity .4s ease-out, transform .4s ease-out; }
+  .why b { display: block; font-family: var(--serif); font-weight: 500; font-size: 11.5px; letter-spacing: .18em; text-transform: uppercase; color: #cfc4ff; margin-bottom: 4px; }
+  .why.frag:not(.shown) { opacity: 0; transform: translateY(8px); }
+  .whys3 .why:nth-child(2) { transition-delay: .1s; } .whys3 .why:nth-child(3) { transition-delay: .2s; }
+  .fsmall { font-size: 13px; color: var(--dim); max-width: 820px; line-height: 1.5; }
 
   /* full-bleed media slide */
   .bleed { position: absolute; inset: 0; z-index: 0; }
@@ -679,49 +652,25 @@
       </div>
     </section>
 
-    <!-- 8 · The decision: sequence over distraction -->
+    <!-- 8 · The decision -->
     <section class="slide">
       <div class="glow purple bc"></div>
       <div class="slide-inner">
-        <div class="eyebrow rv">The decision · Sequence over distraction</div>
-        <h2 class="rv">We chose the foundation first.</h2>
-        <p class="lede rv" style="max-width:860px">
-          Daily learning was the only direction that strengthened today's core
-          while making every future vertical better.
+        <div class="eyebrow rv">The decision</div>
+        <p class="quote rv" style="max-width:980px">
+          I made the case to keep our focus on <span class="hl">daily learning</span> — and go deeper.
         </p>
-        <div class="decide rv d3">
-          <div class="stack">
-            <div class="tops frag" data-frag="3">
-              <div class="lay top"><b>Test prep</b><span>Personalized around each student's actual knowledge gaps.</span></div>
-              <div class="lay top"><b>College admissions</b><span>Informed by each student's goals, progress, and strengths.</span></div>
-              <div class="stems"><i></i><i></i></div>
-            </div>
-            <div class="lay model frag" data-frag="2">
-              <b>Personalized learner model</b>
-              <span>What they know · Where they struggle · How they learn</span>
-              <div class="dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-            </div>
-            <div class="lay daily frag" data-frag="1">
-              <b>Daily learning</b>
-              <div class="steps"><span>Solve</span><i>→</i><span>Understand</span><i>→</i><span>Practice</span><i>→</i><span>Progress</span></div>
-              <span class="sup">Turn every homework question into a richer, ongoing learning relationship.</span>
-            </div>
-            <div class="lay base">
-              <b>Existing behavior</b>
-              <span>Millions of students already came to Answer.AI when they were stuck.</span>
-            </div>
-          </div>
-          <div class="whys">
-            <div class="why frag" data-frag="1"><b>Fix the core</b>Give students a new reason to choose us — and more reasons to stay.</div>
-            <div class="why frag" data-frag="1"><b>Build on our edge</b>Extend an existing behavior instead of acquiring a completely new audience.</div>
-            <div class="why frag" data-frag="2"><b>Create a moat</b>Every interaction makes the learner model — and the next experience — better.</div>
-          </div>
+        <p class="lede rv d2" style="max-width:820px;margin-top:22px">
+          Not a new vertical. A better loop for the thing seven million students already did with us.
+        </p>
+        <div class="whys3 rv d3">
+          <div class="why frag" data-frag="1"><b>Fix the core</b>Give students a new reason to choose us — and more reasons to stay.</div>
+          <div class="why frag" data-frag="1"><b>Build on our edge</b>Extend a behavior we already had instead of buying a new audience.</div>
+          <div class="why frag" data-frag="1"><b>Create a moat</b>Every interaction makes the learner model — and the next experience — better.</div>
         </div>
-        <div class="final">
-          <p class="fbig frag" data-frag="4">Earn the daily relationship first. <span>Expand into higher-stakes moments later.</span></p>
-          <p class="fsmall frag" data-frag="4">This wasn't “no” to test prep or admissions. It was “not yet.”</p>
-          <p class="fpunch frag" data-frag="5">Test prep and admissions could build on daily learning.<br />Daily learning could not build on either.</p>
-        </div>
+        <p class="fsmall frag" data-frag="2" style="margin-top:22px">
+          This wasn't “no” to test prep or admissions. It was “not yet” — both could build on daily learning; daily learning could not build on either.
+        </p>
       </div>
     </section>
 
@@ -952,7 +901,7 @@
   // page 3: stagger index for the learner-model dots
   document.querySelectorAll(".dots i").forEach((d, k) => d.style.setProperty("--k", k + 1));
 </script>
-<script src="deck.js?v=09031346"></script>
-<script src="editor.js?v=09031346"></script>
+<script src="deck.js?v=09031350"></script>
+<script src="editor.js?v=09031350"></script>
 </body>
 </html>
