@@ -7,7 +7,7 @@
 <title>Answer.AI · The Growth Story</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css?v=09031613" />
+<link rel="stylesheet" href="style.css?v=09031617" />
 <style>
   /* strategy · isometric stack + four layers */
   .promise { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: var(--split-gap,36px); align-items: center; margin-top: 18px; }
@@ -256,6 +256,21 @@
   .tut b { display: block; font-family: var(--serif); font-weight: 500; font-size: 15px; color: var(--ink); }
   .tut span { font-size: 12px; color: var(--dim); line-height: 1.4; }
   .tut.frag:nth-child(2) { transition-delay: .12s; } .tut.frag:nth-child(3) { transition-delay: .24s; }
+  /* ===== Personal · portfolio layout ===== */
+  .prows { display: grid; gap: 10px; margin-top: 18px; }
+  .prow { display: grid; grid-template-columns: 170px 1fr; gap: 20px; align-items: start; }
+  .prow b { font-family: var(--serif); font-weight: 500; font-size: 14px; color: var(--ink); padding-top: 2px; }
+  .prow p { margin: 0; font-size: 13.5px; line-height: 1.55; color: var(--dim); max-width: 860px; }
+  .prow em { font-style: normal; color: var(--ink); }
+  .ptiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--img-gap, 22px); margin-top: 24px; }
+  .ptiles figure { margin: 0; }
+  .pt { position: relative; height: var(--tile-h, 300px); border-radius: 16px; overflow: hidden; border: 1px solid var(--line); background: rgba(255,255,255,.03); transition: transform .35s ease-out, border-color .35s ease-out; }
+  .ptiles figure:hover .pt { transform: translateY(-4px); border-color: rgba(255,206,33,.45); }
+  .pt img, .pt video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .pt .alt { opacity: 0; transition: opacity .35s ease-out; }
+  .ptiles figure:hover .pt .alt { opacity: 1; }
+  .ptiles figcaption { margin-top: 12px; font-family: var(--serif); font-size: 14px; color: var(--ink); }
+  .ptiles figcaption span { display: block; font-size: 12px; color: var(--dim); margin-top: 3px; font-family: var(--body); }
   /* ===== fragments (within-slide builds) ===== */
   .frag { opacity: 0; transform: translateY(12px); transition: opacity .22s ease-out, transform .22s ease-out; }
   .frag.shown { opacity: 1; transform: none; }
@@ -969,16 +984,26 @@
 
     <!-- 12 · Personal -->
     <section class="slide">
-      <div class="slide-inner split">
-        <div class="media rv d3" style="order:0;height:var(--media-h,440px)">Proactive tutor · demo</div>
-        <div>
-          <div class="eyebrow rv" style="color:var(--personal)">Layer 04 · Personal</div>
-          <h2 class="rv">Claim the AI window.</h2>
-          <p class="lede rv">
-            Tutors that don't wait to be asked: they map your mastery from what
-            you scan, check in before class, invite you to preview — a school
-            that knows you, not a chatbot that answers you.
-          </p>
+      <div class="slide-inner">
+        <div class="eyebrow rv" style="color:var(--personal)">Layer 04 · Personal</div>
+        <h2 class="rv" style="font-size:var(--t-h2,40px)">Streaks, nudges, and a school that knows you.</h2>
+        <div class="prows rv d2">
+          <div class="prow"><b>Make it proactive</b><p>The tutors act first. Ace, Alma and Grant get to know each student — grade, school, strong subjects, dream schools — while Ace maps mastery from <em>follow-up questions and scanned problems</em>. Then they reach out at the right moment: a check-in after yesterday’s tough question, a <em>preview invite</em> the night before tomorrow’s calculus class.</p></div>
+          <div class="prow"><b>The reward loop</b><p>A light reward system keeps it going: scanning problems, mastering topics and finishing Ace’s exercises earn <em>badges</em> — plus random outfit drops for an <em>avatar</em> that shows up in the online study room.</p></div>
+        </div>
+        <div class="ptiles">
+          <figure class="rv d3">
+            <div class="pt"><img src="assets/personal-1.jpg" alt="Proactive preview" /><img class="alt" src="assets/personal-1-hover.jpg" alt="" /></div>
+            <figcaption>Proactive preview<span>Tomorrow’s class, tonight’s heads-up from Ace.</span></figcaption>
+          </figure>
+          <figure class="rv d4">
+            <div class="pt"><img src="assets/personal-2.jpg" alt="A call with Alma" /><video class="alt" src="assets/personal-2.mp4" muted loop playsinline preload="metadata"></video></div>
+            <figcaption>A call with Alma<span>Strong in a subject? Ace books a college-planning call.</span></figcaption>
+          </figure>
+          <figure class="rv d5">
+            <div class="pt"><img src="assets/personal-3.jpg" alt="Badges to avatar" /><video class="alt" src="assets/personal-3.mp4" muted loop playsinline preload="metadata"></video></div>
+            <figcaption>Badges to avatar<span>Tasks earn badges — badges dress the study-room avatar.</span></figcaption>
+          </figure>
         </div>
       </div>
     </section>
@@ -1127,10 +1152,16 @@
     };
     new MutationObserver(() => animateTo(trig.classList.contains("shown") ? 42 : 100)).observe(trig, { attributes: true, attributeFilter: ["class"] });
   });
+  // Personal slide: hover plays the tile video
+  document.querySelectorAll(".ptiles figure").forEach((f) => {
+    const v = f.querySelector("video"); if (!v) return;
+    f.addEventListener("mouseenter", () => { v.currentTime = 0; v.play().catch(() => {}); });
+    f.addEventListener("mouseleave", () => v.pause());
+  });
   // page 3: stagger index for the learner-model dots
   document.querySelectorAll(".dots i").forEach((d, k) => d.style.setProperty("--k", k + 1));
 </script>
-<script src="deck.js?v=09031613"></script>
-<script src="editor.js?v=09031613"></script>
+<script src="deck.js?v=09031617"></script>
+<script src="editor.js?v=09031617"></script>
 </body>
 </html>
