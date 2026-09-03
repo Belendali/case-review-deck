@@ -7,7 +7,7 @@
 <title>Answer.AI · The Growth Story</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css?v=09031600" />
+<link rel="stylesheet" href="style.css?v=09031604" />
 <style>
   /* strategy · isometric stack + four layers */
   .promise { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: var(--split-gap,36px); align-items: center; margin-top: 18px; }
@@ -234,16 +234,15 @@
   .rw-note { font-size: 12.5px !important; color: rgba(255,255,255,.5) !important; font-style: italic; }
   .rw-back { margin-top: 16px; font: inherit; font-family: var(--serif); font-size: 12px; letter-spacing: .08em; color: var(--dim); background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 7px 14px; cursor: pointer; transition: color .2s, border-color .2s; }
   .rw-back:hover { color: var(--ink); border-color: rgba(255,255,255,.35); }
-  /* ===== Reach · old IP → new IP ===== */
-  .reachwrap { position: relative; }
-  .reachstage { position: relative; height: var(--media-h, 400px); }
-  .reachstage .rs { position: absolute; inset: 0; border-radius: 16px; overflow: hidden; border: 1px solid var(--line); background: #000; transition: opacity .6s ease-out, transform .6s cubic-bezier(.22,1,.36,1); }
-  .reachstage .rs img, .reachstage .rs video { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .reachstage .phlab { position: absolute; left: 14px; bottom: 12px; font-family: var(--serif); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.85); background: rgba(0,0,0,.5); padding: 5px 10px; border-radius: 999px; backdrop-filter: blur(6px); }
-  .reachstage .rs.after { opacity: 0; transform: scale(.97); pointer-events: none; }
-  .reachwrap:has(.stagetrig.shown) .rs.before { opacity: 0; transform: scale(1.03); }
-  .reachwrap:has(.stagetrig.shown) .rs.after { opacity: 1; transform: none; pointer-events: auto; border-color: rgba(75,255,201,.4); box-shadow: 0 0 40px rgba(75,255,201,.12); }
-  .reachwrap:has(.stagetrig.shown) .rs.after .phlab { color: var(--reach); }
+  /* ===== Reach · drag-to-compare ===== */
+  .cmp { position: relative; margin: 26px auto 0; height: min(var(--media-h, 470px), calc(100vh - 440px)); aspect-ratio: 1600 / 885; max-width: 100%; border-radius: 16px; overflow: hidden; border: 1px solid var(--line); background: #000; cursor: ew-resize; user-select: none; touch-action: none; }
+  .cmp-after, .cmp-before { position: absolute; inset: 0; }
+  .cmp img, .cmp video { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
+  .cmp-before { clip-path: inset(0 calc(100% - var(--x)) 0 0); }
+  .cmp-bar { position: absolute; top: 0; bottom: 0; left: var(--x); width: 2px; margin-left: -1px; background: #fff; box-shadow: 0 0 12px rgba(0,0,0,.6); }
+  .cmp-knob { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 44px; height: 44px; border-radius: 50%; background: #fff; color: #111; font-family: var(--serif); font-size: 13px; letter-spacing: -.05em; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 20px rgba(0,0,0,.45); }
+  .cmp-lab { position: absolute; top: 14px; font-family: var(--serif); font-size: 12px; letter-spacing: .06em; color: var(--ink); background: rgba(0,0,0,.55); border: 1px solid rgba(255,255,255,.2); border-radius: 999px; padding: 6px 14px; backdrop-filter: blur(6px); }
+  .cmp-lab.l { left: 14px; } .cmp-lab.r { right: 14px; }
   /* ===== fragments (within-slide builds) ===== */
   .frag { opacity: 0; transform: translateY(12px); transition: opacity .22s ease-out, transform .22s ease-out; }
   .frag.shown { opacity: 1; transform: none; }
@@ -925,26 +924,20 @@
       </div>
     </section>
 
-    <!-- 11 · Reach: old IP → new IP -->
+    <!-- 11 · Reach: old IP → new IP (drag to compare) -->
     <section class="slide">
-      <div class="slide-inner split reachwrap">
+      <div class="slide-inner reachwrap">
         <span class="stagetrig frag" data-frag="1" aria-hidden="true"></span>
-        <div>
-          <div class="eyebrow rv" style="color:var(--reach)">Layer 03 · Reach</div>
-          <h2 class="rv">Break the sameness.</h2>
-          <p class="lede rv">
-            Every competitor looked the same, and our old mascots read young —
-            cute, but nothing a high-schooler would want on their phone, and
-            nothing you'd remember an hour later.
-          </p>
-          <div class="corelegend">
-            <p class="cl before"><b>Before</b> Generic, childish mascots. Interchangeable with every other study app.</p>
-            <p class="cl after frag" data-frag="1" style="border-left-color:var(--reach)"><b style="color:var(--reach)">After</b> A cast with personality — characters students want to keep on their phone.</p>
-          </div>
-        </div>
-        <div class="reachstage rv d3">
-          <div class="rs before"><img src="assets/reach-before.jpg" alt="The old mascots" /><span class="phlab">Before · the old mascots</span></div>
-          <div class="rs after"><video src="assets/reach-new.mp4" muted loop playsinline autoplay preload="metadata"></video><span class="phlab">After · the new IP</span></div>
+        <div class="eyebrow rv" style="color:var(--reach)">Layer 03 · Reach</div>
+        <h2 class="rv" style="font-size:var(--t-h2,40px)">Break the sameness.</h2>
+        <p class="lede rv" style="max-width:900px">
+          Every competitor looked the same, and our old mascots read young — cute, but nothing a
+          high-schooler would keep on their phone. The new cast grows out of the Answer.AI logo.
+        </p>
+        <div class="cmp rv d3" style="--x:100%">
+          <div class="cmp-after"><video src="assets/reach-new.mp4" muted loop playsinline autoplay preload="metadata"></video><span class="cmp-lab r">After</span></div>
+          <div class="cmp-before"><img src="assets/reach-before.jpg" alt="The old mascots" draggable="false" /><span class="cmp-lab l">Before</span></div>
+          <div class="cmp-bar"><span class="cmp-knob">&lt;&gt;</span></div>
         </div>
       </div>
     </section>
@@ -1107,10 +1100,29 @@
     addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
     document.addEventListener("deck:change", close);
   });
+  // Reach slide: drag to compare; space (fragment) animates the reveal
+  document.querySelectorAll(".reachwrap").forEach((w) => {
+    const cmp = w.querySelector(".cmp"), trig = w.querySelector(".stagetrig"); if (!cmp) return;
+    let x = 100, raf = null;
+    const set = (v) => { x = Math.max(0, Math.min(100, v)); cmp.style.setProperty("--x", x + "%"); };
+    const fromEvent = (e) => { const r = cmp.getBoundingClientRect(); set(((e.clientX - r.left) / r.width) * 100); };
+    let down = false;
+    cmp.addEventListener("pointerdown", (e) => { down = true; cmp.setPointerCapture(e.pointerId); if (raf) cancelAnimationFrame(raf); fromEvent(e); });
+    cmp.addEventListener("pointermove", (e) => { if (down) fromEvent(e); });
+    const up = () => (down = false);
+    cmp.addEventListener("pointerup", up); cmp.addEventListener("pointercancel", up);
+    const animateTo = (target) => {
+      if (raf) cancelAnimationFrame(raf);
+      const from = x, t0 = performance.now(), dur = 900;
+      const step = (t) => { const k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3); set(from + (target - from) * e); if (k < 1) raf = requestAnimationFrame(step); };
+      raf = requestAnimationFrame(step);
+    };
+    new MutationObserver(() => animateTo(trig.classList.contains("shown") ? 42 : 100)).observe(trig, { attributes: true, attributeFilter: ["class"] });
+  });
   // page 3: stagger index for the learner-model dots
   document.querySelectorAll(".dots i").forEach((d, k) => d.style.setProperty("--k", k + 1));
 </script>
-<script src="deck.js?v=09031600"></script>
-<script src="editor.js?v=09031600"></script>
+<script src="deck.js?v=09031604"></script>
+<script src="editor.js?v=09031604"></script>
 </body>
 </html>
