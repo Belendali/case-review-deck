@@ -16,7 +16,18 @@
     i = n;
     deck.style.transition = instant ? "none" : "";
     deck.style.transform = `translateY(-${i * 100}vh)`;
-    slides.forEach((s, k) => s.classList.toggle("on", k === i));
+    slides.forEach((s, k) => {
+      const was = s.classList.contains("on");
+      s.classList.toggle("on", k === i);
+      // restart chart draw-on each time a slide comes back into view
+      if (!was && k === i) {
+        s.querySelectorAll(".chart .ln, .chart .mark").forEach((el) => {
+          el.style.animation = "none";
+          void el.offsetWidth;
+          el.style.animation = "";
+        });
+      }
+    });
     if (bar) bar.style.width = ((i + 1) / slides.length) * 100 + "%";
     if (counter)
       counter.textContent =
@@ -83,4 +94,24 @@
 
   const h = parseInt((location.hash || "").slice(1), 10);
   go(isNaN(h) ? 0 : h - 1, true);
+})();
+
+/* measure each chart line so the draw-on animation matches its real length */
+(function () {
+  function set() {
+    let done = 0, total = 0;
+    document.querySelectorAll(".chart .ln, .chart .mark").forEach((el) => {
+      total++;
+      let len = 0;
+      try { len = Math.ceil(el.getTotalLength()); } catch (e) {}
+      if (len > 0) { el.style.setProperty("--len", String(len + 2)); done++; }
+    });
+    return total > 0 && done === total;
+  }
+  let tries = 0;
+  (function retry() {
+    if (set() || tries++ > 20) return;
+    requestAnimationFrame(retry);
+  })();
+  addEventListener("load", set);
 })();
