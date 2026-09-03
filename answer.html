@@ -7,8 +7,27 @@
 <title>Answer.AI · The Growth Story</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css?v=09031449" />
+<link rel="stylesheet" href="style.css?v=09031454" />
 <style>
+  /* strategy · isometric stack + four layers */
+  .promise { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: var(--split-gap,36px); align-items: center; margin-top: 18px; }
+  .iso { width: 100%; max-height: var(--media-h,400px); display: block; overflow: visible; }
+  .iso .L { transform: translateY(18px); opacity: 0; transition: transform .6s cubic-bezier(.22,1,.36,1), opacity .5s ease-out; }
+  .slide.on .iso .L { transform: none; opacity: 1; }
+  .slide.on .iso .L1 { transition-delay: .5s; } .slide.on .iso .L2 { transition-delay: .75s; }
+  .slide.on .iso .L3 { transition-delay: 1s; } .slide.on .iso .L4 { transition-delay: 1.25s; }
+  .iso .pyr, .iso .glow { opacity: 0; transition: opacity .8s ease-out .3s; }
+  .slide.on .iso .pyr, .slide.on .iso .glow { opacity: 1; }
+  .plist2 { display: flex; flex-direction: column; gap: 22px; }
+  .plist2 .prow2 { width: 100%; display: grid; grid-template-columns: 40px 1fr; gap: 12px; align-items: center; }
+  .prow2 .n { font-family: var(--serif); font-size: 22px; letter-spacing: .04em; }
+  .prow2 b { font-family: var(--serif); font-weight: 500; font-size: 17px; color: var(--ink); }
+  .prow2 i { font-style: normal; color: var(--faint); margin: 0 8px; }
+  .prow2 div { font-size: 13.5px; color: var(--dim); line-height: 1.45; }
+  .prow2 em { display: block; font-style: italic; color: rgba(255,255,255,.5); font-size: 13px; margin-top: 2px; }
+  .prow2.l1 .n { color: var(--core); } .prow2.l2 .n { color: var(--stay); } .prow2.l3 .n { color: var(--reach); } .prow2.l4 .n { color: var(--personal); }
+  .pfoot { text-align: center; margin-top: 22px; font-size: 12.5px; color: var(--faint); font-family: var(--serif); letter-spacing: .04em; }
+  .pfoot span { display: block; margin-top: 8px; font-size: 17px; color: var(--ink); letter-spacing: 0; }
   .layers { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 46px; }
   .layer {
     font-family: var(--serif);
@@ -707,21 +726,46 @@
       </div>
     </section>
 
-    <!-- 7 · The bet -->
+    <!-- 7 · The strategy: four layers -->
     <section class="slide">
       <div class="glow purple bc"></div>
-      <div class="slide-inner" style="text-align:center">
-        <div class="eyebrow rv">The strategy</div>
-        <p class="quote rv" style="margin:0 auto">
+      <div class="slide-inner">
+        <div class="eyebrow rv" style="text-align:center">The strategy</div>
+        <p class="quote rv" style="margin:0 auto;text-align:center">
           One promise: <span class="hl">a school that grows<br />with each student.</span>
         </p>
-        <div class="layers">
-          <div class="layer l4 rv d2"><span class="n">04</span><span class="t">Personal</span><span class="w">claim the AI window</span></div>
-          <div class="layer l3 rv d3"><span class="n">03</span><span class="t">Reach</span><span class="w">break the sameness</span></div>
-          <div class="layer l2 rv d4"><span class="n">02</span><span class="t">Stay</span><span class="w">reasons to come back</span></div>
-          <div class="layer l1 rv d5"><span class="n">01</span><span class="t">Core</span><span class="w">worth learning from</span></div>
+        <p class="kicker rv d2" style="text-align:center;margin-top:14px">Our answer to all three forces. Four layers, built from the core up.</p>
+        <div class="promise rv d3">
+          <svg class="iso" viewBox="0 0 520 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs><radialGradient id="isoGlow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#8b7cff" stop-opacity=".35"/><stop offset="1" stop-color="#8b7cff" stop-opacity="0"/></radialGradient><marker id="isoArr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="rgba(255,255,255,.7)"/></marker></defs>
+          <polygon class="pyr" points="260,28 500,582 20,582" fill="rgba(255,255,255,.015)" stroke="rgba(255,255,255,.14)" stroke-width="1" stroke-dasharray="4 5"/>
+          <ellipse class="glow" cx="260" cy="500" rx="240" ry="90" fill="url(#isoGlow)"/>
+          <g class="L L1"><polygon points="260,380 460,480 260,580 60,480" fill="#0c0c14" stroke="var(--core)" stroke-opacity=".55" stroke-width="1.2"/>
+          <ellipse cx="260" cy="480" rx="36" ry="18" fill="none" stroke="#fff" stroke-opacity="0.42" stroke-width="1"/>
+          <ellipse cx="260" cy="480" rx="64" ry="32" fill="none" stroke="#fff" stroke-opacity="0.36" stroke-width="1"/>
+          <ellipse cx="260" cy="480" rx="92" ry="46" fill="none" stroke="#fff" stroke-opacity="0.31" stroke-width="1"/>
+          <ellipse cx="260" cy="480" rx="120" ry="60" fill="none" stroke="#fff" stroke-opacity="0.26" stroke-width="1"/>
+          <ellipse cx="260" cy="480" rx="148" ry="74" fill="none" stroke="#fff" stroke-opacity="0.20" stroke-width="1"/>
+          <ellipse cx="260" cy="480" rx="172" ry="86" fill="none" stroke="#fff" stroke-opacity="0.14" stroke-width="1"/>
+          <ellipse cx="260" cy="476" rx="22" ry="7" fill="#fff"/><ellipse cx="260" cy="472" rx="22" ry="7" fill="#fff" opacity=".9"/></g>
+          <g class="L L2"><polygon points="260,280 460,380 260,480 60,380" fill="#0c0c14" stroke="var(--stay)" stroke-opacity=".5" stroke-width="1.2"/>
+          <polygon points="174.0,361.0 218.0,383.0 246.0,369.0 202.0,347.0" fill="rgba(255,255,255,.04)" stroke="#fff" stroke-opacity=".8" stroke-width="1.1" stroke-linejoin="round"/>
+          <polygon points="274.0,391.0 318.0,413.0 346.0,399.0 302.0,377.0" fill="rgba(255,255,255,.04)" stroke="#fff" stroke-opacity=".8" stroke-width="1.1" stroke-linejoin="round"/>
+          <polygon points="280.0,348.0 324.0,370.0 352.0,356.0 308.0,334.0" fill="rgba(255,255,255,.04)" stroke="#fff" stroke-opacity=".8" stroke-width="1.1" stroke-linejoin="round"/>
+          <line x1="232.0" y1="376.0" x2="288.0" y2="384.0" stroke="#fff" stroke-opacity=".7" marker-end="url(#isoArr)"/>
+          <line x1="226.0" y1="357.0" x2="296.0" y2="350.0" stroke="#fff" stroke-opacity=".7" marker-end="url(#isoArr)"/>
+          <line x1="326.0" y1="387.0" x2="324.0" y2="360.0" stroke="#fff" stroke-opacity=".7" marker-end="url(#isoArr)"/></g>
+          <g class="L L3"><polygon points="260,180 460,280 260,380 60,280" fill="#0c0c14" stroke="var(--reach)" stroke-opacity=".5" stroke-width="1.2"/><circle cx="171.7" cy="294.5" r="2.5" fill="#fff" opacity="0.39"/><circle cx="243.5" cy="294.3" r="1.3" fill="#fff" opacity="0.65"/><circle cx="171.2" cy="246.7" r="1.3" fill="#fff" opacity="0.40"/><circle cx="302.2" cy="246.2" r="1.4" fill="#fff" opacity="0.48"/><circle cx="356.6" cy="253.1" r="2.4" fill="#fff" opacity="0.59"/><circle cx="263.8" cy="358.1" r="2.9" fill="#fff" opacity="0.52"/><circle cx="136.0" cy="282.2" r="1.8" fill="#fff" opacity="0.84"/><circle cx="220.1" cy="246.3" r="2.5" fill="#fff" opacity="0.57"/><circle cx="194.6" cy="320.7" r="1.3" fill="#fff" opacity="0.47"/><circle cx="278.1" cy="301.2" r="1.8" fill="#fff" opacity="0.70"/><circle cx="218.5" cy="292.9" r="2.8" fill="#fff" opacity="0.77"/><circle cx="229.5" cy="252.3" r="2.3" fill="#fff" opacity="0.88"/><circle cx="262.9" cy="317.1" r="3.2" fill="#fff" opacity="0.42"/><circle cx="289.4" cy="251.5" r="1.5" fill="#fff" opacity="0.64"/><circle cx="210.8" cy="227.2" r="2.7" fill="#fff" opacity="0.69"/><circle cx="291.8" cy="327.2" r="2.6" fill="#fff" opacity="0.71"/><circle cx="266.1" cy="290.4" r="2.9" fill="#fff" opacity="0.92"/><circle cx="283.2" cy="264.0" r="1.3" fill="#fff" opacity="0.77"/><circle cx="367.6" cy="250.9" r="2.8" fill="#fff" opacity="0.52"/><circle cx="269.1" cy="256.2" r="1.2" fill="#fff" opacity="0.63"/><circle cx="139.9" cy="284.3" r="1.3" fill="#fff" opacity="0.81"/><circle cx="155.3" cy="270.1" r="2.0" fill="#fff" opacity="0.87"/><circle cx="181.0" cy="249.0" r="2.3" fill="#fff" opacity="0.88"/><circle cx="374.8" cy="276.2" r="1.8" fill="#fff" opacity="0.60"/><circle cx="300.8" cy="235.9" r="3.1" fill="#fff" opacity="0.44"/><circle cx="160.6" cy="275.3" r="1.7" fill="#fff" opacity="0.64"/><circle cx="235.1" cy="307.4" r="1.2" fill="#fff" opacity="0.60"/><circle cx="249.2" cy="263.4" r="3.1" fill="#fff" opacity="0.76"/><circle cx="282.4" cy="271.4" r="2.6" fill="#fff" opacity="0.38"/><circle cx="374.2" cy="290.0" r="2.9" fill="#fff" opacity="0.83"/><circle cx="224.9" cy="279.4" r="1.4" fill="#fff" opacity="0.73"/><circle cx="113.8" cy="279.6" r="1.6" fill="#fff" opacity="0.45"/><circle cx="158.0" cy="304.1" r="1.2" fill="#fff" opacity="0.44"/><circle cx="170.1" cy="258.0" r="1.3" fill="#fff" opacity="0.87"/><circle cx="220.1" cy="319.1" r="1.7" fill="#fff" opacity="0.56"/><circle cx="173.8" cy="300.3" r="2.9" fill="#fff" opacity="0.95"/><circle cx="251.6" cy="278.5" r="1.4" fill="#fff" opacity="0.41"/><circle cx="194.0" cy="286.5" r="2.9" fill="#fff" opacity="0.45"/><circle cx="255.6" cy="202.1" r="2.3" fill="#fff" opacity="0.44"/><circle cx="187.8" cy="323.4" r="2.3" fill="#fff" opacity="0.94"/><circle cx="354.0" cy="294.0" r="1.7" fill="#fff" opacity="0.57"/><circle cx="249.7" cy="229.2" r="2.3" fill="#fff" opacity="0.82"/><circle cx="184.9" cy="289.0" r="2.8" fill="#fff" opacity="0.94"/><circle cx="370.7" cy="283.9" r="2.8" fill="#fff" opacity="0.79"/><circle cx="217.1" cy="255.6" r="1.9" fill="#fff" opacity="0.37"/><circle cx="143.6" cy="258.9" r="1.7" fill="#fff" opacity="0.77"/><ellipse cx="260" cy="280" rx="34" ry="17" fill="none" stroke="#fff" stroke-opacity=".5" stroke-dasharray="2 4"/></g>
+          <g class="L L4"><polygon points="260,80 460,180 260,280 60,180" fill="#0c0c14" stroke="var(--personal)" stroke-opacity=".5" stroke-width="1.2"/><circle cx="228.6" cy="157.9" r="1.7" fill="#fff" opacity="0.71"/><circle cx="215.5" cy="220.3" r="1.2" fill="#fff" opacity="0.85"/><circle cx="187.1" cy="181.8" r="2.6" fill="#fff" opacity="0.63"/><circle cx="305.0" cy="205.9" r="2.1" fill="#fff" opacity="0.44"/><circle cx="332.4" cy="163.2" r="1.9" fill="#fff" opacity="0.79"/><circle cx="221.9" cy="223.7" r="2.3" fill="#fff" opacity="0.70"/><circle cx="163.8" cy="199.5" r="2.4" fill="#fff" opacity="0.63"/><circle cx="346.1" cy="168.5" r="2.2" fill="#fff" opacity="0.90"/><circle cx="288.2" cy="150.8" r="1.8" fill="#fff" opacity="0.91"/><circle cx="256.6" cy="236.3" r="1.4" fill="#fff" opacity="0.48"/><circle cx="317.8" cy="218.1" r="2.1" fill="#fff" opacity="0.53"/><circle cx="244.6" cy="188.7" r="1.7" fill="#fff" opacity="0.70"/><circle cx="330.3" cy="157.0" r="2.2" fill="#fff" opacity="0.91"/><circle cx="382.0" cy="170.3" r="2.1" fill="#fff" opacity="0.45"/><circle cx="378.8" cy="172.5" r="2.5" fill="#fff" opacity="0.69"/><circle cx="249.2" cy="216.2" r="2.4" fill="#fff" opacity="0.69"/><circle cx="260" cy="180" r="4" fill="#fff"/></g>
+          </svg>
+          <div class="plist2">
+            <div class="prow2 l4 rv d6"><span class="n">04</span><div><b>Personal</b><i>·</i>Streaks plus proactive agents.<em>A school that remembers you and reaches out.</em></div></div>
+            <div class="prow2 l3 rv d5"><span class="n">03</span><div><b>Reach</b><i>·</i>Rebuild the IP system.<em>Change what students think the product is.</em></div></div>
+            <div class="prow2 l2 rv d4"><span class="n">02</span><div><b>Stay</b><i>·</i>Flashcards, study rooms, mock practice.<em>Turn a quick tool into a long-term study partner.</em></div></div>
+            <div class="prow2 l1 rv d3"><span class="n">01</span><div><b>Core</b><i>·</i>Redesign Ask AI: clearer explanations, more agents, voice.<em>The front door. If explanations are not clearly better, nothing else matters.</em></div></div>
+          </div>
         </div>
-        <p class="kicker rv d6" style="margin-top:26px">Built from the core up — each layer stands on the one below.</p>
+        <p class="pfoot rv d6">Each layer stands on the one below.<span>Sharpen the core, build reasons to stay, reach more students, and make it personal.</span></p>
       </div>
     </section>
 
@@ -935,7 +979,7 @@
   // page 3: stagger index for the learner-model dots
   document.querySelectorAll(".dots i").forEach((d, k) => d.style.setProperty("--k", k + 1));
 </script>
-<script src="deck.js?v=09031449"></script>
-<script src="editor.js?v=09031449"></script>
+<script src="deck.js?v=09031454"></script>
+<script src="editor.js?v=09031454"></script>
 </body>
 </html>
