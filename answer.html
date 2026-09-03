@@ -7,7 +7,7 @@
 <title>Answer.AI · The Growth Story</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css?v=09031516" />
+<link rel="stylesheet" href="style.css?v=09031520" />
 <style>
   /* strategy · isometric stack + four layers */
   .promise { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: var(--split-gap,36px); align-items: center; margin-top: 18px; }
@@ -168,6 +168,31 @@
   .pipe i { color: rgba(255,255,255,0.28); font-style: normal; font-size: 12px; }
 
 
+  /* ===== Core · before → after phones ===== */
+  .corewrap { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: var(--split-gap,40px); align-items: center; }
+  .corelegend { margin-top: 22px; display: flex; flex-direction: column; gap: 10px; }
+  .cl { font-size: 13px; color: var(--dim); line-height: 1.5; margin: 0; padding-left: 12px; border-left: 2px solid rgba(255,255,255,.14); }
+  .cl b { display: block; font-family: var(--serif); font-weight: 500; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--ink); margin-bottom: 2px; }
+  .cl.after { border-left-color: var(--core); }
+  .cl.after b { color: #cfc4ff; }
+  .cl.frag { transform: none; }
+  .corenote { margin-top: 22px; min-height: 48px; font-size: 13px; color: var(--dim); line-height: 1.5; opacity: 0; transition: opacity .3s ease-out; }
+  .corestage:has(.stagetrig.shown) ~ .coretext .corenote, .corewrap:has(.stagetrig.shown) .corenote { opacity: 1; }
+  .corenote .hint { color: var(--faint); }
+  .corenote b { display: block; font-family: var(--serif); font-weight: 500; font-size: 14px; color: #cfc4ff; margin-bottom: 2px; }
+  .corestage { position: relative; height: var(--media-h, 520px); }
+  .corestage .ph { position: absolute; top: 50%; left: 50%; height: 100%; aspect-ratio: 1206 / 2622; border-radius: 26px; overflow: hidden; border: 1px solid rgba(255,255,255,.16); background: #000; box-shadow: 0 30px 60px rgba(0,0,0,.5), inset 0 0 0 4px #000; transform: translate(-50%, -50%); transition: transform .7s cubic-bezier(.22,1,.36,1), opacity .5s ease-out, filter .5s ease-out; }
+  .corestage .ph video { position: absolute; inset: 4px; width: calc(100% - 8px); height: calc(100% - 8px); object-fit: cover; border-radius: 22px; }
+  .corestage .phlab { position: absolute; left: 50%; bottom: -30px; transform: translateX(-50%); font-family: var(--serif); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--faint); white-space: nowrap; }
+  .corestage .ph.after { opacity: 0; transform: translate(-50%, -50%) translateX(140px) scale(.9); pointer-events: none; }
+  .corestage:has(.stagetrig.shown) .ph.before { transform: translate(-50%, -50%) translateX(-170px) scale(.72); filter: brightness(.55); }
+  .corestage:has(.stagetrig.shown) .ph.after { opacity: 1; transform: translate(-50%, -50%) translateX(95px) scale(1); pointer-events: auto; }
+  .corestage:has(.stagetrig.shown) .ph.after .phlab { color: #cfc4ff; }
+  .hs { position: absolute; width: 18px; height: 18px; margin: -9px 0 0 -9px; border-radius: 50%; border: 0; padding: 0; cursor: pointer; background: rgba(139,124,255,.95); box-shadow: 0 0 0 4px rgba(139,124,255,.25), 0 0 16px rgba(139,124,255,.6); opacity: 0; transform: scale(.6); transition: opacity .3s ease-out, transform .3s ease-out, box-shadow .2s; }
+  .hs::after { content: ""; position: absolute; inset: -10px; border-radius: 50%; border: 1px solid rgba(139,124,255,.6); animation: hsPulse 1.8s ease-out infinite; }
+  @keyframes hsPulse { 0% { transform: scale(.6); opacity: .9; } 100% { transform: scale(1.5); opacity: 0; } }
+  .corestage:has(.stagetrig.shown) .ph.after:hover .hs, .corestage:has(.stagetrig.shown) .ph.after .hs.on { opacity: 1; transform: scale(1); }
+  .hs:hover, .hs.on { box-shadow: 0 0 0 6px rgba(139,124,255,.35), 0 0 24px rgba(139,124,255,.9); }
   /* ===== fragments (within-slide builds) ===== */
   .frag { opacity: 0; transform: translateY(12px); transition: opacity .22s ease-out, transform .22s ease-out; }
   .frag.shown { opacity: 1; transform: none; }
@@ -775,21 +800,33 @@
 
     <!-- 8 · Core -->
     <section class="slide">
-      <div class="slide-inner">
-        <div class="eyebrow rv" style="color:var(--core)">Layer 01 · Core</div>
-        <h2 class="rv">Make the answer worth learning from.</h2>
-        <p class="lede rv">
-          Two bets: explanations you can <em>learn from</em>, in a chat
-          <em>calm enough to think in</em> — step-by-step logic instead of a
-          text wall, tools out of the way until needed.
-        </p>
-        <div class="duo">
-          <div class="media rv d3">Before · explanation</div>
-          <div class="media rv d4">After · explanation</div>
+      <div class="slide-inner corewrap">
+        <div class="coretext">
+          <div class="eyebrow rv" style="color:var(--core)">Layer 01 · Core</div>
+          <h2 class="rv" style="font-size:var(--t-h2,40px)">Make the answer worth learning from.</h2>
+          <p class="lede rv" style="font-size:16px">
+            Two bets: explanations you can <em>learn from</em>, in a chat
+            <em>calm enough to think in</em>.
+          </p>
+          <div class="corelegend">
+            <p class="cl before"><b>Before</b> One long block. Easy to copy, hard to learn from. A toolbar of features inside the chat.</p>
+            <p class="cl after frag" data-frag="1"><b>After</b> Clear steps, answer set apart. One clean chat, tools moved into a sidebar.</p>
+          </div>
+          <p class="corenote" id="corenote"><span class="hint">Hover the new interface for the design points.</span></p>
         </div>
-        <div class="rv d5" style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:12px;font-size:12.5px;color:var(--dim)">
-          <div><em style="color:var(--ink);font-style:normal">Before</em> — a wall of text to decode</div>
-          <div><em style="color:var(--ink);font-style:normal">After</em> — step-by-step logic, tools out of the way</div>
+        <div class="corestage">
+          <span class="stagetrig frag" data-frag="1" aria-hidden="true"></span>
+          <div class="ph before">
+            <video src="assets/core-before.mp4" muted loop playsinline autoplay preload="metadata"></video>
+            <div class="phlab">Before</div>
+          </div>
+          <div class="ph after">
+            <video src="assets/core-after.mp4" muted loop playsinline autoplay preload="metadata"></video>
+            <div class="phlab">After</div>
+            <button class="hs" type="button" style="left:8%;top:6%" data-t="Curated sidebar" data-d="Key tools and history tucked into a sidebar, in the student's control."></button>
+            <button class="hs" type="button" style="left:60%;top:36%" data-t="Step-by-step explanation" data-d="Clear steps with the answer set apart — something to learn from, not copy."></button>
+            <button class="hs" type="button" style="left:50%;top:80%" data-t="One clean chat" data-d="Every extra tool moved out of the way until it's needed."></button>
+          </div>
         </div>
       </div>
     </section>
@@ -980,10 +1017,20 @@
     new MutationObserver(() => { setTimeout(place, 350); const v = lens.querySelector(".scr.on video"); if (v) { if (trig.classList.contains("shown")) v.play().catch(() => {}); else v.pause(); } }).observe(trig, { attributes: true, attributeFilter: ["class"] });
     addEventListener("resize", place);
   });
+  // Core slide: hotspots on the new interface write into the note
+  document.querySelectorAll(".corestage").forEach((st) => {
+    const note = st.parentElement.querySelector(".corenote"); if (!note) return;
+    const def = note.innerHTML;
+    st.querySelectorAll(".hs").forEach((h) => {
+      const show = () => { st.querySelectorAll(".hs").forEach((x) => x.classList.toggle("on", x === h)); note.innerHTML = "<b>" + h.dataset.t + "</b>" + h.dataset.d; };
+      h.addEventListener("mouseenter", show); h.addEventListener("click", show); h.addEventListener("focus", show);
+    });
+    st.querySelector(".ph.after").addEventListener("mouseleave", () => { st.querySelectorAll(".hs").forEach((x) => x.classList.remove("on")); note.innerHTML = def; });
+  });
   // page 3: stagger index for the learner-model dots
   document.querySelectorAll(".dots i").forEach((d, k) => d.style.setProperty("--k", k + 1));
 </script>
-<script src="deck.js?v=09031516"></script>
-<script src="editor.js?v=09031516"></script>
+<script src="deck.js?v=09031520"></script>
+<script src="editor.js?v=09031520"></script>
 </body>
 </html>
