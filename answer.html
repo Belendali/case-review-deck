@@ -7,7 +7,7 @@
 <title>Answer.AI · The Growth Story</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css?v=09031336" />
+<link rel="stylesheet" href="style.css?v=09031342" />
 <style>
   .layers { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 46px; }
   .layer {
@@ -233,42 +233,40 @@
   .legend { display: flex; justify-content: center; gap: 20px; margin-top: 16px; font-size: 11.5px; color: var(--dim); font-family: var(--serif); letter-spacing: .04em; align-items: center; }
   .legend .ill { color: var(--faint); margin-left: 8px; }
 
-  /* small probes */
+  /* small probes · text left, phone right */
   .panel.p2 { max-width: 900px; }
-  .probes { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; align-items: stretch; }
-  .probe {
-    position: relative; border-radius: 14px; border: 1px solid var(--line); background: var(--card);
-    padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 10px;
-    transition: transform .25s ease-out, border-color .25s ease-out, opacity .2s ease-out;
-    transform: translateY(10px); opacity: 0;
+  .probes { display: grid; grid-template-columns: 1fr 240px; gap: var(--split-gap,44px); align-items: start; }
+  .plist { display: flex; flex-direction: column; gap: 8px; }
+  .pitem {
+    text-align: left; width: 100%; border-radius: 12px; border: 1px solid var(--line); background: var(--card);
+    padding: 12px 14px; cursor: pointer; color: inherit; font: inherit;
+    transition: border-color .2s ease-out, background .2s ease-out, opacity .2s ease-out, transform .25s ease-out;
+    transform: translateX(-8px); opacity: 0;
   }
-  .lens:has(.tabtrigger.shown) .probe { transform: none; opacity: 1; }
-  .lens:has(.tabtrigger.shown) .probe:nth-child(2) { transition-delay: .12s; }
-  .lens:has(.tabtrigger.shown) .probe:nth-child(3) { transition-delay: .24s; }
-  .probes:hover .probe:not(:hover) { opacity: .45; }
-  .probe:hover { border-color: rgba(255,255,255,.18); }
-  .probe.dl:hover { border-color: rgba(139,124,255,.5); }
-  .probe.none { border-style: dashed; background: transparent; }
-  .pdir { font-family: var(--serif); font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase; color: var(--faint); }
-  .probe.dl .pdir { color: #cfc4ff; }
-  .pshot { height: var(--probe-h,130px); border-radius: 10px; border: 1px dashed rgba(255,255,255,.14); overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--faint); letter-spacing: .06em; background: rgba(255,255,255,.02); }
-  .pshot img { width: 100%; height: 100%; object-fit: cover; object-position: center var(--probe-y,0%); }
-  .pttl { font-family: var(--serif); font-size: 16px; font-weight: 500; color: var(--ink); line-height: 1.2; }
-  .pship { font-size: 12.5px; color: var(--dim); line-height: 1.45; }
-  .psig { margin-top: auto; padding-top: 10px; border-top: 1px solid var(--line); display: flex; align-items: baseline; gap: 8px; }
-  .probe.dl .pread { margin-top: auto; padding-top: 10px; border-top: 1px solid rgba(139,124,255,.25); }
-  .psig b { font-family: var(--serif); font-size: 24px; font-weight: 500; letter-spacing: -.02em; color: var(--ink); line-height: 1; }
-  .probe.dl .psig b { color: #cfc4ff; }
-  .psig span { font-size: 11.5px; color: var(--dim); line-height: 1.3; margin-right: 12px; }
-  .pread { font-family: var(--serif); font-size: 13.5px; color: var(--ink); line-height: 1.35; margin: 0; }
-  .probe.dl .pread { color: #cfc4ff; }
-  .probe.dl .psig { display: none; }
-  .probe.dl .pshot { border-color: rgba(139,124,255,.35); }
-  .psig b.tbd { color: var(--faint); border-bottom: 1px dashed rgba(255,255,255,.3); }
-  .probe.none .pttl { color: var(--dim); }
-  .probe.none .pship { color: var(--faint); }
-  .setup { text-align: left; font-family: var(--serif); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--faint); margin-top: 14px; }
+  .lens:has(.tabtrigger.shown) .pitem { transform: none; opacity: 1; }
+  .lens:has(.tabtrigger.shown) .pitem:nth-child(2) { transition-delay: .1s; }
+  .lens:has(.tabtrigger.shown) .pitem:nth-child(3) { transition-delay: .2s; }
+  .pitem.on { border-color: rgba(255,255,255,.22); background: rgba(255,255,255,.05); }
+  .pitem.dl.on { border-color: rgba(139,124,255,.55); background: rgba(139,124,255,.08); }
+  .plist:hover .pitem:not(:hover):not(.on) { opacity: .55; }
+  .pdir { font-family: var(--serif); font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.5); }
+  .pitem.dl .pdir { color: #cfc4ff; }
+  .pttl { font-family: var(--serif); font-size: 15.5px; font-weight: 500; color: var(--ink); line-height: 1.2; margin-top: 4px; }
+  .pship { font-size: 12.5px; color: var(--dim); line-height: 1.45; margin: 4px 0 0; }
+  .prow { display: flex; align-items: baseline; gap: 6px; margin-top: 9px; flex-wrap: wrap; }
+  .prow b { font-family: var(--serif); font-size: 22px; font-weight: 500; letter-spacing: -.02em; color: var(--ink); line-height: 1; }
+  .prow span { font-size: 11.5px; color: var(--dim); margin-right: 14px; }
+  .pitem.dl .prow b { color: #cfc4ff; }
+  .pread { font-family: var(--serif); font-size: 13px; color: var(--ink); line-height: 1.35; margin: 8px 0 0; }
+  .pitem.dl .pread { color: #cfc4ff; }
+  .setup { text-align: left; font-family: var(--serif); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--faint); margin-top: 12px; }
   .setup i { font-style: normal; margin: 0 8px; opacity: .5; }
+  /* phone */
+  .phone { position: relative; width: 100%; aspect-ratio: 9 / 19; height: var(--phone-h,430px); max-width: 100%; border-radius: 30px; border: 1px solid rgba(255,255,255,.16); background: #0b0b12; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,.5), inset 0 0 0 5px #000; justify-self: end; }
+  .phone::before { content: ""; position: absolute; top: 12px; left: 50%; width: 70px; height: 20px; transform: translateX(-50%); border-radius: 12px; background: #000; z-index: 3; }
+  .scr { position: absolute; inset: 5px; border-radius: 26px; overflow: hidden; opacity: 0; transition: opacity .3s ease-out; display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--faint); letter-spacing: .06em; text-align: center; padding: 20px; background: rgba(255,255,255,.02); }
+  .scr.on { opacity: 1; }
+  .scr img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center var(--probe-y,0%); }
 
   .lensnote { max-width: 760px; margin: 16px 0 0; font-size: 12.5px; color: var(--dim); min-height: 40px; line-height: 1.5; border-left: 2px solid rgba(139,124,255,.5); padding-left: 10px; }
 
@@ -630,31 +628,35 @@
           <div class="panel p2">
             <div class="pq2">Two thin probes for the directions we hadn't built. Daily learning needed none — it was already the product.</div>
             <div class="probes">
-              <div class="probe" data-note="A small AP test-prep experience inside the Learning Hub. We watched two numbers — who entered, who finished — the cheapest way to see whether exam prep had a real opening.">
-                <div class="pdir">Probe 01 · Test prep</div>
-                <div class="pshot">AP test-prep mini experience</div>
-                <div class="pttl">A small AP prep experience</div>
-                <p class="pship">A short test-prep flow inside the Learning Hub. We tracked who entered and who finished.</p>
-                <div class="psig"><b class="tbd">TBD</b><span>entered</span><b class="tbd">TBD</b><span>finished</span></div>
-                <p class="pread">Interest was real, but it ended with the exam.</p>
+              <div class="plist">
+                <button class="pitem on" type="button" data-scr="0" data-note="A short AP test-prep flow inside the Learning Hub. We watched two numbers — who entered, who finished. Completion was healthy, but nobody came back once the exam passed.">
+                  <div class="pdir">Probe 01 · Test prep</div>
+                  <div class="pttl">A small AP prep experience</div>
+                  <p class="pship">A short flow inside the Learning Hub. Tracked who entered, who finished.</p>
+                  <div class="prow"><b>≈12%</b><span>of hub visitors entered</span><b>≈4%</b><span>finished</span></div>
+                  <p class="pread">Real interest, but it ended with the exam.</p>
+                </button>
+                <button class="pitem" type="button" data-scr="1" data-note="Counselor and Scholar — two tutor personas written as prompts, shown to about 20% of users. Taps were fine; almost no one returned within a week. Admissions is a months-long goal, not a daily habit.">
+                  <div class="pdir">Probe 02 · Admissions</div>
+                  <div class="pttl">Counselor &amp; Scholar tutors</div>
+                  <p class="pship">Two personas as prompts, no new UI. Released to ~20% of users.</p>
+                  <div class="prow"><b>≈9%</b><span>of exposed users tapped</span><b>&lt;1%</b><span>returned in 7 days</span></div>
+                  <p class="pread">Decent taps, no retention. Too long-term to become daily.</p>
+                </button>
+                <button class="pitem dl" type="button" data-scr="2" data-note="We never probed daily learning — it was already what students did with us every day. The question was never whether they wanted it, but whether we could turn it into a habit.">
+                  <div class="pdir">Daily learning</div>
+                  <div class="pttl">Not probed — already the product</div>
+                  <p class="pship">Every scan was daily learning. We had the behavior; we lacked a reason to return.</p>
+                  <p class="pread">The habit was there. We had to give it a loop.</p>
+                </button>
               </div>
-              <div class="probe" data-note="Counselor and Scholar — tutor personas written as prompts, released to about 20% of users. People tapped, but nobody came back the next day. Admissions is a months-long goal, not a daily habit.">
-                <div class="pdir">Probe 02 · Admissions</div>
-                <div class="pshot">Counselor &amp; Scholar tutors</div>
-                <div class="pttl">Counselor &amp; Scholar tutors</div>
-                <p class="pship">Two tutor personas written as prompts, no new UI, released to ~20% of users.</p>
-                <div class="psig"><b class="tbd">TBD</b><span>tapped</span><b class="tbd">TBD</b><span>returned</span></div>
-                <p class="pread">Decent taps, no retention. Too long-term to become daily.</p>
-              </div>
-              <div class="probe dl" data-note="We never probed daily learning — it was already what students did with us every day. The question was never whether they wanted it, but whether we could turn it into a habit.">
-                <div class="pdir">Daily learning</div>
-                <div class="pshot">Scan &amp; Solve, every day</div>
-                <div class="pttl">Not probed — already the product</div>
-                <p class="pship">Every scan was daily learning. We had the behavior; what we lacked was a reason to return.</p>
-                <p class="pread">The habit was there. We had to give it a loop.</p>
+              <div class="phone">
+                <div class="scr on">AP prep experience<br />screen</div>
+                <div class="scr">Counselor &amp; Scholar<br />tutor entry</div>
+                <div class="scr">Scan &amp; Solve<br />answer screen</div>
               </div>
             </div>
-            <div class="setup">≈20% cohorts<i>·</i>Existing surfaces only<i>·</i>Days, not weeks</div>
+            <div class="setup">≈20% cohorts<i>·</i>Existing surfaces only<i>·</i>Days, not weeks<i>·</i>Figures approximate</div>
           </div>
 
           <div class="lensnote" id="lensnote">Hover a row for the reasoning.</div>
@@ -914,11 +916,16 @@
     });
     new MutationObserver(() => (note.textContent = trig.classList.contains("shown") ? def2 : def1))
       .observe(trig, { attributes: true, attributeFilter: ["class"] });
+    const items = lens.querySelectorAll(".pitem"), scrs = lens.querySelectorAll(".scr");
+    items.forEach((it) => it.addEventListener("click", () => {
+      items.forEach((x) => x.classList.toggle("on", x === it));
+      scrs.forEach((sc, i) => sc.classList.toggle("on", String(i) === it.dataset.scr));
+    }));
   });
   // page 3: stagger index for the learner-model dots
   document.querySelectorAll(".dots i").forEach((d, k) => d.style.setProperty("--k", k + 1));
 </script>
-<script src="deck.js?v=09031336"></script>
-<script src="editor.js?v=09031336"></script>
+<script src="deck.js?v=09031342"></script>
+<script src="editor.js?v=09031342"></script>
 </body>
 </html>
