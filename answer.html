@@ -76,7 +76,10 @@
   .chart .area { fill: url(#gArea); }
   .chart .ln { fill: none; stroke: var(--accent); stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; }
   .chart .ln.dim { stroke: rgba(139,124,255,0.35); }
-  .chart .ln.warn { stroke: #ff8f6b; }
+  .chart .ln.warn { stroke: #ff8f6b; stroke-width: 3; }
+  .chart .ln.proj { stroke: rgba(139,124,255,0.55); stroke-width: 2; stroke-dasharray: 7 6; }
+  .chart .gap { fill: rgba(255,143,107,0.10); }
+  .chart .note.proj { fill: rgba(179,168,255,0.75); }
   .chart .dot { fill: var(--accent); stroke: #050508; stroke-width: 2.5; }
   .chart .dot.warn { fill: #ff8f6b; }
   .chart .mark { stroke: rgba(255,255,255,0.22); stroke-width: 1; stroke-dasharray: 4 5; }
@@ -228,11 +231,16 @@
         <div class="eyebrow rv">Act II · The turn · late 2024</div>
         <h2 class="rv">Then the curve flattened.</h2>
         <div class="rv d2"><svg class="chart" viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg">
-  <g class="grid"><line x1="46" y1="197.1" x2="880" y2="197.1" /><line x1="46" y1="128.2" x2="880" y2="128.2" /><line x1="46" y1="59.3" x2="880" y2="59.3" /></g><text class="ax" x="36" y="201.1" text-anchor="end">2M</text><text class="ax" x="36" y="132.2" text-anchor="end">4M</text><text class="ax" x="36" y="63.3" text-anchor="end">6M</text><text class="ax" x="46.0" y="290" text-anchor="middle">Apr 23</text><text class="ax" x="324.0" y="290" text-anchor="middle">Dec 23</text><text class="ax" x="602.0" y="290" text-anchor="middle">Aug 24</text><text class="ax" x="880.0" y="290" text-anchor="middle">Mar 25</text>
-  <polyline class="ln dim" points="46.0,264.3 115.5,259.1 185.0,248.8 254.5,235.0 324.0,214.3 393.5,190.2 463.0,162.7 532.5,131.7 602.0,86.9 671.5,59.3" />
-  <polyline class="ln warn" points="671.5,59.3 741.0,45.6 810.5,38.7 880.0,35.2" />
-  <circle class="dot warn" cx="671.5" cy="59.3" r="5" /><circle class="dot warn" cx="880.0" cy="35.2" r="5" />
-  <text class="note warn" x="782.7" y="29.6" text-anchor="middle">growth flattens</text>
+  <g class="grid"><line x1="46" y1="212.7" x2="880" y2="212.7" /><line x1="46" y1="159.3" x2="880" y2="159.3" /><line x1="46" y1="106.0" x2="880" y2="106.0" /><line x1="46" y1="52.7" x2="880" y2="52.7" /></g><text class="ax" x="36" y="216.7" text-anchor="end">2M</text><text class="ax" x="36" y="163.3" text-anchor="end">4M</text><text class="ax" x="36" y="110.0" text-anchor="end">6M</text><text class="ax" x="36" y="56.7" text-anchor="end">8M</text><text class="ax" x="46.0" y="290" text-anchor="middle">Apr 23</text><text class="ax" x="324.0" y="290" text-anchor="middle">Dec 23</text><text class="ax" x="602.0" y="290" text-anchor="middle">Aug 24</text><text class="ax" x="880.0" y="290" text-anchor="middle">Mar 25</text>
+  <polygon class="gap" points="671.5,106.0 741.0,82.0 810.5,59.3 880.0,36.7 880.0,99.3 810.5,100.7 741.0,102.0 671.5,106.0" />
+  <polyline class="ln dim" points="46.0,264.7 115.5,260.7 185.0,252.7 254.5,242.0 324.0,226.0 393.5,207.3 463.0,186.0 532.5,162.0 602.0,127.3 671.5,106.0" />
+  <polyline class="ln proj" points="671.5,106.0 741.0,82.0 810.5,59.3 880.0,36.7" />
+  <polyline class="ln warn" points="671.5,106.0 741.0,102.0 810.5,100.7 880.0,99.3" />
+  <circle class="dot" cx="671.5" cy="106.0" r="5" />
+  <circle class="dot warn" cx="880.0" cy="99.3" r="5" />
+  <text class="note" x="663.5" y="92.0" text-anchor="end">6M · Sep 2024</text>
+  <text class="note proj" x="880.0" y="24.7" text-anchor="end">if the curve had held</text>
+  <text class="note warn" x="880.0" y="125.3" text-anchor="end">what actually happened</text>
 </svg></div>
         <div class="cards c3" style="margin-top:22px">
           <div class="card rv d3">
