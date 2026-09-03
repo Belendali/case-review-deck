@@ -78,6 +78,28 @@
   }
   .over { position: relative; z-index: 2; }
 
+  .flow { display: grid; grid-template-columns: 1fr auto 1fr; gap: 20px; align-items: center; }
+  .flow figure { margin: 0; text-align: center; }
+  .flow .ph {
+    height: 430px; display: flex; align-items: center; justify-content: center;
+  }
+  .flow .ph img {
+    height: 100%; width: auto; object-fit: contain;
+    border-radius: 18px; border: 1px solid rgba(255,255,255,0.14);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.55);
+  }
+  .flow figcaption {
+    margin-top: 14px; font-family: var(--serif); font-size: 13.5px;
+  }
+  .flow .step {
+    display: inline-block; font-size: 11px; letter-spacing: 0.2em;
+    color: var(--faint); text-transform: uppercase; margin-bottom: 4px;
+  }
+  .flow .arrow {
+    font-family: var(--serif); font-size: 26px; color: var(--accent);
+    padding-bottom: 34px;
+  }
+
   .trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 40px; }
   .trio figure { margin: 0; }
   .trio .ph { height: 300px; border-radius: 16px; overflow: hidden; background: rgba(255,255,255,0.03); border: 1px solid var(--line); }
@@ -117,21 +139,24 @@
 
     <!-- 2 · What is Answer.AI -->
     <section class="slide">
-      <div class="slide-inner split">
-        <div>
-          <div class="eyebrow rv">The product</div>
-          <h2 class="rv">Scan any problem,<br />learn from the answer.</h2>
-          <p class="lede rv">
-            Answer.AI is an AI learning app: students photograph a homework
-            problem and get an instant, step-by-step solution — then tutors,
-            flashcards and study tools around it.
-          </p>
-          <p class="lede rv" style="margin-top:18px">
-            7 million students. I led the app's <em>full redesign, from
-            direction to ship</em>.
-          </p>
+      <div class="slide-inner">
+        <div class="eyebrow rv">The product</div>
+        <h2 class="rv">Point your camera at a problem. Get the steps.</h2>
+        <p class="lede rv" style="max-width:720px">
+          That's the whole loop — and it runs <em>7 million students</em> deep.
+          I led the app's <em>full redesign, from direction to ship</em>.
+        </p>
+        <div class="flow" style="margin-top:36px">
+          <figure class="rv d3">
+            <div class="ph"><img src="assets/flow-scan.jpg" alt="Scanning a question" /></div>
+            <figcaption><span class="step">Step 01</span><br />Scan the question</figcaption>
+          </figure>
+          <div class="arrow rv d4">→</div>
+          <figure class="rv d5">
+            <div class="ph"><img src="assets/flow-answer.jpg" alt="Step-by-step answer" /></div>
+            <figcaption><span class="step">Step 02</span><br />Step-by-step explanation</figcaption>
+          </figure>
         </div>
-        <div class="media rv d3" style="height:440px">App overview · screenshot</div>
       </div>
     </section>
 
