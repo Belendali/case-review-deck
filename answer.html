@@ -7,7 +7,7 @@
 <title>Answer.AI · The Growth Story</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css?v=09031322" />
+<link rel="stylesheet" href="style.css?v=09031325" />
 <style>
   .layers { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 46px; }
   .layer {
@@ -188,7 +188,7 @@
   /* ===== page 2 · two lenses ===== */
   .lens { position: relative; margin-top: 22px; }
   .tabtrigger { position: absolute; width: 0; height: 0; }
-  .tabs { display: flex; justify-content: center; gap: 8px; }
+  .tabs { display: flex; justify-content: flex-start; gap: 8px; }
   .tab {
     font-family: var(--serif); font-size: 13px; letter-spacing: .06em; color: var(--dim);
     background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 9px 20px;
@@ -199,12 +199,11 @@
     color: var(--ink); border-color: rgba(139,124,255,.55); background: rgba(139,124,255,.12);
   }
   .lens:has(.tabtrigger.shown) .tab.t1 { color: var(--dim); border-color: var(--line); background: var(--card); }
-  .panel { max-width: 760px; margin: 22px auto 0; min-height: 300px; }
+  .panel { max-width: 760px; margin: 22px 0 0; min-height: 300px; }
   .panel.p2 { display: none; }
   .lens:has(.tabtrigger.shown) .panel.p1 { display: none; }
   .lens:has(.tabtrigger.shown) .panel.p2 { display: block; }
-  .pq2 { text-align: left; font-size: 13.5px; color: var(--dim); margin-bottom: 18px; padding-left: 12px; }
-  .panel.p2 .pq2 { padding-left: 0; }
+  .pq2 { text-align: left; font-size: 13.5px; color: var(--dim); margin-bottom: 18px; }
 
   /* matrix with short verdicts + column icons */
   .panel.p1 { max-width: 860px; }
@@ -212,6 +211,7 @@
   .fitmatrix th, .fitmatrix td { padding: 11px 12px; border-top: 1px solid var(--line); text-align: left; vertical-align: middle; }
   .fitmatrix thead th { border-top: 0; padding-top: 0; padding-bottom: 10px; }
   .fitmatrix thead th:first-child { width: 28%; }
+  .fitmatrix th:first-child { padding-left: 0; }
   .colhead { display: inline-flex; align-items: center; gap: 8px; font-family: var(--serif); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.62); font-weight: 500; }
   .colhead svg { width: 20px; height: 20px; flex: none; stroke: currentColor; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; opacity: .85; }
   .fitmatrix thead th.dl .colhead { color: #cfc4ff; }
@@ -265,7 +265,7 @@
   .setup { text-align: center; font-family: var(--serif); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--faint); margin-top: 14px; }
   .setup i { font-style: normal; margin: 0 8px; opacity: .5; }
 
-  .lensnote { max-width: 760px; margin: 16px auto 0; font-size: 12.5px; color: var(--dim); min-height: 40px; line-height: 1.5; border-left: 2px solid rgba(139,124,255,.5); padding-left: 10px; }
+  .lensnote { max-width: 760px; margin: 16px 0 0; font-size: 12.5px; color: var(--dim); min-height: 40px; line-height: 1.5; border-left: 2px solid rgba(139,124,255,.5); padding-left: 10px; }
 
   /* ===== page 3 · the decision ===== */
   .decide { display: grid; grid-template-columns: 1.55fr 0.85fr; gap: 26px; margin-top: 24px; align-items: start; }
@@ -910,7 +910,7 @@
   // page 3: stagger index for the learner-model dots
   document.querySelectorAll(".dots i").forEach((d, k) => d.style.setProperty("--k", k + 1));
 </script>
-<script src="deck.js?v=09031322"></script>
-<script src="editor.js?v=09031322"></script>
+<script src="deck.js?v=09031325"></script>
+<script src="editor.js?v=09031325"></script>
 </body>
 </html>
