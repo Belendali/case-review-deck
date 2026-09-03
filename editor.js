@@ -18,6 +18,8 @@
     { g: "Layout",     k: "--split-left", label: "Left width",  min: 0.4, max: 2,   step: 0.05, def: 0.9,  unit: "fr" },
     { g: "Layout",     k: "--cards-gap",  label: "Cards gap",   min: 4,   max: 60,  step: 1,    def: 16,   unit: "px" },
     { g: "Layout",     k: "--photo-y",    label: "Photo crop Y",min: 0,   max: 100, step: 1,    def: 26,   unit: "%" },
+    { g: "Layout",     k: "--pbg-op",     label: "Card photo",  min: 0,   max: 0.8, step: 0.02, def: 0.22, unit: "" },
+    { g: "Layout",     k: "--pbg-op-hover", label: "Card photo · hover", min: 0, max: 1, step: 0.02, def: 0.34, unit: "" },
 
     { g: "Type",       k: "--t-title",    label: "Title size",  min: 30,  max: 110, step: 1,    def: 0,    unit: "px" },
     { g: "Type",       k: "--t-h2",       label: "Heading size",min: 22,  max: 70,  step: 1,    def: 0,    unit: "px" },

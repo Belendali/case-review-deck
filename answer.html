@@ -7,7 +7,7 @@
 <title>Answer.AI · The Growth Story</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css?v=09031102" />
+<link rel="stylesheet" href="style.css?v=09031115" />
 <style>
   .layers { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 46px; }
   .layer {
@@ -149,12 +149,26 @@
     transition: background .2s ease-out, border-color .2s ease-out, opacity .2s ease-out;
     outline: none; cursor: default;
   }
-  .path .pno { font-family: var(--serif); font-size: 11.5px; letter-spacing: .22em; text-transform: uppercase; color: var(--faint); }
+  .path { overflow: hidden; }
+  .path .pbg {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    opacity: var(--pbg-op, .22); filter: saturate(.85);
+    transform: scale(1.03); transition: opacity .25s ease-out, transform .5s ease-out;
+    pointer-events: none;
+  }
+  .path::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(180deg, rgba(5,5,8,.78) 0%, rgba(5,5,8,.5) 45%, rgba(5,5,8,.85) 100%);
+  }
+  .path .ptop, .path .preveal { position: relative; z-index: 1; }
+  .path .preveal { position: absolute; }
+  .path:hover .pbg, .path.lock .pbg { opacity: var(--pbg-op-hover, .34); transform: scale(1.06); }
+  .path .pno { font-family: var(--serif); font-size: 11.5px; letter-spacing: .22em; text-transform: uppercase; color: rgba(255,255,255,.5); }
   .path .pq { font-family: var(--serif); font-size: 18px; line-height: 1.32; color: var(--ink); margin: 12px 0 8px; }
-  .path .pwho { font-size: 12px; color: var(--dim); }
+  .path .pwho { font-size: 12px; color: rgba(255,255,255,.7); }
   .path .ptop { transition: transform .2s ease-out; }
   .ptags { display: flex; gap: 6px; margin-top: 14px; }
-  .ptags span { font-family: var(--serif); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--dim); border: 1px solid var(--line); border-radius: 6px; padding: 3px 8px; }
+  .ptags span { font-family: var(--serif); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.75); border: 1px solid rgba(255,255,255,.18); border-radius: 6px; padding: 3px 8px; background: rgba(5,5,8,.35); }
   .preveal {
     position: absolute; left: 22px; right: 22px; bottom: 20px;
     opacity: 0; transform: translateY(8px); transition: opacity .2s ease-out, transform .2s ease-out;
@@ -475,6 +489,7 @@
         </p>
         <div class="paths rv d3">
           <div class="path" tabindex="0">
+            <img class="pbg" src="assets/path-testprep.jpg" alt="" style="object-position:center 28%" />
             <div class="ptop">
               <div class="pno">01 · Test prep</div>
               <p class="pq">“I don't know what to study — or whether I'm actually ready.”</p>
@@ -489,6 +504,7 @@
             </div>
           </div>
           <div class="path" tabindex="0">
+            <img class="pbg" src="assets/path-admissions.jpg" alt="" style="object-position:center 50%" />
             <div class="ptop">
               <div class="pno">02 · College admissions</div>
               <p class="pq">“I don't know which schools are realistic for me.”</p>
@@ -503,6 +519,7 @@
             </div>
           </div>
           <div class="path" tabindex="0">
+            <img class="pbg" src="assets/path-daily.jpg" alt="" style="object-position:center 40%" />
             <div class="ptop">
               <div class="pno">03 · Daily learning</div>
               <p class="pq">“I got the answer, but I still can't do the next one.”</p>
@@ -825,7 +842,7 @@
   // page 3: stagger index for the learner-model dots
   document.querySelectorAll(".dots i").forEach((d, k) => d.style.setProperty("--k", k + 1));
 </script>
-<script src="deck.js?v=09031102"></script>
-<script src="editor.js?v=09031102"></script>
+<script src="deck.js?v=09031115"></script>
+<script src="editor.js?v=09031115"></script>
 </body>
 </html>
