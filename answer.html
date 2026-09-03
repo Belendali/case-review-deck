@@ -53,6 +53,19 @@
     text-transform: uppercase;
   }
 
+  /* title-slide background */
+  .hero-bg img {
+    opacity: 0.17;
+    transform: scale(1.28);
+    object-position: center 30%;
+    filter: blur(2px) saturate(1.1);
+  }
+  .hero-bg::after {
+    background:
+      radial-gradient(58% 46% at 50% 46%, rgba(5,5,8,0.92) 0%, rgba(5,5,8,0.6) 60%, transparent 100%),
+      linear-gradient(180deg, rgba(5,5,8,0.75) 0%, rgba(5,5,8,0.35) 42%, rgba(5,5,8,0.97) 100%);
+  }
+
   /* full-bleed media slide */
   .bleed { position: absolute; inset: 0; z-index: 0; }
   .bleed img, .bleed video { width: 100%; height: 100%; object-fit: cover; }
@@ -86,6 +99,7 @@
 
     <!-- 1 · Title -->
     <section class="slide">
+      <div class="bleed hero-bg"><img src="assets/answer-hero-bg.jpg" alt="" /></div>
       <div class="glow purple tc"></div>
       <div class="slide-inner" style="text-align:center">
         <div class="eyebrow rv">Chapter 01 · <b>Growth</b></div>
