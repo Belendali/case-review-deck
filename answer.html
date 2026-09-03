@@ -7,7 +7,7 @@
 <title>Answer.AI · The Growth Story</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css?v=09031559" />
+<link rel="stylesheet" href="style.css?v=09031600" />
 <style>
   /* strategy · isometric stack + four layers */
   .promise { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: var(--split-gap,36px); align-items: center; margin-top: 18px; }
@@ -220,8 +220,11 @@
   .staywrap.roommode .trio { display: none; }
   .staywrap.roommode .roomwhy { display: grid; animation: rwIn .45s cubic-bezier(.22,1,.36,1) both; }
   @keyframes rwIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
-  .rw-img { height: var(--tile-h, 340px); border-radius: 16px; overflow: hidden; border: 1px solid rgba(105,226,255,.35); box-shadow: 0 0 40px rgba(105,226,255,.12); }
-  .rw-img img { width: 100%; height: 100%; object-fit: cover; }
+  .rw-img { height: var(--tile-h, 380px); border-radius: 16px; overflow: hidden; }
+  .rw-img img { width: 100%; height: 100%; object-fit: cover; object-position: center var(--photo-y,50%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 12%, #000 88%, transparent 100%), linear-gradient(180deg, transparent 0, #000 12%, #000 88%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 12%, #000 88%, transparent 100%), linear-gradient(180deg, transparent 0, #000 12%, #000 88%, transparent 100%);
+    -webkit-mask-composite: source-in; mask-composite: intersect; }
   .rw-eyebrow { font-family: var(--serif); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--stay); margin-bottom: 8px; }
   .rw-text h3 { font-family: var(--serif); font-weight: 500; font-size: 24px; line-height: 1.2; margin: 0 0 10px; color: var(--ink); }
   .rw-text p { font-size: 14px; color: var(--dim); line-height: 1.55; margin: 0; max-width: 560px; }
@@ -905,7 +908,7 @@
           </figure>
         </div>
         <div class="roomwhy">
-          <div class="rw-img"><img src="assets/stay-studyroom.jpg" alt="Study room" /></div>
+          <div class="rw-img"><img src="assets/stay-trend.jpg" alt="Study with me — trending" /></div>
           <div class="rw-text">
             <div class="rw-eyebrow">Why study rooms · A trend, not a guess</div>
             <h3>“Learn with me” was already how students studied.</h3>
@@ -1107,7 +1110,7 @@
   // page 3: stagger index for the learner-model dots
   document.querySelectorAll(".dots i").forEach((d, k) => d.style.setProperty("--k", k + 1));
 </script>
-<script src="deck.js?v=09031559"></script>
-<script src="editor.js?v=09031559"></script>
+<script src="deck.js?v=09031600"></script>
+<script src="editor.js?v=09031600"></script>
 </body>
 </html>
