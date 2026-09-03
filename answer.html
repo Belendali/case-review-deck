@@ -7,7 +7,7 @@
 <title>Answer.AI · The Growth Story</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css?v=09031556" />
+<link rel="stylesheet" href="style.css?v=09031559" />
 <style>
   /* strategy · isometric stack + four layers */
   .promise { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: var(--split-gap,36px); align-items: center; margin-top: 18px; }
@@ -231,6 +231,16 @@
   .rw-note { font-size: 12.5px !important; color: rgba(255,255,255,.5) !important; font-style: italic; }
   .rw-back { margin-top: 16px; font: inherit; font-family: var(--serif); font-size: 12px; letter-spacing: .08em; color: var(--dim); background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 7px 14px; cursor: pointer; transition: color .2s, border-color .2s; }
   .rw-back:hover { color: var(--ink); border-color: rgba(255,255,255,.35); }
+  /* ===== Reach · old IP → new IP ===== */
+  .reachwrap { position: relative; }
+  .reachstage { position: relative; height: var(--media-h, 400px); }
+  .reachstage .rs { position: absolute; inset: 0; border-radius: 16px; overflow: hidden; border: 1px solid var(--line); background: #000; transition: opacity .6s ease-out, transform .6s cubic-bezier(.22,1,.36,1); }
+  .reachstage .rs img, .reachstage .rs video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .reachstage .phlab { position: absolute; left: 14px; bottom: 12px; font-family: var(--serif); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.85); background: rgba(0,0,0,.5); padding: 5px 10px; border-radius: 999px; backdrop-filter: blur(6px); }
+  .reachstage .rs.after { opacity: 0; transform: scale(.97); pointer-events: none; }
+  .reachwrap:has(.stagetrig.shown) .rs.before { opacity: 0; transform: scale(1.03); }
+  .reachwrap:has(.stagetrig.shown) .rs.after { opacity: 1; transform: none; pointer-events: auto; border-color: rgba(75,255,201,.4); box-shadow: 0 0 40px rgba(75,255,201,.12); }
+  .reachwrap:has(.stagetrig.shown) .rs.after .phlab { color: var(--reach); }
   /* ===== fragments (within-slide builds) ===== */
   .frag { opacity: 0; transform: translateY(12px); transition: opacity .22s ease-out, transform .22s ease-out; }
   .frag.shown { opacity: 1; transform: none; }
@@ -455,7 +465,7 @@
   <div class="bar"></div>
   <div class="chrome tl"><a href="index.html">← Agenda</a></div>
   <div class="chrome bl">Answer.AI · The growth story</div>
-  <div class="chrome br">01 / 19</div>
+  <div class="chrome br">01 / 18</div>
   <nav class="rail" aria-label="Sections">
     <a data-from="0" data-to="2">Context</a>
     <a data-from="3" data-to="5">Turning point</a>
@@ -463,12 +473,12 @@
     <a data-from="9" data-to="9">Strategy</a>
     <span class="gap"></span>
     <a data-from="10" data-to="10">01 Core</a>
-    <a data-from="11" data-to="12">02 Stay</a>
-    <a data-from="13" data-to="14">03 Reach</a>
-    <a data-from="15" data-to="15">04 Personal</a>
+    <a data-from="11" data-to="11">02 Stay</a>
+    <a data-from="12" data-to="13">03 Reach</a>
+    <a data-from="14" data-to="14">04 Personal</a>
     <span class="gap"></span>
-    <a data-from="16" data-to="16">Results</a>
-    <a data-from="17" data-to="18">Reflection</a>
+    <a data-from="15" data-to="15">Results</a>
+    <a data-from="16" data-to="17">Reflection</a>
   </nav>
 
   <div class="deck">
@@ -912,24 +922,10 @@
       </div>
     </section>
 
-    <!-- 10 · Decision scene 2 -->
+    <!-- 11 · Reach: old IP → new IP -->
     <section class="slide">
-      <div class="slide-inner">
-        <div class="eyebrow rv">Decision · Mid-flight correction</div>
-        <span class="todo rv">To fill · 真实协作故事</span>
-        <h2 class="rv">The moment the plan met reality.</h2>
-        <p class="lede rv">
-          Placeholder for a real story: a disagreement with PM / engineering /
-          data, what each side saw, how we resolved it, and what shipped
-          because of it. This is the slide that proves collaboration — we'll
-          write it from your real memory.
-        </p>
-      </div>
-    </section>
-
-    <!-- 11 · Reach: the old IP -->
-    <section class="slide">
-      <div class="slide-inner split">
+      <div class="slide-inner split reachwrap">
+        <span class="stagetrig frag" data-frag="1" aria-hidden="true"></span>
         <div>
           <div class="eyebrow rv" style="color:var(--reach)">Layer 03 · Reach</div>
           <h2 class="rv">Break the sameness.</h2>
@@ -938,8 +934,15 @@
             cute, but nothing a high-schooler would want on their phone, and
             nothing you'd remember an hour later.
           </p>
+          <div class="corelegend">
+            <p class="cl before"><b>Before</b> Generic, childish mascots. Interchangeable with every other study app.</p>
+            <p class="cl after frag" data-frag="1" style="border-left-color:var(--reach)"><b style="color:var(--reach)">After</b> A cast with personality — characters students want to keep on their phone.</p>
+          </div>
         </div>
-        <div class="media rv d3" style="height:var(--media-h,400px)">The old mascots</div>
+        <div class="reachstage rv d3">
+          <div class="rs before"><img src="assets/reach-before.jpg" alt="The old mascots" /><span class="phlab">Before · the old mascots</span></div>
+          <div class="rs after"><video src="assets/reach-new.mp4" muted loop playsinline autoplay preload="metadata"></video><span class="phlab">After · the new IP</span></div>
+        </div>
       </div>
     </section>
 
@@ -953,9 +956,9 @@
           voice carries into how each AI tutor actually talks.
         </p>
         <div class="ipset">
-          <div class="ipcard rv d2"><div class="media" style="height:92px;width:92px;margin:0 auto;border-radius:50%">Ace</div><h3>Ace</h3><p>The playful genius you'd buy a snack for.</p></div>
-          <div class="ipcard rv d3"><div class="media" style="height:92px;width:92px;margin:0 auto;border-radius:50%">Alma</div><h3>Alma</h3><p>The warm counselor who asks how you're doing.</p></div>
-          <div class="ipcard rv d4"><div class="media" style="height:92px;width:92px;margin:0 auto;border-radius:50%">Grant</div><h3>Grant</h3><p>The quiet advisor who's great with numbers.</p></div>
+          <div class="ipcard rv d2"><img src="assets/reach-ace.png" alt="Ace" /><h3>Ace</h3><p>The playful genius you'd buy a snack for.</p></div>
+          <div class="ipcard rv d3"><img src="assets/reach-alma.png" alt="Alma" /><h3>Alma</h3><p>The warm counselor who asks how you're doing.</p></div>
+          <div class="ipcard rv d4"><img src="assets/reach-grant.png" alt="Grant" /><h3>Grant</h3><p>The quiet advisor who's great with numbers.</p></div>
         </div>
       </div>
     </section>
@@ -1104,7 +1107,7 @@
   // page 3: stagger index for the learner-model dots
   document.querySelectorAll(".dots i").forEach((d, k) => d.style.setProperty("--k", k + 1));
 </script>
-<script src="deck.js?v=09031556"></script>
-<script src="editor.js?v=09031556"></script>
+<script src="deck.js?v=09031559"></script>
+<script src="editor.js?v=09031559"></script>
 </body>
 </html>
