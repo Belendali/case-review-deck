@@ -36,11 +36,32 @@
     if (instant) requestAnimationFrame(() => (deck.style.transition = ""));
   }
 
+  function frags(slide) {
+    const list = [...slide.querySelectorAll(".frag")];
+    list.sort((a, b) => (+a.dataset.frag || 0) - (+b.dataset.frag || 0));
+    return list;
+  }
+  function setFrags(slide, shown) {
+    frags(slide).forEach((f) => f.classList.toggle("shown", shown));
+  }
+
   function step(dir) {
     if (locked) return;
+    const cur = slides[i];
+    const fr = frags(cur);
+    const group = (f) => fr.filter((g) => (g.dataset.frag || "") === (f.dataset.frag || "") && (f.dataset.frag !== undefined ? true : g === f));
+    if (dir > 0) {
+      const next = fr.find((f) => !f.classList.contains("shown"));
+      if (next) { group(next).forEach((g) => g.classList.add("shown")); return; }
+    } else {
+      const shownList = fr.filter((f) => f.classList.contains("shown"));
+      if (shownList.length) { group(shownList[shownList.length - 1]).forEach((g) => g.classList.remove("shown")); return; }
+    }
     const n = clamp(i + dir);
     if (n === i) return;
     locked = true;
+    // arriving forward: start with fragments hidden; arriving backward: land on the finished state
+    setFrags(slides[n], dir < 0);
     go(n);
     setTimeout(() => (locked = false), 780);
   }
@@ -59,8 +80,8 @@
     } else if (["ArrowUp", "ArrowLeft", "PageUp"].includes(e.key)) {
       e.preventDefault();
       step(-1);
-    } else if (e.key === "Home") go(0);
-    else if (e.key === "End") go(slides.length - 1);
+    } else if (e.key === "Home") { setFrags(slides[0], false); go(0); }
+    else if (e.key === "End") { setFrags(slides[slides.length - 1], true); go(slides.length - 1); }
   });
 
   let acc = 0;

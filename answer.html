@@ -7,7 +7,7 @@
 <title>Answer.AI · The Growth Story</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css?v=09030219" />
+<link rel="stylesheet" href="style.css?v=09031050" />
 <style>
   .layers { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 46px; }
   .layer {
@@ -134,6 +134,111 @@
   .pipe span.br { border-color: rgba(139,124,255,.4); color: #cfc4ff; background: rgba(139,124,255,.08); }
   .pipe i { color: rgba(255,255,255,0.28); font-style: normal; font-size: 12px; }
 
+
+  /* ===== fragments (within-slide builds) ===== */
+  .frag { opacity: 0; transform: translateY(12px); transition: opacity .22s ease-out, transform .22s ease-out; }
+  .frag.shown { opacity: 1; transform: none; }
+  tbody.frag { transform: none; }
+  @media print { .frag { opacity: 1 !important; transform: none !important; } }
+
+  /* ===== page 1 · three paths ===== */
+  .paths { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 30px; }
+  .path {
+    position: relative; min-height: 400px; padding: 22px 22px 20px;
+    background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+    transition: background .2s ease-out, border-color .2s ease-out, opacity .2s ease-out;
+    outline: none; cursor: default;
+  }
+  .path .pno { font-family: var(--serif); font-size: 11.5px; letter-spacing: .22em; text-transform: uppercase; color: var(--faint); }
+  .path h3 { font-family: var(--serif); font-weight: 500; font-size: 18.5px; line-height: 1.25; margin: 10px 0 10px; }
+  .path .ptop p { font-size: 12.5px; color: var(--dim); line-height: 1.55; }
+  .path .ptop { transition: transform .2s ease-out; }
+  .ptags { display: flex; gap: 6px; margin-top: 12px; }
+  .ptags span { font-family: var(--serif); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--dim); border: 1px solid var(--line); border-radius: 6px; padding: 3px 8px; }
+  .preveal {
+    position: absolute; left: 22px; right: 22px; bottom: 20px;
+    opacity: 0; transform: translateY(8px); transition: opacity .2s ease-out, transform .2s ease-out;
+    pointer-events: none;
+  }
+  .plab { font-family: var(--serif); font-size: 10.5px; letter-spacing: .22em; text-transform: uppercase; color: var(--faint); margin-bottom: 5px; }
+  .pq { font-size: 12.5px; color: var(--ink); font-style: italic; line-height: 1.45; margin-bottom: 12px; }
+  .pnum { font-family: var(--serif); font-size: 30px; font-weight: 500; letter-spacing: -.02em; color: #cfc4ff; line-height: 1.05; }
+  .psrc { font-size: 11px; color: var(--dim); line-height: 1.45; margin-top: 5px; }
+  .ptake { font-size: 11.5px; color: rgba(255,255,255,.8); margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line); }
+  .path:hover, .path.lock { background: rgba(139,124,255,.07); border-color: rgba(139,124,255,.35); }
+  .path:hover .ptop, .path.lock .ptop { transform: translateY(-12px); }
+  .path:hover .preveal, .path.lock .preveal { opacity: 1; transform: none; }
+  .paths:hover .path:not(:hover), .paths.haslock .path:not(.lock):not(:hover) { opacity: .45; }
+  .paths.haslock .path.lock { opacity: 1; }
+  .pathsfoot { margin-top: 22px; font-family: var(--serif); font-size: 15px; color: var(--dim); letter-spacing: .02em; }
+
+  /* ===== page 2 · prioritization ===== */
+  .prio { display: grid; grid-template-columns: 1.25fr 0.95fr; gap: 28px; margin-top: 26px; align-items: start; }
+  .ph2 { font-family: var(--serif); font-size: 12px; letter-spacing: .22em; text-transform: uppercase; color: #cfc4ff; }
+  .psub { font-size: 12.5px; color: var(--dim); margin: 5px 0 14px; }
+  .fittable { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  .fittable th, .fittable td { text-align: left; padding: 10px 10px; border-top: 1px solid var(--line); vertical-align: top; line-height: 1.4; }
+  .fittable thead th { font-family: var(--serif); font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase; color: var(--faint); border-top: 0; padding-top: 0; font-weight: 500; }
+  .fittable tbody th { font-family: var(--serif); font-weight: 500; color: var(--ink); width: 34%; }
+  .fittable tbody td { color: var(--dim); }
+  .fittable tbody tr { opacity: 0; transition: opacity .35s ease-out, background .2s ease-out; }
+  .fittable tbody.shown tr { opacity: 1; }
+  .fittable tbody.shown tr:nth-child(1) { transition-delay: .05s; }
+  .fittable tbody.shown tr:nth-child(2) { transition-delay: .2s; }
+  .fittable tbody.shown tr:nth-child(3) { transition-delay: .35s; }
+  .fittable tbody.shown tr:nth-child(4) { transition-delay: .5s; }
+  .fittable tbody.shown:hover tr:not(:hover) { opacity: .4; transition-delay: 0s; }
+  .fittable tbody tr:hover { background: rgba(255,255,255,.035); }
+  .fittable tbody tr:hover td { color: var(--ink); }
+  .fittable td.dl, .fittable th.dl { transition: color .3s ease, background .3s ease; }
+  .slide-inner:has(.prioresult.shown) .fittable td.dl { color: #cfc4ff; background: rgba(139,124,255,.08); box-shadow: inset 2px 0 0 rgba(139,124,255,.6); }
+  .slide-inner:has(.prioresult.shown) .fittable th.dl { color: #cfc4ff; }
+  .fitnote { margin-top: 12px; font-size: 12px; color: var(--dim); min-height: 36px; line-height: 1.5; border-left: 2px solid rgba(139,124,255,.5); padding-left: 10px; }
+  .funnel { list-style: none; display: grid; gap: 7px; }
+  .funnel li { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 9px 12px; font-size: 12px; color: var(--dim); line-height: 1.4; }
+  .funnel li b { display: block; font-family: var(--serif); font-weight: 500; color: var(--ink); font-size: 12.5px; margin-bottom: 1px; }
+  .funnel li:nth-child(1) { width: 100%; } .funnel li:nth-child(2) { width: 92%; } .funnel li:nth-child(3) { width: 84%; } .funnel li:nth-child(4) { width: 76%; }
+  .qa { margin-top: 12px; display: grid; gap: 5px; font-size: 11.5px; color: var(--dim); }
+  .qa b { display: inline-block; width: 96px; font-family: var(--serif); font-weight: 500; color: var(--ink); }
+  .pullnote { margin-top: 12px; font-family: var(--serif); font-size: 12.5px; color: #cfc4ff; letter-spacing: .02em; }
+  .prioresult { margin-top: 18px; font-size: 14.5px; color: var(--dim); max-width: 900px; }
+  .prioresult em { color: var(--ink); font-style: normal; }
+
+  /* ===== page 3 · the decision ===== */
+  .decide { display: grid; grid-template-columns: 1.55fr 0.85fr; gap: 26px; margin-top: 24px; align-items: start; }
+  .stack { display: flex; flex-direction: column; gap: 10px; }
+  .lay { border-radius: 12px; border: 1px solid var(--line); background: var(--card); padding: 12px 16px; }
+  .lay b { display: block; font-family: var(--serif); font-weight: 500; font-size: 13.5px; letter-spacing: .04em; text-transform: uppercase; }
+  .lay > span { display: block; font-size: 12px; color: var(--dim); margin-top: 3px; line-height: 1.45; }
+  .tops { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding-bottom: 18px; }
+  .tops .stems { position: absolute; left: 0; right: 0; bottom: 0; height: 18px; }
+  .tops .stems i { position: absolute; bottom: 0; width: 1px; height: 18px; background: rgba(139,124,255,.5); }
+  .tops .stems i:first-child { left: 25%; } .tops .stems i:last-child { left: 75%; }
+  .lay.model { width: 82%; margin: 0 auto; border-color: rgba(255,255,255,.16); background: rgba(255,255,255,.045); text-align: center; }
+  .dots { display: flex; justify-content: center; gap: 6px; margin-top: 9px; }
+  .dots i { width: 5px; height: 5px; border-radius: 50%; background: rgba(139,124,255,.85); opacity: 0; transform: scale(.4); transition: opacity .3s ease-out, transform .3s ease-out; }
+  .model.shown .dots i { opacity: 1; transform: none; }
+  .model.shown .dots i:nth-child(n) { transition-delay: calc(.06s * var(--k, 1)); }
+  .lay.daily { border-color: rgba(139,124,255,.45); background: rgba(139,124,255,.09); padding: 14px 18px 12px; }
+  .lay.daily b { color: #cfc4ff; }
+  .steps { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+  .steps span { font-family: var(--serif); font-size: 14.5px; font-weight: 500; color: rgba(255,255,255,.35); transition: color .3s ease-out; }
+  .steps i { color: rgba(255,255,255,.25); font-style: normal; }
+  .daily.shown .steps span { color: var(--ink); }
+  .daily.shown .steps span:nth-child(1) { transition-delay: .15s; } .daily.shown .steps span:nth-child(3) { transition-delay: .4s; }
+  .daily.shown .steps span:nth-child(5) { transition-delay: .65s; } .daily.shown .steps span:nth-child(7) { transition-delay: .9s; }
+  .lay.daily .sup { margin-top: 8px; }
+  .lay.base { background: rgba(255,255,255,.015); border-style: dashed; }
+  .lay.base b { color: var(--dim); }
+  .whys { display: grid; gap: 10px; }
+  .why { border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; font-size: 12px; color: var(--dim); line-height: 1.45; background: var(--card); }
+  .why b { display: block; font-family: var(--serif); font-weight: 500; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: #cfc4ff; margin-bottom: 4px; }
+  .final { margin-top: 20px; min-height: 96px; }
+  .fbig { font-family: var(--serif); font-size: 22px; font-weight: 500; letter-spacing: -.01em; }
+  .fbig span { color: var(--dim); font-weight: 400; }
+  .fsmall { font-size: 12.5px; color: var(--dim); margin-top: 4px; }
+  .fpunch { margin-top: 12px; font-family: var(--serif); font-size: 17px; color: #cfc4ff; line-height: 1.35; }
+
   /* full-bleed media slide */
   .bleed { position: absolute; inset: 0; z-index: 0; }
   .bleed img, .bleed video { width: 100%; height: 100%; object-fit: cover; }
@@ -183,7 +288,7 @@
   <div class="bar"></div>
   <div class="chrome tl"><a href="index.html">← Agenda</a></div>
   <div class="chrome bl">Answer.AI · The growth story</div>
-  <div class="chrome br">01 / 17</div>
+  <div class="chrome br">01 / 19</div>
 
   <div class="deck">
 
@@ -360,32 +465,165 @@
       </div>
     </section>
 
-    <!-- 6 · Decision scene 1 -->
+    <!-- 6 · Discovery: three credible paths -->
     <section class="slide">
       <div class="slide-inner">
-        <div class="eyebrow rv">Decision · What's on the table</div>
-        <h2 class="rv">Three ways out. We could only afford one.</h2>
-        <div class="cards c3" style="margin-top:48px">
-          <div class="opt rv d2">
-            <span class="lab">Option A</span>
-            <h3>Double down on solver accuracy</h3>
-            <p>Safe, measurable — but polishing a commodity. Everyone's answers were getting good.</p>
+        <div class="eyebrow rv">Discovery · Three credible paths</div>
+        <h2 class="rv">Students wanted more from us —<br />in three different directions.</h2>
+        <p class="lede rv" style="max-width:820px">
+          Interviews revealed three unmet needs. Market research showed that each
+          had real commercial potential.
+        </p>
+        <div class="paths rv d3">
+          <div class="path" tabindex="0">
+            <div class="ptop">
+              <div class="pno">01 · Test prep</div>
+              <h3>Help me prepare for the moments that matter.</h3>
+              <p>High-stakes outcomes created clear willingness to pay — but demand was concentrated around exam cycles.</p>
+              <div class="ptags"><span>High intent</span><span>Seasonal</span></div>
+            </div>
+            <div class="preveal">
+              <div class="plab">Research synthesis</div>
+              <p class="pq">“I don't know what to study — or whether I'm actually ready.”</p>
+              <div class="plab">Commercial proof</div>
+              <div class="pnum">$292.8M</div>
+              <p class="psrc">Kaplan Supplemental Education revenue, 2023 — standardized test prep and related programs.</p>
+              <p class="ptake">Proven willingness to pay for high-stakes outcomes.</p>
+            </div>
           </div>
-          <div class="opt rv d3">
-            <span class="lab">Option B</span>
-            <h3>Gamify retention</h3>
-            <p>Streaks and points buy visits, not value. Borrowed time on a transactional loop.</p>
+          <div class="path" tabindex="0">
+            <div class="ptop">
+              <div class="pno">02 · College admissions</div>
+              <h3>Help me navigate what comes after school.</h3>
+              <p>School selection, essays, and scholarships were complex, emotional, and valuable enough for families to seek expert help.</p>
+              <div class="ptags"><span>High value</span><span>Episodic</span></div>
+            </div>
+            <div class="preveal">
+              <div class="plab">Research synthesis</div>
+              <p class="pq">“I don't know which schools are realistic — or how to make my application stand out.”</p>
+              <div class="plab">Commercial proof</div>
+              <div class="pnum">$30K+</div>
+              <p class="psrc">Starting price reported for Crimson's undergraduate admissions services; valued at nearly $600M in 2024.</p>
+              <p class="ptake">A smaller audience, but exceptionally high value per student.</p>
+            </div>
           </div>
-          <div class="opt win rv d4">
-            <span class="lab">Option C · The bet</span>
-            <h3>Rebuild around the learner</h3>
-            <p>Slower and riskier — but the only path that compounds and can't be copied in a sprint.</p>
+          <div class="path" tabindex="0">
+            <div class="ptop">
+              <div class="pno">03 · Daily learning</div>
+              <h3>Help me understand — not just finish — today's work.</h3>
+              <p>Students could already get answers. What they still lacked was understanding, practice, and a sense of progress.</p>
+              <div class="ptags"><span>Broad reach</span><span>Year-round</span></div>
+            </div>
+            <div class="preveal">
+              <div class="plab">Research synthesis</div>
+              <p class="pq">“I got the answer — but I still don't know how to do the next one.”</p>
+              <div class="plab">Commercial proof</div>
+              <div class="pnum">$531M</div>
+              <p class="psrc">Duolingo's 2023 revenue — the scale of habit-based, everyday learning.</p>
+              <p class="ptake">Daily learning could create both habit and scalable monetization.</p>
+            </div>
           </div>
         </div>
-        <p class="lede rv d5" style="margin-top:40px">
-          <span class="todo">To fill · 真实心路</span><br />
-          Why I argued for C, who pushed back, and what evidence moved the room.
+        <p class="pathsfoot rv d4">All three needs were real. None was an obvious answer.</p>
+      </div>
+    </section>
+
+    <!-- 7 · Prioritization: strategy + behavior -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="eyebrow rv">Prioritization · Strategy + behavior</div>
+        <h2 class="rv">Interest revealed the options.<br />Evidence set the priority.</h2>
+        <p class="lede rv" style="max-width:820px">
+          We combined a Strategic Opportunity Assessment with an in-product Fake Door Test.
         </p>
+        <div class="prio rv d3">
+          <div class="fit">
+            <div class="ph2">01 · Strategic fit</div>
+            <div class="psub">Could this direction strengthen the business we already had?</div>
+            <table class="fittable">
+              <thead>
+                <tr><th>Decision criteria</th><th>Test prep</th><th>Admissions</th><th class="dl">Daily learning</th></tr>
+              </thead>
+              <tbody class="frag" data-frag="1">
+                <tr data-note="Test prep and admissions add new value on top. Daily learning repairs the loop that was actually leaking.">
+                  <th>Fixes our current growth problem</th><td>Partial</td><td>Low</td><td class="dl">Strong</td></tr>
+                <tr data-note="Only daily learning meets students where they already are — and does it every day, not once a season.">
+                  <th>Reaches existing users</th><td>Segmented and seasonal</td><td>Narrow and episodic</td><td class="dl">Broad and year-round</td></tr>
+                <tr data-note="Test prep and admissions required new content, expertise, and trust. Daily learning extended a behavior students already had with us.">
+                  <th>Builds on our right to win</th><td>New curriculum depth</td><td>New expertise and trust</td><td class="dl">Extends our existing entry point</td></tr>
+                <tr data-note="Exam cycles end. Application seasons end. Daily learning keeps accumulating context about the learner.">
+                  <th>Creates compounding value</th><td>Limited to exam cycles</td><td>Few learning interactions</td><td class="dl">Continuous learner context</td></tr>
+              </tbody>
+            </table>
+            <div class="fitnote" id="fitnote">Hover a row for the reasoning.</div>
+          </div>
+          <div class="pull frag" data-frag="2">
+            <div class="ph2">02 · Behavioral pull</div>
+            <div class="psub">Would students act — or simply say the idea sounded useful?</div>
+            <ol class="funnel">
+              <li><b>01 · Equal exposure</b><span>Three concepts received comparable placement and visual weight.</span></li>
+              <li><b>02 · Qualified action</b><span>We measured a meaningful commitment — not just a click.</span></li>
+              <li><b>03 · First value</b><span>Could students complete the first core experience?</span></li>
+              <li><b>04 · Repeat signal</b><span>Did the experience create a reason to return?</span></li>
+            </ol>
+            <div class="qa">
+              <div><b>Test prep</b>Select an exam → complete a diagnostic question</div>
+              <div><b>Admissions</b>Choose a goal → submit real application context</div>
+              <div><b>Daily learning</b>Review an explanation → complete a related problem</div>
+            </div>
+            <div class="pullnote">We measured behavior, not preference.</div>
+          </div>
+        </div>
+        <p class="prioresult frag" data-frag="3">
+          All three earned initial interest. <em>Daily learning created the broadest
+          qualified action and the clearest path to repeat use.</em>
+        </p>
+      </div>
+    </section>
+
+    <!-- 8 · The decision: sequence over distraction -->
+    <section class="slide">
+      <div class="glow purple bc"></div>
+      <div class="slide-inner">
+        <div class="eyebrow rv">The decision · Sequence over distraction</div>
+        <h2 class="rv">We chose the foundation first.</h2>
+        <p class="lede rv" style="max-width:860px">
+          Daily learning was the only direction that strengthened today's core
+          while making every future vertical better.
+        </p>
+        <div class="decide rv d3">
+          <div class="stack">
+            <div class="tops frag" data-frag="3">
+              <div class="lay top"><b>Test prep</b><span>Personalized around each student's actual knowledge gaps.</span></div>
+              <div class="lay top"><b>College admissions</b><span>Informed by each student's goals, progress, and strengths.</span></div>
+              <div class="stems"><i></i><i></i></div>
+            </div>
+            <div class="lay model frag" data-frag="2">
+              <b>Personalized learner model</b>
+              <span>What they know · Where they struggle · How they learn</span>
+              <div class="dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            </div>
+            <div class="lay daily frag" data-frag="1">
+              <b>Daily learning</b>
+              <div class="steps"><span>Solve</span><i>→</i><span>Understand</span><i>→</i><span>Practice</span><i>→</i><span>Progress</span></div>
+              <span class="sup">Turn every homework question into a richer, ongoing learning relationship.</span>
+            </div>
+            <div class="lay base">
+              <b>Existing behavior</b>
+              <span>Millions of students already came to Answer.AI when they were stuck.</span>
+            </div>
+          </div>
+          <div class="whys">
+            <div class="why frag" data-frag="1"><b>Fix the core</b>Give students a new reason to choose us — and more reasons to stay.</div>
+            <div class="why frag" data-frag="1"><b>Build on our edge</b>Extend an existing behavior instead of acquiring a completely new audience.</div>
+            <div class="why frag" data-frag="2"><b>Create a moat</b>Every interaction makes the learner model — and the next experience — better.</div>
+          </div>
+        </div>
+        <div class="final">
+          <p class="fbig frag" data-frag="4">Earn the daily relationship first. <span>Expand into higher-stakes moments later.</span></p>
+          <p class="fsmall frag" data-frag="4">This wasn't “no” to test prep or admissions. It was “not yet.”</p>
+          <p class="fpunch frag" data-frag="5">Test prep and admissions could build on daily learning.<br />Daily learning could not build on either.</p>
+        </div>
       </div>
     </section>
 
@@ -570,7 +808,31 @@
     </section>
 
   </div>
-<script src="deck.js?v=09030219"></script>
-<script src="editor.js?v=09030219"></script>
+
+<script>
+  // page 1: click locks a path open (for live presenting)
+  document.querySelectorAll(".paths").forEach((wrap) => {
+    wrap.querySelectorAll(".path").forEach((p) => {
+      p.addEventListener("click", () => {
+        const on = p.classList.toggle("lock");
+        wrap.querySelectorAll(".path").forEach((o) => { if (o !== p) o.classList.remove("lock"); });
+        wrap.classList.toggle("haslock", on);
+      });
+    });
+  });
+  // page 2: reasoning line follows the hovered row
+  const note = document.getElementById("fitnote");
+  if (note) {
+    const def = note.textContent;
+    document.querySelectorAll(".fittable tbody tr").forEach((tr) => {
+      tr.addEventListener("mouseenter", () => (note.textContent = tr.dataset.note || def));
+      tr.addEventListener("mouseleave", () => (note.textContent = def));
+    });
+  }
+  // page 3: stagger index for the learner-model dots
+  document.querySelectorAll(".dots i").forEach((d, k) => d.style.setProperty("--k", k + 1));
+</script>
+<script src="deck.js?v=09031050"></script>
+<script src="editor.js?v=09031050"></script>
 </body>
 </html>
