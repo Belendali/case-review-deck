@@ -34,7 +34,9 @@
         String(i + 1).padStart(2, "0") + " / " + String(slides.length).padStart(2, "0");
     history.replaceState(null, "", "#" + (i + 1));
     if (instant) requestAnimationFrame(() => (deck.style.transition = ""));
+    document.dispatchEvent(new CustomEvent("deck:change", { detail: { index: i, total: slides.length } }));
   }
+  window.deckGo = go;
 
   function frags(slide) {
     const list = [...slide.querySelectorAll(".frag")];
@@ -135,4 +137,22 @@
     requestAnimationFrame(retry);
   })();
   addEventListener("load", set);
+})();
+
+
+/* ===== left rail: section position (portfolio-style) ===== */
+(function () {
+  const rail = document.querySelector(".rail");
+  if (!rail) return;
+  const items = [...rail.querySelectorAll("a[data-from]")];
+  function update(i) {
+    items.forEach((a) => {
+      const from = +a.dataset.from, to = +(a.dataset.to || a.dataset.from);
+      a.classList.toggle("on", i >= from && i <= to);
+    });
+  }
+  items.forEach((a) => a.addEventListener("click", (e) => { e.preventDefault(); window.deckGo(+a.dataset.from); }));
+  document.addEventListener("deck:change", (e) => update(e.detail.index));
+  const h = parseInt((location.hash || "").slice(1), 10);
+  update(isNaN(h) ? 0 : h - 1);
 })();
