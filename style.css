@@ -105,7 +105,7 @@ h2 {
 }
 
 /* ---------- building blocks ---------- */
-.cards { display: grid; gap: 16px; margin-top: 40px; }
+.cards { display: grid; gap: var(--cards-gap, 16px); margin-top: 40px; }
 .cards.c3 { grid-template-columns: repeat(3, 1fr); }
 .cards.c2 { grid-template-columns: repeat(2, 1fr); }
 .card {
@@ -131,7 +131,7 @@ h2 {
   margin-bottom: 14px;
 }
 
-.stat-row { display: flex; gap: 18px; margin-top: 44px; }
+.stat-row { display: flex; gap: var(--cards-gap, 18px); margin-top: 44px; }
 .stat {
   flex: 1;
   background: var(--card);
