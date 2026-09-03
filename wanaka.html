@@ -7,7 +7,7 @@
 <title>Wanaka · 0 → 1 with AI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css?v=09031754" />
+<link rel="stylesheet" href="style.css?v=09031758" />
 <style>
   :root { --accent: var(--wanaka); }
   .wk { color: var(--wanaka); }
@@ -73,17 +73,23 @@
   .tk p { margin: 0; font-size: 12.5px; color: var(--dim); line-height: 1.5; }
   /* three walls */
   .walls { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 30px; align-items: end; }
-  .wall { text-align: center; transform: translateY(40px); opacity: 0; transition: transform .6s cubic-bezier(.22,1,.36,1), opacity .5s ease-out; }
-  .wallwrap:has(.walltrig.shown) .wall { transform: none; opacity: 1; }
-  .wallwrap:has(.walltrig.shown) .wall:nth-child(2) { transition-delay: .14s; } .wallwrap:has(.walltrig.shown) .wall:nth-child(3) { transition-delay: .28s; }
+  .wall { text-align: center; }
+  .wall.frag { transform: translateY(40px); opacity: 0; transition: transform .6s cubic-bezier(.22,1,.36,1), opacity .5s ease-out; }
+  .wall.frag.shown { transform: none; opacity: 1; }
   .wbub { position: relative; display: inline-block; text-align: left; background: #f6f3ec; color: #121212; border-radius: 18px; padding: 12px 16px 13px; max-width: 300px; box-shadow: 0 14px 30px rgba(0,0,0,.35); }
   .wbub::after { content: ""; position: absolute; left: 50%; bottom: -9px; width: 18px; height: 18px; background: #f6f3ec; transform: translateX(-50%) rotate(45deg); border-radius: 3px; }
   .wbub i { display: block; font-style: normal; font-family: var(--serif); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: #6c6a63; margin-bottom: 2px; }
   .wbub b { display: block; font-family: var(--serif); font-weight: 500; font-size: 20px; line-height: 1.15; margin-bottom: 4px; }
-  .wbub span { display: block; font-size: 12.5px; line-height: 1.45; color: #45443f; }
-  .wimg { display: block; width: 100%; height: var(--tile-h, 210px); object-fit: contain; margin: 14px auto 0; filter: drop-shadow(0 14px 24px rgba(0,0,0,.5)); }
-  .wallline { margin-top: 26px; font-family: var(--serif); font-size: 17px; color: var(--dim); opacity: 0; transition: opacity .4s ease-out .5s; text-align: center; }
-  .wallwrap:has(.walltrig.shown) .wallline { opacity: 1; }
+  .wbub span { display: block; font-family: var(--serif); font-size: 15.5px; line-height: 1.4; color: #121212; }
+  .wimg { display: block; width: 100%; height: var(--tile-h, 210px); object-fit: contain; margin: 14px auto 0; filter: drop-shadow(0 14px 24px rgba(0,0,0,.5)); transition: transform .45s cubic-bezier(.22,1,.36,1), filter .45s ease-out; }
+  .wbub { transition: transform .45s cubic-bezier(.22,1,.36,1), box-shadow .3s ease-out; transform-origin: 50% 100%; }
+  .wall:hover .wimg { transform: translateY(-8px) scale(1.05) rotate(-1.5deg); filter: drop-shadow(0 22px 30px rgba(0,0,0,.6)); }
+  .wall:hover .wbub { transform: translateY(-4px) rotate(-2deg); box-shadow: 0 18px 36px rgba(0,0,0,.45); }
+  .wall:hover .wbub::after { }
+  .walls:hover .wall:not(:hover) { opacity: .6; }
+  .wall.frag.shown { transition: transform .6s cubic-bezier(.22,1,.36,1), opacity .3s ease-out; }
+  .wallline { margin-top: 26px; font-family: var(--serif); font-size: 17px; color: var(--dim); text-align: center; }
+  .wallline.frag { transition-delay: .5s; }
   /* wall pages: pain / built / AI rows */
   .pba { display: grid; gap: 10px; margin-top: 18px; }
   .pb { display: grid; grid-template-columns: 92px 1fr; gap: 14px; align-items: start; font-size: 13.5px; line-height: 1.5; color: var(--dim); }
@@ -130,16 +136,15 @@
     <!-- 2 · User problem · three walls -->
     <section class="slide">
       <div class="slide-inner wallwrap">
-        <span class="walltrig frag" data-frag="1" aria-hidden="true"></span>
         <div class="eyebrow rv wk">User problem</div>
         <h2 class="rv" style="font-size:var(--t-h2,44px)">Everyone has a game in their head.<br />Three walls keep it there.</h2>
         <p class="lede rv" style="max-width:860px">Making a game takes three crafts most people never learned.</p>
         <div class="walls rv d3">
-          <div class="wall"><div class="wbub"><i>Wall 01</i><b>Code</b><span>Turning rules into something playable — and fixing it when it breaks.</span></div><img class="wimg" src="assets/wall-code.png" alt="" /></div>
-          <div class="wall"><div class="wbub"><i>Wall 02</i><b>Art</b><span>Models, rigs, animation — years of craft for a single character.</span></div><img class="wimg" src="assets/wall-art.png" alt="" /></div>
-          <div class="wall"><div class="wbub"><i>Wall 03</i><b>Worldbuilding</b><span>A setting and rules that hang together — most ideas fall apart before the first level.</span></div><img class="wimg" src="assets/wall-plan.png" alt="" /></div>
+          <div class="wall frag" data-frag="1"><div class="wbub"><span>“I can’t code. How does a rule in my head become something I can actually play?”</span></div><img class="wimg" src="assets/wall-code.png" alt="" /></div>
+          <div class="wall frag" data-frag="2"><div class="wbub"><span>“I don’t know how to draw or build 3D models at all.”</span></div><img class="wimg" src="assets/wall-art.png" alt="" /></div>
+          <div class="wall frag" data-frag="3"><div class="wbub"><span>“I can see the game… but not the rules, the levels, how it all hangs together.”</span></div><img class="wimg" src="assets/wall-plan.png" alt="" /></div>
         </div>
-        <p class="wallline">The idea stays an idea.</p>
+        <p class="wallline frag" data-frag="3">The idea stays an idea.</p>
       </div>
     </section>
 
@@ -246,7 +251,7 @@
     </section>
 
   </div>
-<script src="deck.js?v=09031754"></script>
-<script src="editor.js?v=09031754"></script>
+<script src="deck.js?v=09031758"></script>
+<script src="editor.js?v=09031758"></script>
 </body>
 </html>
