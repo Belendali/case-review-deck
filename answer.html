@@ -7,7 +7,7 @@
 <title>Answer.AI · The Growth Story</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css?v=09031647" />
+<link rel="stylesheet" href="style.css?v=09031651" />
 <style>
   /* strategy · isometric stack + four layers */
   .promise { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: var(--split-gap,36px); align-items: center; margin-top: 18px; }
@@ -306,15 +306,22 @@
   .slide:has(.stagetrig.shown) .gratgif { opacity: 1; transform: none; }
   .gratbg::after { background: linear-gradient(180deg, rgba(5,5,8,.94) 0%, rgba(5,5,8,.82) 40%, rgba(5,5,8,.72) 100%); }
   .gratbg img { filter: saturate(.8) brightness(.85); }
-  .slide:has(.stagetrig.shown) .gratbg { opacity: 1; }
+  .slide:has(.grattrig.shown) .gratbg { opacity: 1; }
   .confetti { position: absolute; left: 50%; top: -3%; width: min(62%, 820px); transform: translateX(-50%); pointer-events: none; z-index: 1; opacity: 0; transition: opacity .5s ease-out; }
   .slide.on .confetti.play { opacity: 1; }
-  .slide:has(.stagetrig.shown) .confetti { opacity: 0 !important; }
+  .slide:has(.grattrig.shown) .confetti { opacity: 0 !important; }
   .reswrap { display: grid; }
   .reswrap .res, .reswrap .grat { grid-area: 1 / 1; transition: opacity .5s ease-out, transform .5s ease-out; }
   .reswrap .grat { opacity: 0; transform: translateY(10px); pointer-events: none; }
-  .reswrap:has(.stagetrig.shown) .res { opacity: 0; transform: translateY(-10px); pointer-events: none; }
-  .reswrap:has(.stagetrig.shown) .grat { opacity: 1; transform: none; pointer-events: auto; }
+  .reswrap:has(.grattrig.shown) .res { opacity: 0; transform: translateY(-10px); pointer-events: none; }
+  .reswrap:has(.grattrig.shown) .grat { opacity: 1; transform: none; pointer-events: auto; }
+  .resbody { display: grid; margin-top: 26px; }
+  .resbody > * { grid-area: 1 / 1; }
+  .rescmp { height: min(var(--media-h, 420px), calc(100vh - 430px)); margin: 0 auto; transition: opacity .45s ease-out, transform .45s ease-out, box-shadow .35s ease-out, border-color .35s ease-out; }
+  .resstats { margin-top: 0; align-self: center; opacity: 0; transform: translateY(12px); pointer-events: none; transition: opacity .5s ease-out .15s, transform .5s ease-out .15s; }
+  .reswrap:has(.numtrig.shown) .rescmp { opacity: 0; transform: scale(.98); pointer-events: none; }
+  .reswrap:has(.numtrig.shown) .resstats { opacity: 1; transform: none; pointer-events: auto; }
+  .reswrap .cmp.revealed { border-color: rgba(139,124,255,.55); box-shadow: 0 0 0 1px rgba(139,124,255,.25), 0 0 50px rgba(139,124,255,.28), 0 24px 60px rgba(0,0,0,.5); }
   .gratline { margin-top: 26px; font-family: var(--serif); font-size: 22px; color: var(--ink); }
   .gratline em { font-style: normal; color: #cfc4ff; }
   /* ===== fragments (within-slide builds) ===== */
@@ -1095,19 +1102,28 @@
       <img class="gratgif" src="assets/tutors-lookup.webp" alt="" aria-hidden="true" />
       <div class="glow purple tc"></div>
       <img class="confetti" src="assets/confetti.gif" alt="" aria-hidden="true" />
-      <div class="slide-inner reswrap">
+      <div class="slide-inner reswrap reachwrap">
         <span class="stagetrig frag" data-frag="1" aria-hidden="true"></span>
+        <span class="numtrig frag" data-frag="2" aria-hidden="true"></span>
+        <span class="grattrig frag" data-frag="3" aria-hidden="true"></span>
         <div class="res">
           <div class="eyebrow rv">Results</div>
-          <h2 class="rv">Goal, met.</h2>
+          <h2 class="rv" style="font-size:var(--t-h2,40px)">Goal, met.</h2>
           <p class="lede rv" style="max-width:860px">
-            We set out to move from solving one question to <em>supporting how students learn every day</em>. The numbers followed.
+            We set out to move from solving one question to <em>supporting how students learn every day</em>.
           </p>
-          <div class="stat-row">
-            <div class="stat rv d2"><div class="num">~8%</div><div class="lab">Lift in 30-day retention</div></div>
-            <div class="stat rv d3"><div class="num">+13%</div><div class="lab">Daily active users</div></div>
-            <div class="stat rv d4"><div class="num">+23%</div><div class="lab">Daily revenue</div></div>
-            <div class="stat rv d5"><div class="num">~1M</div><div class="lab">New registered students</div></div>
+          <div class="resbody">
+            <div class="cmp rescmp rv d3" style="--x:100%">
+              <div class="cmp-after"><video src="assets/results-after.mp4" muted loop playsinline autoplay preload="metadata"></video><span class="cmp-lab r">After</span></div>
+              <div class="cmp-before"><img src="assets/results-before.jpg" alt="The old app" draggable="false" /><span class="cmp-lab l">Before</span></div>
+              <div class="cmp-bar"><span class="cmp-knob">&lt;&gt;</span></div>
+            </div>
+            <div class="stat-row resstats">
+              <div class="stat"><div class="num">~8%</div><div class="lab">Lift in 30-day retention</div></div>
+              <div class="stat"><div class="num">+13%</div><div class="lab">Daily active users</div></div>
+              <div class="stat"><div class="num">+23%</div><div class="lab">Daily revenue</div></div>
+              <div class="stat"><div class="num">~1M</div><div class="lab">New registered students</div></div>
+            </div>
           </div>
         </div>
         <div class="grat">
@@ -1258,24 +1274,19 @@
     f.addEventListener("mouseenter", () => { v.currentTime = 0; v.play().catch(() => {}); });
     f.addEventListener("mouseleave", () => v.pause());
   });
-  // Results slide: confetti plays once each time the slide is entered
+  // Results slide: confetti plays once when the numbers appear
   (function () {
-    const slide = document.querySelector(".confetti")?.closest(".slide"); if (!slide) return;
-    const gif = slide.querySelector(".confetti"), src = gif.getAttribute("src");
+    const gif = document.querySelector(".confetti"); if (!gif) return;
+    const slide = gif.closest(".slide"), trig = slide.querySelector(".numtrig"), src = gif.getAttribute("src");
     let timer = null;
-    const play = () => {
-      gif.setAttribute("src", src + "?r=" + Date.now());
-      gif.classList.add("play"); clearTimeout(timer);
-      timer = setTimeout(() => gif.classList.remove("play"), 1900);
-    };
-    new MutationObserver(() => { if (slide.classList.contains("on")) play(); else gif.classList.remove("play"); })
-      .observe(slide, { attributes: true, attributeFilter: ["class"] });
-    if (slide.classList.contains("on")) play();
+    const play = () => { gif.setAttribute("src", src + "?r=" + Date.now()); gif.classList.add("play"); clearTimeout(timer); timer = setTimeout(() => gif.classList.remove("play"), 1900); };
+    new MutationObserver(() => { if (trig.classList.contains("shown")) play(); else gif.classList.remove("play"); })
+      .observe(trig, { attributes: true, attributeFilter: ["class"] });
   })();
   // page 3: stagger index for the learner-model dots
   document.querySelectorAll(".dots i").forEach((d, k) => d.style.setProperty("--k", k + 1));
 </script>
-<script src="deck.js?v=09031647"></script>
-<script src="editor.js?v=09031647"></script>
+<script src="deck.js?v=09031651"></script>
+<script src="editor.js?v=09031651"></script>
 </body>
 </html>
