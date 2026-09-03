@@ -55,14 +55,17 @@
 
   /* title-slide background */
   .hero-bg img {
-    opacity: 0.42;
-    transform: scale(1.04);
-    object-position: center 34%;
-    filter: blur(1px) saturate(0.95);
+    opacity: var(--hero-op, 0.34);
+    transform: scale(var(--hero-scale, 1.04));
+    object-position: center var(--hero-posy, 34%);
+    filter: blur(var(--hero-blur, 1px)) saturate(0.95);
   }
   .hero-bg::after {
     background:
-      radial-gradient(62% 50% at 50% 47%, rgba(5,5,8,0.9) 0%, rgba(5,5,8,0.6) 58%, rgba(5,5,8,0.2) 100%),
+      radial-gradient(62% 50% at 50% 47%,
+        rgba(5,5,8,var(--scrim, 0.9)) 0%,
+        rgba(5,5,8,calc(var(--scrim, 0.9) * 0.66)) 58%,
+        rgba(5,5,8,calc(var(--scrim, 0.9) * 0.22)) 100%),
       linear-gradient(180deg, rgba(5,5,8,0.72) 0%, rgba(5,5,8,0.3) 40%, rgba(5,5,8,0.95) 100%);
   }
 
@@ -397,5 +400,6 @@
 
   </div>
 <script src="deck.js"></script>
+<script src="editor.js"></script>
 </body>
 </html>
