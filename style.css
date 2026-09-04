@@ -269,9 +269,15 @@ h2 {
 
 
 /* ===== presenter script (S) ===== */
-.script { position: fixed; left: 0; right: 0; bottom: 0; z-index: 80; max-height: 38vh; overflow: auto; background: rgba(6,6,10,.92); backdrop-filter: blur(14px); border-top: 1px solid rgba(255,255,255,.12); transform: translateY(100%); transition: transform .3s ease-out; }
+.stage { position: fixed; inset: 0; overflow: hidden; transform-origin: 50% 0; transition: transform .35s cubic-bezier(.22,1,.36,1); }
+.stage.page { position: static; overflow: visible; }
+body.script-on .stage { transform: scale(var(--stage-k, .64)); }
+body.script-on .stage.page { transform: scale(var(--stage-k, .64)); transform-origin: 50% 0; }
+body.script-on .chrome.br, body.script-on .chrome.bl { bottom: calc(36vh + 12px); }
+body.script-on .rail { top: 32vh; }
+.script { position: fixed; left: 0; right: 0; bottom: 0; z-index: 80; height: 36vh; overflow: auto; background: rgba(6,6,10,.92); backdrop-filter: blur(14px); border-top: 1px solid rgba(255,255,255,.12); transform: translateY(100%); transition: transform .3s ease-out; }
 body.script-on .script { transform: none; }
-.script-in { max-width: 1100px; margin: 0 auto; padding: 18px 40px 24px; font-family: var(--body); font-size: 17px; line-height: 1.65; color: rgba(255,255,255,.9); }
+.script-in { max-width: 1180px; margin: 0 auto; padding: 20px 40px 28px; font-family: var(--body); font-size: 19px; line-height: 1.7; color: rgba(255,255,255,.92); }
 .script-in i.script-k, .script-in > i { display: block; font-style: normal; font-family: var(--serif); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--faint); margin-bottom: 8px; }
 .script-t i, .script-in i:not(.script-k) { font-style: normal; color: var(--accent, #8b7cff); font-family: var(--serif); font-size: 13px; letter-spacing: .06em; padding: 0 2px; }
 .script-t b { color: #fff; font-weight: 600; }

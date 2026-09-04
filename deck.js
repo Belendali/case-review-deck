@@ -161,6 +161,11 @@
 /* ===== script mode: press S to show the presenter script for the current slide ===== */
 (function () {
   const slides = [...document.querySelectorAll(".slide")]; if (!slides.length) return;
+  const deckEl = document.querySelector(".deck");
+  if (deckEl && !deckEl.parentElement.classList.contains("stage")) {
+    const stage = document.createElement("div"); stage.className = "stage";
+    deckEl.parentNode.insertBefore(stage, deckEl); stage.appendChild(deckEl);
+  }
   const panel = document.createElement("div"); panel.className = "script";
   panel.innerHTML = '<div class="script-in"><i class="script-k"></i><div class="script-t"></div></div>';
   document.body.appendChild(panel);
