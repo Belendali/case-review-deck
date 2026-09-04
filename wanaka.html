@@ -7,7 +7,7 @@
 <title>Wanaka · 0 → 1 with AI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css?v=09041334" />
+<link rel="stylesheet" href="style.css?v=09041337" />
 <style>
   :root { --accent: var(--wanaka); }
   .wk { color: var(--wanaka); }
@@ -197,6 +197,17 @@
   .wfs p { margin: 0; font-size: 12.5px; color: var(--dim); line-height: 1.55; }
   .wf:hover .wfs:not(:hover) { opacity: .55; }
   .wfs { transition: opacity .2s ease-out, border-color .25s ease-out; }
+  /* results · stats + player-made games */
+  .wkstats { margin-top: 26px; }
+  .wkstats .stat { padding: 20px 22px 18px; }
+  .wkstats .num { font-size: 34px; }
+  .wkstats .lab { font-size: 12.5px; }
+  .games { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 24px; }
+  .games figure { margin: 0; transition: transform .35s ease-out, opacity .3s ease-out; }
+  .games:hover figure:not(:hover) { opacity: .6; }
+  .games figure:hover { transform: translateY(-4px); }
+  .vid.gm { height: var(--tile-h, 220px); aspect-ratio: 16 / 9; width: 100%; }
+  .games figcaption { margin-top: 10px; font-family: var(--serif); font-size: 12px; color: var(--dim); letter-spacing: .04em; }
   /* wall pages: pain / built / AI rows */
   .pba { display: grid; gap: 10px; margin-top: 18px; }
   .pb { display: grid; grid-template-columns: 92px 1fr; gap: 14px; align-items: start; font-size: 13.5px; line-height: 1.5; color: var(--dim); }
@@ -223,7 +234,7 @@
     <a data-from="5" data-to="5">03 Worldbuilding</a>
     <span class="gap"></span>
     <a data-from="6" data-to="6">AI workflow</a>
-    <a data-from="7" data-to="7">Takeaways</a>
+    <a data-from="7" data-to="7">Results</a>
   </nav>
 
   <div class="deck">
@@ -366,20 +377,23 @@
       </div>
     </section>
 
-    <!-- 8 · Takeaways -->
+    <!-- 8 · Results -->
     <section class="slide">
       <div class="glow green bc"></div>
       <div class="slide-inner">
-        <div class="eyebrow rv wk">What carries over</div>
-        <p class="quote rv" style="max-width:940px">
-          Design for creators, with AI as <span class="hl">the material</span>.
-        </p>
-        <div class="take">
-          <div class="tk rv d2"><i>Creators</i><b>The first minute decides everything.</b><p>Show a result before asking for effort — the same bar an effect creator has.</p></div>
-          <div class="tk rv d3"><i>AI as material</i><b>Ship the judgment, not just the screen.</b><p>Skills and specs the product can run — how I'd approach effect templates and guidance.</p></div>
-          <div class="tk rv d4"><i>Craft</i><b>Prototype until it's real.</b><p>Working demos over decks — what I'd bring to Effect House's tools and trends.</p></div>
+        <div class="eyebrow rv wk">Status</div>
+        <h2 class="rv" style="font-size:var(--t-h2,42px)">20,000 signed up — before the doors even opened.</h2>
+        <div class="stat-row wkstats rv d2">
+          <div class="stat"><div class="num">20,000+</div><div class="lab">creators registered — during closed beta</div></div>
+          <div class="stat"><div class="num">3 → 30</div><div class="lab">team size since I joined</div></div>
+          <div class="stat"><div class="num">1 yr</div><div class="lab">from first prototype to a working studio</div></div>
         </div>
-        <p class="kicker rv d5" style="margin-top:34px"><a href="effect.html" style="color:var(--faint);text-decoration:none">Chapter 03 · Effect House →</a></p>
+        <div class="games rv d3">
+          <figure><div class="vid gm media">Player-made game 01</div><figcaption>Made by a creator · title</figcaption></figure>
+          <figure><div class="vid gm media">Player-made game 02</div><figcaption>Made by a creator · title</figcaption></figure>
+          <figure><div class="vid gm media">Player-made game 03</div><figcaption>Made by a creator · title</figcaption></figure>
+        </div>
+        <p class="kicker rv d5" style="margin-top:26px"><a href="effect.html" style="color:var(--faint);text-decoration:none">Chapter 03 · Effect House →</a></p>
       </div>
     </section>
 
@@ -425,7 +439,7 @@
     new MutationObserver(() => animateTo(trig.classList.contains("shown") ? 45 : 100)).observe(trig, { attributes: true, attributeFilter: ["class"] });
   });
 </script>
-<script src="deck.js?v=09041334"></script>
-<script src="editor.js?v=09041334"></script>
+<script src="deck.js?v=09041337"></script>
+<script src="editor.js?v=09041337"></script>
 </body>
 </html>
