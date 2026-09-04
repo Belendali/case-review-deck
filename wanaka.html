@@ -7,7 +7,7 @@
 <title>Wanaka · 0 → 1 with AI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css?v=09041542" />
+<link rel="stylesheet" href="style.css?v=09041548" />
 <style>
   :root { --accent: var(--wanaka); }
   .wk { color: var(--wanaka); }
@@ -253,6 +253,7 @@
           Anyone can build the game in their head — with AI as a teammate at every step.
         </p>
       </div>
+      <div class="notes" hidden>Wanaka is an AI game studio. I joined at three people as the founding designer — we're thirty now. The idea: anyone can build the game in their head, with AI as a teammate at every step.</div>
     </section>
 
     <!-- 2 · User problem · three walls -->
@@ -268,6 +269,7 @@
         </div>
         <p class="wallline frag" data-frag="3">The idea stays an idea.</p>
       </div>
+      <div class="notes" hidden>Everyone has a game in their head. Three walls keep it there. <i>[space]</i> “I can't code.” <i>[space]</i> “I don't know how to draw or build 3D models.” <i>[space]</i> “I can see the game — but not the rules, the levels, how it hangs together.” Code, art, game design: three crafts most people never learned. So the idea stays an idea.</div>
     </section>
 
     <!-- 3 · The mission -->
@@ -289,6 +291,7 @@
         </div>
         <p class="lineword rv d3">Creativity stays human. Craft goes to AI.</p>
       </div>
+      <div class="notes" hidden>Our mission: everyone can make a game. The rule behind every product decision — drawn with creators and the team — is simple: people do the part they love and are good at, AI does the part it does best. <i>[hover left]</i> Imagine freely, snap models together like blocks, build the world. <i>[hover right]</i> AI writes the code, creates the assets, helps plan the game. Creativity stays human. Craft goes to AI.</div>
     </section>
 
     <!-- 4 · Wall 01 · Code -->
@@ -315,6 +318,7 @@
         </div>
         <div class="hstip" aria-hidden="true"></div>
       </div>
+      <div class="notes" hidden>Wall one: “I can't code.” Here's where we started. <i>[hover the orange dots]</i> Panels over the canvas, a toolbar of everything, logs instead of a conversation, a heavy dated look. The game was what you saw least. <i>[space]</i> The redesign: say it in chat and watch the plan tick off. <i>[hover the green dots]</i> Tools by frequency, click anything to locate it, and a chat you can actually follow — you always know what the AI is doing and what you do next. We hid a lot of power behind Create and Settings. That was the trade: fewer visible controls, faster first game.</div>
     </section>
 
     <!-- 5 · Wall 02 · Art -->
@@ -342,6 +346,7 @@
           </div>
         </div>
       </div>
+      <div class="notes" hidden>Wall two: “I can't draw.” Two places to generate on PC. <i>[hover]</i> A standalone Character Factory — describe it, get a rigged, animated 3D model. And inside the Studio, where assets are generated and placed without leaving the canvas. <i>[space]</i> On mobile we kept it playful and light: photograph anything, and it becomes a game prop that walks straight into your world.</div>
     </section>
 
     <!-- 6 · Wall 03 · Worldbuilding -->
@@ -362,6 +367,7 @@
         </div>
         <div class="vid planvid rv d3"><video src="assets/wk-plan.mp4" muted loop playsinline autoplay preload="metadata"></video></div>
       </div>
+      <div class="notes" hidden>Wall three, the deepest one: worlds are complicated. Game design is what to build, in what order, and why — so this agent is a producer. <i>[hover the steps]</i> You open Plan mode with one sentence. Planner drafts the plan in seconds. You confirm with a few taps. The crew takes the parts — developer, artist, tester, musician. 1.0 lands, you give feedback, the right cat revises. Then Planner proposes 2.0. Still in planning; the flow on the right is a working demo I built with Claude Code.</div>
     </section>
 
     <!-- 7 · AI workflow -->
@@ -379,6 +385,7 @@
           <div class="wfs rv d6"><i>05</i><b>Compound</b><p>New components that prove valuable go back into the design system. For anything generative, written skills keep output quality stable.</p></div>
         </div>
       </div>
+      <div class="notes" hidden>Zooming out — this is how I work with AI day to day. Set direction with research and a daily market agent. Test feasibility with AI plus Figma on our design system, before committing. Execute: key pages by hand, AI drafts the edge cases and generates motion and assets. Ship real demos on GitHub, with a design-QA skill engineers run before review. And compound: valuable components go back into the system, and for anything generative, written skills keep the quality stable. AI is in every step. The judgment stays mine.</div>
     </section>
 
     <!-- 8 · Results -->
@@ -399,6 +406,7 @@
           <figure><div class="vid gm"><video src="assets/game-gun.mp4" muted loop playsinline autoplay preload="metadata"></video></div><figcaption>Made by a creator · Shooter</figcaption></figure>
         </div>
       </div>
+      <div class="notes" hidden>Where it stands: twenty thousand creators signed up before the doors opened, the team grew from three to thirty, and it took a year from first prototype to a working studio. These are games creators made.</div>
     </section>
 
     <!-- 9 · Closing -->
@@ -420,6 +428,7 @@
         </p>
         <p class="kicker rv d5" style="margin-top:44px"><a href="effect.html" style="color:var(--faint);text-decoration:none">Chapter 03 · Effect House →</a></p>
       </div>
+      <div class="notes" hidden>What this taught me about AI and designers: it gives us our boldness back. Ideas stop waiting — try it, feel it, decide, in seconds. The craft moves up: I own the decisions, the details and the specs, and I design how AI and I work together. That's the era I'm building in, and I love it. Last — a few first tries in Effect House.</div>
     </section>
 
   </div>
@@ -473,7 +482,7 @@
     new MutationObserver(() => animateTo(trig.classList.contains("shown") ? 45 : 100)).observe(trig, { attributes: true, attributeFilter: ["class"] });
   });
 </script>
-<script src="deck.js?v=09041542"></script>
-<script src="editor.js?v=09041542"></script>
+<script src="deck.js?v=09041548"></script>
+<script src="editor.js?v=09041548"></script>
 </body>
 </html>

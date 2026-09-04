@@ -156,3 +156,29 @@
   const h = parseInt((location.hash || "").slice(1), 10);
   update(isNaN(h) ? 0 : h - 1);
 })();
+
+
+/* ===== script mode: press S to show the presenter script for the current slide ===== */
+(function () {
+  const slides = [...document.querySelectorAll(".slide")]; if (!slides.length) return;
+  const panel = document.createElement("div"); panel.className = "script";
+  panel.innerHTML = '<div class="script-in"><i class="script-k"></i><div class="script-t"></div></div>';
+  document.body.appendChild(panel);
+  const k = panel.querySelector(".script-k"), t = panel.querySelector(".script-t");
+  function render(i) {
+    const n = slides[i] && slides[i].querySelector(".notes");
+    const title = slides[i] && (slides[i].querySelector("h1, h2, .quote") || {}).textContent || "";
+    k.textContent = "Script · " + String(i + 1).padStart(2, "0") + "  " + title.trim().replace(/\s+/g, " ").slice(0, 60);
+    t.innerHTML = n ? n.innerHTML : "<em>No script for this slide.</em>";
+    panel.scrollTop = 0;
+  }
+  document.addEventListener("deck:change", (e) => render(e.detail.index));
+  addEventListener("keydown", (e) => {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    const tg = e.target; if (tg && (tg.isContentEditable || tg.tagName === "INPUT" || tg.tagName === "TEXTAREA")) return;
+    if (document.designMode === "on") return;
+    if (e.key.toLowerCase() === "s") document.body.classList.toggle("script-on");
+  });
+  const h = parseInt((location.hash || "").slice(1), 10);
+  render(isNaN(h) ? 0 : h - 1);
+})();
