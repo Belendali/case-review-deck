@@ -7,7 +7,7 @@
 <title>Wanaka · 0 → 1 with AI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css?v=09041323" />
+<link rel="stylesheet" href="style.css?v=09041334" />
 <style>
   :root { --accent: var(--wanaka); }
   .wk { color: var(--wanaka); }
@@ -188,6 +188,15 @@
   .rtext .rt.after { opacity: 0; transform: translateY(8px); pointer-events: none; }
   .reachwrap:has(.stagetrig.shown) .rt.before { opacity: 0; transform: translateY(-8px); pointer-events: none; }
   .reachwrap:has(.stagetrig.shown) .rt.after { opacity: 1; transform: none; pointer-events: auto; }
+  /* AI workflow · five columns */
+  .wf { display: grid; grid-template-columns: repeat(5, 1fr); gap: 22px; margin-top: 34px; }
+  .wfs { border-top: 1px solid rgba(255,255,255,.16); padding-top: 16px; transition: border-color .25s ease-out; }
+  .wfs:hover { border-top-color: var(--wanaka); }
+  .wfs i { display: block; font-style: normal; font-family: var(--serif); font-size: 12px; letter-spacing: .12em; color: var(--wanaka); margin-bottom: 8px; }
+  .wfs b { display: block; font-family: var(--serif); font-weight: 500; font-size: 18px; color: var(--ink); margin-bottom: 8px; }
+  .wfs p { margin: 0; font-size: 12.5px; color: var(--dim); line-height: 1.55; }
+  .wf:hover .wfs:not(:hover) { opacity: .55; }
+  .wfs { transition: opacity .2s ease-out, border-color .25s ease-out; }
   /* wall pages: pain / built / AI rows */
   .pba { display: grid; gap: 10px; margin-top: 18px; }
   .pb { display: grid; grid-template-columns: 92px 1fr; gap: 14px; align-items: start; font-size: 13.5px; line-height: 1.5; color: var(--dim); }
@@ -345,12 +354,14 @@
       <div class="glow green tc"></div>
       <div class="slide-inner">
         <div class="eyebrow rv wk">The AI workflow</div>
-        <h2 class="rv" style="font-size:var(--t-h2,44px)">Three ways I design with AI.</h2>
-        <p class="lede rv" style="max-width:860px">Pulled from the three walls. Each one changed what a designer hands over.</p>
-        <div class="ways">
-          <div class="way rv d2"><div class="n">01</div><b>Prototype in code</b><p>Working demos instead of static mocks. The team reacts to the real thing, and the demo becomes the spec.</p><div class="ex">Onboarding · Homepage · Crew mode</div></div>
-          <div class="way rv d3"><div class="n">02</div><b>Compile judgment into skills</b><p>Taste written down as rules, references and contracts — so the product can make the call when I'm not in the room.</p><div class="ex">Cover skill · Voice skill</div></div>
-          <div class="way rv d4"><div class="n">03</div><b>Close the loop</b><p>AI output → human sign-off → back into the library. Every good result makes the next one better.</p><div class="ex">Reference pairs · Scene tests</div></div>
+        <h2 class="rv" style="font-size:var(--t-h2,44px)">How I work with AI, day to day.</h2>
+        <p class="lede rv" style="max-width:860px">Direction → feasibility → execution → QA → back into the system. AI is in every step; the judgment stays mine.</p>
+        <div class="wf">
+          <div class="wfs rv d2"><i>01</i><b>Set direction</b><p>Explore directions and gather references with AI. A daily agent follows the market and competitors, so decisions start from evidence.</p></div>
+          <div class="wfs rv d3"><i>02</i><b>Test feasibility</b><p>With the direction clear, AI + Figma on our design system produce quick demos — to see what is actually executable before committing.</p></div>
+          <div class="wfs rv d4"><i>03</i><b>Execute</b><p>Key pages are designed by hand in Figma. AI drafts the edge cases and generates the motion, animation and asset variants around them.</p></div>
+          <div class="wfs rv d5"><i>04</i><b>Ship &amp; QA</b><p>Flows become working demos on GitHub; the team reviews the real thing. A Design QA skill lets engineers self-check tokens and spacing before review.</p></div>
+          <div class="wfs rv d6"><i>05</i><b>Compound</b><p>New components that prove valuable go back into the design system. For anything generative, written skills keep output quality stable.</p></div>
         </div>
       </div>
     </section>
@@ -414,7 +425,7 @@
     new MutationObserver(() => animateTo(trig.classList.contains("shown") ? 45 : 100)).observe(trig, { attributes: true, attributeFilter: ["class"] });
   });
 </script>
-<script src="deck.js?v=09041323"></script>
-<script src="editor.js?v=09041323"></script>
+<script src="deck.js?v=09041334"></script>
+<script src="editor.js?v=09041334"></script>
 </body>
 </html>
