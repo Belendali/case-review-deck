@@ -7,7 +7,7 @@
 <title>Wanaka · 0 → 1 with AI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css?v=09041230" />
+<link rel="stylesheet" href="style.css?v=09041256" />
 <style>
   :root { --accent: var(--wanaka); }
   .wk { color: var(--wanaka); }
@@ -136,7 +136,17 @@
   .vid.phone { height: min(var(--phone-h, 430px), calc(100vh - 480px)); aspect-ratio: 1080 / 2340; border-radius: 22px; }
   .vid.media { display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--faint); border-style: dashed; text-align: center; padding: 12px; }
   .artrow figcaption { margin-top: 10px; font-family: var(--serif); font-size: 12px; color: var(--dim); letter-spacing: .04em; }
-  .planvid { height: var(--media-h, 400px); aspect-ratio: 1900 / 1080; width: auto; max-width: 100%; justify-self: end; }
+  .planwrap { display: grid; grid-template-columns: var(--split-left, 0.9fr) 1.1fr; gap: var(--split-gap, 40px); align-items: center; }
+  .planvid { width: 100%; height: auto; aspect-ratio: 1900 / 1080; }
+  .planvid video { object-fit: contain; background: #000; }
+  .psteps2 { list-style: none; margin: 18px 0 0; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+  .psteps2 li { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: center; }
+  .psteps2 b { display: block; font-family: var(--serif); font-weight: 500; font-size: 14.5px; color: var(--ink); }
+  .psteps2 span:not(.pcat) { display: block; font-size: 12px; color: var(--dim); line-height: 1.4; }
+  .pcat { display: inline-flex; align-items: center; gap: 2px; min-width: 44px; height: 44px; justify-content: center; }
+  .pcat img { width: 44px; height: 44px; object-fit: contain; }
+  .pcat.multi img { width: 38px; height: 38px; margin-right: -6px; }
+  .pcat.you { font-family: var(--serif); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--wanaka); border: 1px solid rgba(163,230,74,.4); border-radius: 50%; width: 44px; }
   /* hotspots + tooltip (green) */
   .hs { position: absolute; width: 18px; height: 18px; margin: -9px 0 0 -9px; border-radius: 50%; border: 0; padding: 0; cursor: pointer; background: rgba(163,230,74,.95); box-shadow: 0 0 0 4px rgba(163,230,74,.22), 0 0 16px rgba(163,230,74,.6); opacity: 0; transform: scale(.6); transition: opacity .3s ease-out, transform .3s ease-out, box-shadow .2s; z-index: 4; }
   .hs::after { content: ""; position: absolute; inset: -10px; border-radius: 50%; border: 1px solid rgba(163,230,74,.6); animation: hsPulse 1.8s ease-out infinite; }
@@ -297,14 +307,19 @@
 
     <!-- 6 · Wall 03 · Worldbuilding -->
     <section class="slide">
-      <div class="slide-inner split" style="--split-left:0.8fr">
+      <div class="slide-inner planwrap">
         <div>
           <div class="eyebrow rv wk">Wall 03 · “Worlds are complicated”</div>
-          <h2 class="rv" style="font-size:var(--t-h2,40px)">Your game building team.</h2>
-          <p class="lede rv">
-            Game design is the deepest wall: what to build, in what order, and why. So this agent is a <em class="k">producer</em> — it runs the project with you from idea to playable, backed by a team of agents for levels, systems and pacing.
-          </p>
-          <p class="cap rv d2">Still in planning · the flow is a working demo I built with Claude Code</p>
+          <h2 class="rv" style="font-size:var(--t-h2,40px)">Plan mode: a producer runs the project with you.</h2>
+          <ol class="psteps2 rv d2">
+            <li><span class="pcat you">You</span><div><b>Open Plan mode</b><span>One sentence: what you want to make.</span></div></li>
+            <li><span class="pcat"><img src="assets/wana-planner.gif" alt="Planner Wana" /></span><div><b>Planner drafts the plan</b><span>Levels, systems, pacing — in seconds.</span></div></li>
+            <li><span class="pcat you">You</span><div><b>Confirm with a few taps</b><span>Pick options, tweak, approve. No writing.</span></div></li>
+            <li><span class="pcat multi"><img src="assets/wana-dev.gif" alt="Developer" /><img src="assets/wana-artist.gif" alt="Artist" /><img src="assets/wana-tester.gif" alt="Tester" /><img src="assets/wana-musician.gif" alt="Musician" /></span><div><b>The crew takes the parts</b><span>Developer, Artist, Tester, Musician — each owns a piece of the plan.</span></div></li>
+            <li><span class="pcat"><img src="assets/wana-tester.gif" alt="Tester" /></span><div><b>1.0 lands, you give feedback</b><span>The right cat revises until 1.0 feels right.</span></div></li>
+            <li><span class="pcat"><img src="assets/wana-planner.gif" alt="Planner Wana" /></span><div><b>Planner proposes 2.0</b><span>Next steps, one version at a time.</span></div></li>
+          </ol>
+          <p class="cap rv d3">Still in planning · working demo built with Claude Code</p>
         </div>
         <div class="vid planvid rv d3"><video src="assets/wk-plan.mp4" muted loop playsinline autoplay preload="metadata"></video></div>
       </div>
@@ -384,7 +399,7 @@
     new MutationObserver(() => animateTo(trig.classList.contains("shown") ? 45 : 100)).observe(trig, { attributes: true, attributeFilter: ["class"] });
   });
 </script>
-<script src="deck.js?v=09041230"></script>
-<script src="editor.js?v=09041230"></script>
+<script src="deck.js?v=09041256"></script>
+<script src="editor.js?v=09041256"></script>
 </body>
 </html>
