@@ -7,7 +7,7 @@
 <title>Answer.AI · The Growth Story</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css?v=09031807" />
+<link rel="stylesheet" href="style.css?v=09040050" />
 <style>
   /* strategy · isometric stack + four layers */
   .promise { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: var(--split-gap,36px); align-items: center; margin-top: 18px; }
@@ -262,7 +262,8 @@
   .talk > div { overflow: hidden; }
   .tut:hover .talk, .tut:focus .talk { grid-template-rows: 1fr; }
   .tut:hover, .tut:focus { border-color: rgba(75,255,201,.45); background: rgba(75,255,201,.05); outline: none; }
-  .tutors:hover .tut:not(:hover) { opacity: .55; }
+  .tut.frag:not(.shown) { pointer-events: none; }
+  .tutors:hover .tut.shown:not(:hover) { opacity: .55; }
   .tklab { font-family: var(--serif); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--reach); margin: 10px 0 6px; }
   .tktags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px; }
   .tktags span { font-size: 10.5px; color: var(--ink); border: 1px solid rgba(255,255,255,.16); border-radius: 999px; padding: 3px 8px; }
@@ -1280,7 +1281,7 @@
   // page 3: stagger index for the learner-model dots
   document.querySelectorAll(".dots i").forEach((d, k) => d.style.setProperty("--k", k + 1));
 </script>
-<script src="deck.js?v=09031807"></script>
-<script src="editor.js?v=09031807"></script>
+<script src="deck.js?v=09040050"></script>
+<script src="editor.js?v=09040050"></script>
 </body>
 </html>
