@@ -71,7 +71,9 @@
     background: #8b7cff; color: #0b0b10; cursor: pointer; }
   .cmt-btn.ghost { background: rgba(255,255,255,.06); color: #cfc4ff; border: 1px solid rgba(255,255,255,.14); font-weight: 500; }
   .cmt-tools { padding: 0 22px 18px; display: flex; flex-direction: column; gap: 8px; }
-  .cmt-tools .hint { font-size: 11.5px; color: #6f6f80; line-height: 1.5; }
+  .cmt-tools .hint { font-size: 11.5px; color: #6f6f80; line-height: 1.6; }
+  .cmt-tools .hint button { background: none; border: 0; padding: 0 0 0 10px; font: inherit; color: #5f5f70; text-decoration: underline; cursor: pointer; }
+  .cmt-tools .hint button:hover { color: #cfc4ff; }
   .cmt-code { width: 100%; font: 12px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; color: #cfc4ff;
     background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.14); border-radius: 10px; padding: 10px 12px; min-height: 70px; resize: vertical; display: none; }
   .cmt-code.on { display: block; }
@@ -105,11 +107,9 @@
       <div class="cmt-row">
         <button class="cmt-btn ghost cmt-export" type="button">Copy all as code</button>
         <button class="cmt-btn ghost cmt-import" type="button">Paste code</button>
-        <button class="cmt-btn ghost cmt-save" type="button">Save file</button>
-        <button class="cmt-btn ghost cmt-clear" type="button">Clear all</button>
       </div>
       <textarea class="cmt-code" placeholder="Paste the code here, then press Paste code again"></textarea>
-      <div class="hint cmt-hint">Comments live in this browser. Send the code to share them.</div>
+      <div class="hint"><span class="cmt-hint">Comments live in this browser. Send the code to share them.</span> <button type="button" class="cmt-clear">clear all</button><button type="button" class="cmt-save">save file</button></div>
     </div>`;
   document.body.appendChild(panel);
 
