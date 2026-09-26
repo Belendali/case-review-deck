@@ -105,6 +105,7 @@
       <div class="cmt-row">
         <button class="cmt-btn ghost cmt-export" type="button">Copy all as code</button>
         <button class="cmt-btn ghost cmt-import" type="button">Paste code</button>
+        <button class="cmt-btn ghost cmt-save" type="button">Save file</button>
         <button class="cmt-btn ghost cmt-clear" type="button">Clear all</button>
       </div>
       <textarea class="cmt-code" placeholder="Paste the code here, then press Paste code again"></textarea>
@@ -115,6 +116,18 @@
   const $ = (s) => panel.querySelector(s);
   const listEl = $(".cmt-list"), whereEl = $(".cmt-where"), nameEl = $(".cmt-name"),
         asEl = $(".cmt-as"), textEl = $(".cmt-text"), codeEl = $(".cmt-code"), hintEl = $(".cmt-hint");
+
+  const DRAFT = "deckCommentsDraftV1";
+  function draftKey() { return DRAFT + ":" + PAGE + ":" + idx; }
+  function loadDraft() {
+    try { textEl.value = localStorage.getItem(draftKey()) || ""; } catch (e) {}
+  }
+  function saveDraft() {
+    try {
+      const v = textEl.value;
+      if (v.trim()) localStorage.setItem(draftKey(), v); else localStorage.removeItem(draftKey());
+    } catch (e) {}
+  }
 
   function syncWho() {
     const has = !!(store.author || "").trim();
@@ -165,8 +178,10 @@
   }
 
   /* ---------- events ---------- */
-  document.addEventListener("deck:change", (e) => { idx = e.detail.index; render(); });
-  window.addEventListener("hashchange", () => { idx = fromHash(); render(); });
+  document.addEventListener("deck:change", (e) => { saveDraft(); idx = e.detail.index; loadDraft(); render(); });
+  window.addEventListener("hashchange", () => { saveDraft(); idx = fromHash(); loadDraft(); render(); });
+  textEl.addEventListener("input", saveDraft);
+  window.addEventListener("beforeunload", saveDraft);
 
   // keys typed inside the panel belong to the panel, never to the deck
   window.addEventListener("keydown", (e) => {
@@ -198,6 +213,7 @@
     if (!(store.author || "").trim()) { nameEl.focus(); hintEl.textContent = "Add a name once, then it's remembered."; return; }
     add(text);
     syncWho();
+    try { localStorage.removeItem(draftKey()); } catch (e) {}
     textEl.value = "";
     render();
     hintEl.textContent = "Saved. " + total() + " comments in this browser — copy the code to send them.";
@@ -247,6 +263,27 @@
     hintEl.textContent = added + " comments added. Slides with comments show a marker.";
   });
 
+  $(".cmt-save").addEventListener("click", () => {
+    if (!total()) { hintEl.textContent = "Nothing to save yet."; return; }
+    const lines = [];
+    Object.entries(store.data).forEach(([page, slides]) => {
+      Object.entries(slides).sort((a, b) => a[0] - b[0]).forEach(([i, arr]) => {
+        lines.push("## " + (TITLES[page] || page) + " · slide " + (Number(i) + 1));
+        arr.forEach((c) => lines.push("- " + c.text));
+        lines.push("");
+      });
+    });
+    lines.push("--- code (paste this back into the deck) ---");
+    lines.push(btoa(unescape(encodeURIComponent(JSON.stringify(store)))));
+    const blob = new Blob([lines.join("\n")], { type: "text/plain" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "deck-comments.txt";
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 3000);
+    hintEl.textContent = "Saved as deck-comments.txt — the code is at the bottom of the file.";
+  });
+
   $(".cmt-clear").addEventListener("click", () => {
     if (!total()) { hintEl.textContent = "Nothing to clear."; return; }
     if (hintEl.dataset.armed !== "1") {
@@ -263,5 +300,6 @@
   });
 
   syncWho();
+  loadDraft();
   render();
 })();
